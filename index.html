@@ -4,7 +4,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;600&family=Young+Serif&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: sticky header, editorial hero with article cards, then full-width bands (levels staircase, grammar, videos, chat) on one centred 1160px column. */
 :root{
@@ -213,6 +213,13 @@ td:first-child{color:var(--muted)}
 .tiny{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font-size:.78rem;display:inline-flex;gap:5px;align-items:center}
 .tiny svg{width:13px;height:13px}
 .tr-line{font-size:.9rem;color:var(--muted);padding-inline:4px}
+.tr-box{display:grid;gap:4px;margin-top:2px;animation:fadeUp .25s var(--ease) both}
+.tr-box .tr-line{display:flex;gap:8px;align-items:baseline}
+.tr-box .tr-line[dir="rtl"]{font-size:1rem;line-height:1.7}
+.tr-lab{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;color:var(--accent);flex:none}
+#mic.hfon{background:var(--accent);color:#fff;box-shadow:0 0 0 0 var(--accent);animation:hfpulse 1.8s infinite}
+@keyframes hfpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){#mic.hfon{animation:none}}
 .fb{border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-size:.9rem;display:grid;gap:6px;background:var(--surface)}
 .fb .lab{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
 .fb.ok .lab{color:var(--ok)}
@@ -480,7 +487,13 @@ footer[data-screen]{padding:10px 0 30px;border:0;background:transparent;font-siz
 .vsheet{position:fixed;inset:0;z-index:50;background:rgba(10,10,20,.82);display:grid;place-items:center;padding:calc(12px + var(--sat)) 12px calc(12px + var(--sab));animation:fadeUp .25s var(--ease) both}
 .vsheet[hidden]{display:none}
 .vsheet-in{position:relative;width:min(420px,100%);max-height:100%;display:grid;gap:12px;background:var(--surface);border-radius:24px;padding:12px;overflow:auto}
-.vsheet video{width:100%;max-height:68dvh;border-radius:16px;background:#000;aspect-ratio:9/16;object-fit:contain}
+.vsheet video{width:100%;max-height:68dvh;border-radius:16px;background:#000;aspect-ratio:9/16;object-fit:contain;transition:opacity .35s var(--ease)}
+.vsheet-in{animation:vsIn .32s var(--ease) both}
+@keyframes vsIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.vwrap{position:relative}
+.vwrap.loading::after{content:"";position:absolute;top:50%;left:50%;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;animation:vspin .8s linear infinite;pointer-events:none}
+@keyframes vspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.vsheet-in{animation:none}}
 .vs-meta{display:grid;gap:4px;padding:0 6px 6px}
 .vs-meta h3{font-family:var(--f-display);font-weight:400;font-size:1.4rem}
 .vs-meta p{color:var(--muted)}
@@ -521,6 +534,266 @@ body[data-screen="chat"] #chat{padding-block:10px 8px}
 body[data-screen="listen"][data-lmode="ex"] #videos{display:none}
 body[data-screen="listen"]:not([data-lmode="ex"]) #listen{display:none}
 .q-p:has(.hearbtn){align-items:center}
+
+/* =====================================================================
+   WORTWEG 2 · design layer
+   Ink-indigo + warm ivory, saffron→coral accent, Fraunces display,
+   Plus Jakarta Sans body. Wider canvas (1240px), roomier cards.
+   ===================================================================== */
+:root{
+  --paper:#F6F3EC; --surface:#FFFFFF; --soft:#EEEAE0; --ink:#17153B; --muted:#5E5B78; --line:#E2DDD0;
+  --accent:#F5A623; --accent-2:#F0565B; --accent-ink:#17153B; --brand:#4B3FD8; --brand-soft:#ECEAFE;
+  --der:#3D63DD; --die:#D9415A; --das:#13976A; --ok:#13976A; --bad:#D9415A;
+  --grad:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 100%);
+  --grad-ink:linear-gradient(135deg,#1F1B52 0%,#3A2F9E 55%,#5B4BE8 100%);
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-body:"Plus Jakarta Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-ar:"IBM Plex Sans Arabic","Plus Jakarta Sans",Tahoma,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:18px; --r-lg:28px;
+  --sh-1:0 1px 2px rgba(23,21,59,.05),0 4px 14px -6px rgba(23,21,59,.10);
+  --sh-2:0 2px 6px rgba(23,21,59,.05),0 24px 48px -28px rgba(23,21,59,.30);
+  --sh-3:0 40px 80px -40px rgba(23,21,59,.45);
+  --wmax:1240px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F0E22; --surface:#191734; --soft:#242146; --ink:#F2EFFF; --muted:#ABA7CB; --line:#2F2C55;
+  --accent:#FFB43C; --accent-2:#FF6B6F; --accent-ink:#17153B; --brand:#8C82FF; --brand-soft:#28245A;
+  --der:#86A3FF; --die:#FF8197; --das:#4FD7A2; --ok:#4FD7A2; --bad:#FF8197;
+  --sh-1:0 1px 2px rgba(0,0,0,.3),0 4px 14px -6px rgba(0,0,0,.5);
+  --sh-2:0 2px 6px rgba(0,0,0,.3),0 24px 48px -28px rgba(0,0,0,.7);
+  --sh-3:0 40px 80px -40px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F0E22; --surface:#191734; --soft:#242146; --ink:#F2EFFF; --muted:#ABA7CB; --line:#2F2C55;
+  --accent:#FFB43C; --accent-2:#FF6B6F; --accent-ink:#17153B; --brand:#8C82FF; --brand-soft:#28245A;
+  --der:#86A3FF; --die:#FF8197; --das:#4FD7A2; --ok:#4FD7A2; --bad:#FF8197;
+  --sh-1:0 1px 2px rgba(0,0,0,.3),0 4px 14px -6px rgba(0,0,0,.5);
+  --sh-2:0 2px 6px rgba(0,0,0,.3),0 24px 48px -28px rgba(0,0,0,.7);
+  --sh-3:0 40px 80px -40px rgba(0,0,0,.8); color-scheme:dark}
+
+/* type */
+body{font-family:var(--f-body);font-size:clamp(15.5px,.3vw + 14.6px,17.5px);line-height:1.65;letter-spacing:-.003em;
+  background:
+    radial-gradient(1100px 520px at 100% -10%,color-mix(in srgb,var(--brand) 13%,transparent),transparent 65%),
+    radial-gradient(900px 480px at -10% 30%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%),
+    var(--paper);
+  background-attachment:fixed}
+[lang="de"]{font-family:var(--f-body)}
+html[dir="rtl"] body{font-family:var(--f-ar)}
+h1,h2,h3,.screen-title,.brand-name{font-family:var(--f-display);font-optical-sizing:auto;font-variation-settings:"SOFT" 50,"WONK" 0}
+.sec-head h2{font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.025em}
+.sec-head p{font-size:1.04rem;max-width:62ch}
+.sec-head .eyebrow{display:inline-flex}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--brand);background:var(--brand-soft);padding:5px 10px;border-radius:999px;justify-self:start;width:max-content}
+h4{font-family:var(--f-mono);font-weight:600;font-size:.72rem;letter-spacing:.12em;color:var(--brand)}
+
+/* wider canvas */
+.wrap{max-width:var(--wmax)}
+.appbar-in{max-width:var(--wmax);height:64px;gap:12px;padding-inline:max(clamp(16px,4vw,32px),env(safe-area-inset-left,0px))}
+:root{--ab:64px}
+.sec{padding-block:clamp(22px,4vw,44px) clamp(28px,4vw,48px)}
+.sec-head{margin-bottom:clamp(18px,2.6vw,30px);gap:12px}
+
+/* app bar */
+.appbar{background:color-mix(in srgb,var(--paper) 78%,transparent)}
+.appbar .brand-mark{gap:4px}.appbar .brand-mark i{width:7px;height:24px;border-radius:4px}
+.screen-title{font-weight:600;font-size:1.6rem;letter-spacing:-.02em}
+.abtn{width:42px;height:42px;border-color:var(--line);box-shadow:var(--sh-1)}
+.abtn:hover{border-color:var(--brand);color:var(--brand)}
+.langs{background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-1)}
+.langs button[aria-pressed="true"]{background:var(--grad-ink);color:#fff}
+.installbtn{background:var(--grad);color:var(--accent-ink);box-shadow:0 8px 20px -10px var(--accent-2)}
+
+/* buttons, chips */
+.btn{border-width:1.5px;padding:13px 24px;font-weight:700;letter-spacing:.005em}
+.btn.primary{background:var(--grad);border-color:transparent;color:var(--accent-ink);box-shadow:0 14px 30px -14px color-mix(in srgb,var(--accent-2) 80%,transparent)}
+.btn.primary:hover{box-shadow:0 18px 34px -14px color-mix(in srgb,var(--accent-2) 90%,transparent)}
+.chip{border:1px solid var(--line);background:var(--surface);padding:9px 16px;font-weight:600;box-shadow:var(--sh-1)}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--grad-ink);border-color:transparent;color:#fff;box-shadow:0 10px 24px -12px var(--brand)}
+.lvl-tabs .chip{min-width:58px;justify-content:center;font-family:var(--f-mono)}
+.topic-tabs{gap:10px}
+.opt{border:1.5px solid var(--line);border-radius:12px;font-weight:600}
+.opt:hover:not(:disabled){border-color:var(--brand);background:var(--brand-soft)}
+.say,.tiny{border-color:var(--line)}
+.say:hover{background:var(--grad);border-color:transparent}
+.nextbtn{background:var(--grad-ink);border-color:transparent;box-shadow:0 16px 30px -16px var(--brand)}
+
+/* cards & panels: bigger, softer */
+.gpanel,.rtext,.rqs,.lpanel,.hero-panel,.chat,.vcard,.step,.q{border-color:var(--line)}
+.gpanel,.lpanel,.rtext,.rqs,.hero-panel{border-radius:var(--r-lg);box-shadow:var(--sh-2);padding:clamp(20px,3.2vw,40px)}
+.gpanel{gap:clamp(24px,3vw,40px)}
+.g-head h3{font-weight:600;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.02em}
+.g-grid{grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px)}
+.rule{font-size:1.08rem;line-height:1.7}
+.tbl{border-radius:14px;box-shadow:var(--sh-1)}
+th{background:var(--brand-soft);color:var(--ink);font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.exs li{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.qs{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.q{border-radius:18px;padding:18px;background:var(--surface);box-shadow:var(--sh-1)}
+.q.done{background:color-mix(in srgb,var(--das) 6%,var(--surface))}
+.qbar{height:8px;border-radius:99px}.qbar i{background:var(--grad);border-radius:99px}
+.score{background:var(--brand-soft);color:var(--brand);font-weight:600}
+.rpanel{grid-template-columns:1.2fr .8fr;gap:clamp(16px,2.4vw,28px)}
+.rtext h3{font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em}
+.rtext .body{font-size:1.12rem;line-height:1.85}
+.rtext .rtr{border-inline-start:3px solid transparent;border-image:var(--grad) 1}
+.lplayer{border-radius:20px;border:1px solid var(--line)}
+.bigplay{background:var(--grad-ink);box-shadow:0 14px 28px -14px var(--brand)}
+.ltrans{font-family:var(--f-display);font-size:1.15rem}
+
+/* home */
+.hero{grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);padding-top:clamp(20px,4vw,48px)}
+.hero h1{font-weight:600;font-size:clamp(2.6rem,6.4vw,5rem);line-height:.98;letter-spacing:-.035em}
+.hero h1 mark{background:none;color:transparent;background-image:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:italic;padding-inline:0 .06em;margin-inline-end:-.06em}
+body[data-screen="home"] section.hero{display:grid}
+@media (min-width:861px){.hero h1{font-size:clamp(2.6rem,4.6vw,4.6rem)}}
+.hero-tr{font-family:var(--f-display);font-size:1.25rem}
+.hero-lead{font-size:1.1rem;line-height:1.7}
+.hero-panel{background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(140deg,color-mix(in srgb,var(--brand) 40%,transparent),transparent 40%,color-mix(in srgb,var(--accent) 45%,transparent)) border-box;border:1.5px solid transparent}
+.acard{border-radius:16px;padding:16px;border-top-width:5px}
+.acard .word{font-weight:600}
+.feat{border-radius:16px;padding:14px 16px}
+.feat b{font-weight:600}
+.feat:hover{border-color:var(--brand);background:var(--brand-soft)}
+.stairs{gap:14px}
+.step{border-radius:22px;padding:22px 20px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-1)}
+.step .code{font-weight:600;font-size:3rem;letter-spacing:-.03em}
+.step .bar{height:8px;border-radius:99px}.step .bar i{background:var(--grad);border-radius:99px}
+.step[aria-pressed="true"]{background:var(--grad-ink);color:#fff;border-color:transparent;box-shadow:0 24px 44px -24px var(--brand)}
+.step[aria-pressed="true"] .can,.step[aria-pressed="true"] .pct{color:#fff;opacity:.8}
+.step[aria-pressed="true"] .bar{background:rgba(255,255,255,.2)}
+.step[aria-pressed="true"] .bar i{background:var(--grad)}
+@media (max-width:860px){.hero,.rpanel,.g-grid{grid-template-columns:1fr}}
+
+/* videos: bigger cards */
+.vids{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+.vcard{border-radius:22px;box-shadow:var(--sh-1)}
+.vcard:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.vplay{background:var(--grad);color:var(--accent-ink);width:44px;height:44px}
+.vmeta{padding:12px 14px 16px}
+.vmeta b{font-size:1rem}
+.vlesson{border-radius:20px;background:var(--surface);box-shadow:var(--sh-1);padding:10px}
+/* video sheet: large, side-by-side on desktop */
+.vsheet{background:color-mix(in srgb,#08071A 84%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.vsheet-in{width:min(460px,100%);border-radius:28px;padding:14px;box-shadow:var(--sh-3)}
+.vsheet video{border-radius:20px}
+.vs-meta h3{font-weight:600;font-size:1.7rem;letter-spacing:-.02em}
+@media (min-width:860px){
+  .vsheet-in{width:min(900px,100%);grid-template-columns:minmax(0,400px) minmax(0,1fr);align-items:center;gap:28px;padding:18px}
+  .vsheet video{max-height:80dvh}
+  .vs-meta{padding:10px 18px 10px 0;gap:10px}
+  .vs-meta h3{font-size:2.2rem}
+}
+.vs-err{display:grid;gap:8px;background:color-mix(in srgb,var(--bad) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--bad) 35%,transparent);border-radius:16px;padding:12px 14px;font-size:.92rem;line-height:1.5}
+.vs-err[hidden]{display:none}
+.vs-err a{font-weight:700}
+
+/* tab bar */
+.tabbar button[aria-current="page"]{color:var(--brand)}
+.tabbar button[aria-current="page"]::before{background:var(--brand-soft)}
+@media (min-width:900px) and (max-width:1179px){.tabbar{width:640px;border-radius:24px;box-shadow:var(--sh-3)}}
+/* big screens: tab bar becomes a left rail, giving the content full height */
+@media (min-width:1180px){
+  body{padding-bottom:0!important;padding-inline-start:104px}
+  .tabbar{left:0!important;right:auto!important;top:0;bottom:0!important;width:96px!important;transform:none!important;flex-direction:column;justify-content:center;gap:6px;border:0!important;border-inline-end:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;padding:calc(var(--sat) + 80px) 0 20px}
+  html[dir="rtl"] .tabbar{left:auto!important;right:0!important}
+  .tabbar button{flex:none;height:72px;max-width:none;font-size:.72rem}
+  .tabbar button::before{top:8px;width:56px;height:34px;border-radius:17px}
+  .chat-main{height:calc(100dvh - var(--ab) - var(--sat) - 40px)!important}
+  .appbar-in{max-width:none;padding-inline:32px}
+  footer[data-screen]{padding-bottom:30px}
+}
+
+/* ===== Lena chat, new layout: conversation + reply-ideas window ===== */
+.chat{border-radius:var(--r-lg);box-shadow:var(--sh-2);border:1px solid var(--line);background:var(--surface)}
+.chat-top{padding:14px 20px;gap:12px;background:linear-gradient(180deg,color-mix(in srgb,var(--brand) 7%,var(--surface)),var(--surface))}
+.avatar{width:46px;height:46px;background:var(--grad);font-family:var(--f-display);font-weight:600;font-size:1.3rem;position:relative;box-shadow:0 10px 22px -12px var(--accent-2)}
+.avatar::after{content:"";position:absolute;inset-inline-end:0;bottom:1px;width:11px;height:11px;border-radius:50%;background:var(--ok);border:2px solid var(--surface)}
+.chat-top .who b{font-family:var(--f-display);font-weight:600;font-size:1.2rem}
+.lvbadge{font-family:var(--f-mono);font-size:.72rem;font-weight:600;background:var(--grad-ink);color:#fff;padding:3px 9px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
+.chat-body{display:grid;grid-template-columns:minmax(0,1fr);min-height:0;overflow:hidden}
+.log{padding:clamp(16px,2.4vw,28px);gap:18px;min-height:0}
+.msg{max-width:min(84%,680px)}
+.bubble{padding:13px 18px;border-radius:20px;font-size:1.06rem;line-height:1.55}
+.bot .bubble{background:var(--soft);border-start-start-radius:6px}
+.me .bubble{background:var(--grad-ink);color:#fff;border-start-end-radius:6px}
+.me .bubble .err{text-decoration:underline wavy color-mix(in srgb,var(--accent-2) 90%,#fff);text-underline-offset:4px;text-decoration-thickness:1.5px}
+.fb{border-radius:18px;padding:14px 16px;gap:10px;box-shadow:var(--sh-1)}
+.fb .lab{font-weight:600}
+.fb.ok{border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.errs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.errs li{display:grid;gap:3px;padding:9px 11px;background:var(--paper);border-radius:12px;border:1px solid var(--line)}
+.errs .ch{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.errs s{color:var(--bad);text-decoration-thickness:2px}
+.errs ins{text-decoration:none;color:var(--ok);font-weight:700}
+.etype{font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.etype.spelling{background:color-mix(in srgb,var(--der) 15%,transparent);color:var(--der)}
+.etype.grammar{background:color-mix(in srgb,var(--die) 15%,transparent);color:var(--die)}
+.etype.pronunciation{background:color-mix(in srgb,var(--accent) 25%,transparent);color:color-mix(in srgb,var(--accent-2) 80%,var(--ink))}
+.etype.word_order,.etype.vocabulary{background:color-mix(in srgb,var(--das) 15%,transparent);color:var(--das)}
+.heard{display:flex;align-items:center;gap:8px;justify-content:flex-end;font-size:.8rem;color:var(--muted)}
+.clar{width:64px;height:6px;border-radius:99px;background:var(--soft);overflow:hidden}
+.clar i{display:block;height:100%;border-radius:99px;background:var(--grad)}
+.fb .und{font-style:italic}
+.fb .pron .lab{color:color-mix(in srgb,var(--accent-2) 80%,var(--ink))}
+/* reply ideas window */
+.ideas{display:none;flex-direction:column;gap:12px;min-height:0;overflow:auto;padding:18px;background:color-mix(in srgb,var(--brand) 4%,var(--paper));border-inline-start:1px solid var(--line)}
+.ideas-h{display:flex;align-items:center;gap:10px}
+.ideas-h h3{font-family:var(--f-display);font-weight:600;font-size:1.25rem;letter-spacing:-.01em;margin-inline-end:auto}
+.ideas-h .ic{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:var(--grad);font-size:1rem}
+.ideas p.hint{font-size:.86rem;color:var(--muted);line-height:1.5}
+.idea{display:grid;gap:4px;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:12px 14px;box-shadow:var(--sh-1);position:relative;transition:border-color .2s,transform .2s var(--ease),box-shadow .2s}
+.idea:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--sh-2)}
+.idea .de{font-weight:700;font-size:1rem;line-height:1.4;padding-inline-end:34px}
+.idea .tr{font-size:.85rem;color:var(--muted)}
+.idea .say{position:absolute;top:10px;inset-inline-end:10px}
+.idea .use{font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.words{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:.84rem;display:inline-flex;gap:6px;align-items:baseline}
+.wchip b{font-weight:700}.wchip span{color:var(--muted);font-size:.78rem}
+.ideas-loading{display:flex;gap:8px;align-items:center;font-size:.86rem;color:var(--muted)}
+.ideabtn{height:46px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);display:inline-flex;align-items:center;gap:6px;padding-inline:12px;font-weight:700;font-size:.88rem;flex:none}
+.ideabtn[aria-expanded="true"]{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.composer{padding:12px 16px 16px;gap:10px;border-top:1px solid var(--line);background:var(--surface)}
+.composer textarea{border-radius:16px;padding:12px 14px;border:1.5px solid var(--line);font-size:1.02rem}
+.composer textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+.iconbtn#mic{width:54px;height:54px;background:var(--grad);border:0;box-shadow:0 12px 24px -12px var(--accent-2)}
+.sendbtn{border-radius:14px;background:var(--grad-ink);color:#fff;height:48px;padding-inline:22px}
+.note{border-radius:14px;margin:0 16px 10px}
+/* mobile / tablet: ideas slide in above the composer */
+.chat.ideas-open .ideas{display:flex;border-inline-start:0;border-top:1px solid var(--line);max-height:42dvh}
+.chat.ideas-open .chat-body{grid-template-rows:minmax(0,1fr) auto}
+/* wide: ideas is a permanent right-hand window */
+@media (min-width:1000px){
+  .chat-body{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:minmax(0,1fr)!important}
+  .ideas,.chat.ideas-open .ideas{display:flex;max-height:none;border-top:0;border-inline-start:1px solid var(--line)}
+  .ideabtn{display:none}
+}
+@media (min-width:1400px){.chat-body{grid-template-columns:minmax(0,1fr) 380px}}
+@media (min-width:1000px){.chat .chat-side{padding:24px 28px}.scen{grid-template-columns:repeat(3,minmax(0,1fr));max-height:none}.scen button{border-color:var(--line);background:var(--surface)}}
+.chat-main{grid-template-rows:auto minmax(0,1fr) auto}
+@media (max-width:999px){
+  .chat.ideas-open .ideas{max-height:34dvh;padding:12px 14px;gap:8px}
+  .ideas .hint{display:none}
+  .ideas-h h3{font-size:1.05rem}.ideas-h .ic{width:28px;height:28px;border-radius:9px;font-size:.85rem}
+  #ideas-list{grid-auto-flow:column;grid-auto-columns:min(78%,300px);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}
+  #ideas-list::-webkit-scrollbar{display:none}
+  .idea{scroll-snap-align:start;padding:10px 12px}
+  .idea .de{font-size:.95rem}
+  .words{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .wchip{flex:none}
+}
+@media (max-width:520px){
+  .composer{gap:6px;padding:10px}
+  .ideabtn span{display:none}.ideabtn{width:42px;height:42px;justify-content:center;padding:0}
+  .iconbtn#mic{width:46px;height:46px}
+  .sendbtn{padding-inline:12px;height:42px}
+  .composer textarea{padding:10px 12px;min-height:44px}
+  .composer textarea::placeholder{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chat-top{padding:10px 12px;gap:8px}
+  .avatar{width:40px;height:40px}
+}
 </style>
 
 </head><body>
@@ -622,13 +895,22 @@ body[data-screen="listen"]:not([data-lmode="ex"]) #listen{display:none}
             <div class="who"><b>Lena</b><span id="c-sub"></span></div>
             <span class="hftime" id="hftime" hidden></span><button class="tiny cfgbtn" id="cfgbtn" aria-expanded="false" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></button><button class="tiny hfbtn" id="hf" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span data-i18n="hf"></span></button><button class="tiny" id="restart" data-i18n="restart"></button>
           </div>
-          <div class="log" id="log" aria-live="polite"></div>
+          <div class="chat-body">
+            <div class="log" id="log" aria-live="polite"></div>
+            <aside class="ideas" id="ideas" aria-labelledby="ideas-title">
+              <div class="ideas-h"><span class="ic" aria-hidden="true">💡</span><h3 id="ideas-title" data-i18n="ideas_title"></h3><span class="lvbadge" id="ideas-lv"></span></div>
+              <p class="hint" data-i18n="ideas_hint"></p>
+              <div id="ideas-list" style="display:grid;gap:10px"></div>
+              <div id="ideas-words"></div>
+            </aside>
+          </div>
           <div>
             <label class="autosend"><input type="checkbox" id="autosend"><span data-i18n="autosend"></span></label>
             <p class="note" id="c-note" hidden></p>
             <form class="composer" id="composer">
               <button type="button" class="iconbtn" id="mic" aria-label="Mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
               <textarea id="msg" rows="1" lang="de" dir="ltr" placeholder="Schreib auf Deutsch …"></textarea>
+              <button type="button" class="ideabtn" id="ideabtn" aria-expanded="false" aria-controls="ideas">💡<span data-i18n="ideas_btn"></span></button>
               <button class="sendbtn" id="send" type="submit" data-i18n="send"></button>
             </form>
           </div>
@@ -644,10 +926,11 @@ body[data-screen="listen"]:not([data-lmode="ex"]) #listen{display:none}
   <label class="vrow" id="vdevrow"><span class="vlab" data-i18n="v_voice"></span><select id="vsel"></select></label>
   <div class="vrow"><span class="vlab" data-i18n="v_speed"></span><div class="seg"><button data-rate="0.7" data-i18n="v_slow"></button><button data-rate="0.9" data-i18n="v_normal"></button><button data-rate="1.1" data-i18n="v_fast"></button></div></div>
   <label class="vcheck"><input type="checkbox" id="vauto"><span data-i18n="v_auto"></span></label>
+  <label class="vcheck"><input type="checkbox" id="vnat"><span data-i18n="v_nat"></span></label>
   <button class="btn primary vtest" id="vtest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><span data-i18n="v_test"></span></button>
   <p class="vstat" id="vstat" aria-live="polite"></p>
 </div>
-<div class="vsheet" id="vsheet" hidden><div class="vsheet-in" role="dialog" aria-modal="true"><button class="vclose" id="vsclose" aria-label="Close">×</button><video id="vplayer" controls playsinline preload="metadata"></video><div class="vs-meta"><p class="eyebrow" id="vs-lv"></p><h3 id="vs-title" lang="de"></h3><p id="vs-sub"></p><button class="btn primary" id="vs-practice" data-i18n="v_practice"></button></div></div></div>
+<div class="vsheet" id="vsheet" hidden><div class="vsheet-in" role="dialog" aria-modal="true"><button class="vclose" id="vsclose" aria-label="Close">×</button><div class="vwrap" id="vwrap"><video id="vplayer" controls playsinline webkit-playsinline preload="auto" controlslist="nodownload noplaybackrate" disablepictureinpicture></video></div><div class="vs-meta"><div class="vs-err" id="vs-err" role="alert" hidden></div><p class="eyebrow" id="vs-lv"></p><h3 id="vs-title" lang="de"></h3><p id="vs-sub"></p><button class="btn primary" id="vs-practice" data-i18n="v_practice"></button></div></div></div>
 <nav class="tabbar" id="tabbar"><button data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span data-i18n="tab_home"></span></button><button data-go="grammar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M8 7h7M8 11h5"/></svg><span data-i18n="tab_grammar"></span></button><button data-go="listen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg><span data-i18n="tab_listen"></span></button><button data-go="reading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span data-i18n="tab_read"></span></button><button data-go="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg><span data-i18n="tab_chat"></span></button></nav>
 <footer data-screen="home"><div class="wrap"><span data-i18n="footer"></span><span>A1 · A2 · B1 · B2 · Built-in voice: meSpeak.js / eSpeak (GPL) · Speech input by your browser</span></div></footer>
 
@@ -656,7 +939,7 @@ const SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wid
 const PLAY='<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 
 const L={
-en:{ai_wait:"Lena needs a moment, the free AI plan is busy. Trying again…",hf_done:"Great session! Your conversation time is up. Tap Conversation to start another round.",hf_paused:"Conversation paused: I didn't hear anything for about 3 minutes. Tap Conversation to continue.",dur_inf:"No limit",dur_60:"60 min",dur_30:"30 min",dur_title:"Conversation length",v_practice:"Do the exercises",vlesson_sub:"About 1 minute · watch, listen, repeat",vlesson:"Video lesson",transcript_hide:"Hide transcript",transcript:"Show transcript",l_tip:"listen twice before you answer",l_announce:"Announcement",l_dialog:"Dialogue",hear_lead:"Tap the speaker, listen carefully and pick the exact sentence.",hear_title:"Which sentence did you hear?",hear_q:"Which sentence did you hear?",listen_lead:"Listen to everyday German, then answer. Play it as often as you like, and open the transcript only at the end.",listen_title:"Listening",tab_chat:"Lena",tab_read:"Read",tab_listen:"Listen",tab_grammar:"Grammar",tab_home:"Start",install:"Install app",install_ios:"To install on iPhone: tap the Share button at the bottom of Safari, then “Add to Home Screen”.",install_other:"To install: open your browser menu (⋮) and tap “Install app” or “Add to Home screen”.",ai_title:"Lena's AI key",ai_lead:"Lena needs an AI service to answer. Paste a key once: it's saved only in this browser and sent only to the service you pick.",ai_gemini:"Google Gemini · free",ai_claude:"Claude · paid",ai_get:"Get a free Gemini key ↗",ai_get_claude:"Get a Claude API key ↗",ai_save:"Save",ai_clear:"Remove key",ai_ph:"Paste your key here",ai_ready:"ready",ai_saved:"Key saved. Tap the microphone and say hallo to Lena!",no_key:"Add your AI key first (in “Lena's AI key”) so Lena can answer.",bad_key:"That key didn't work. Check it, paste it again and tap Save.",net_err:"No connection to the AI service. Check your internet, then send again.",hf:"Conversation",hf_on:"Conversation mode is on: speak, pause, and your sentence is sent. After Lena answers, the microphone opens again.",hf_listen:"🎙 I'm listening… speak German now.",autosend:"Send automatically when I stop talking",mic_on:"🎙 Listening… speak German now. Tap the microphone again to stop.",mic_none:"I didn't hear anything. Tap the microphone and try again.",mic_denied:"The microphone is blocked. Allow it for this site (tap the lock icon next to the address), then try again.",mic_unsupported:"Speech input doesn't work in this browser. Open the page in Chrome, Edge or Safari.",mic_net:"Speech recognition needs an internet connection. Check it and try again.",v_engine:"Voice engine",v_eng_auto:"Auto",v_eng_builtin:"Built-in",v_eng_device:"Phone",v_nodev:"No German voice on this device",v_loading:"Loading the German voice…",v_using_builtin:"Using the built-in German voice. It works on every device.",v_why_builtin:"Your phone has no working German voice, so this one is used instead.",v_err:"The built-in voice couldn't load. Reload the page and try again.",v_tap:"Your browser blocked the sound. Tap any speaker button once more to allow audio.",grammar_lead:"Each topic gives you the rule in a few lines, the forms in a table, real example sentences and ten exercises.",next_topic:"Next topic",all_done:"All done! Try the next level.",progress:"answered",v_btn:"Voice",v_title:"Voice settings",v_voice:"German voice",v_default:"Browser default",v_speed:"Speed",v_slow:"Slow",v_normal:"Normal",v_fast:"Fast",v_auto:"Read Lena's replies aloud",v_test:"Test the voice",v_ok:"Voice ready:",v_none:"No German voice was found in this browser, so the audio may sound wrong. On Android, install German in Settings › Text-to-speech. Or open the page in Chrome or Safari.",v_unsupported:"This view can't play speech. Open the page in Chrome, Edge or Safari to hear the audio.",v_silent:"The audio didn't start. Check that your phone isn't on silent and the volume is up, then try again. If it still stays quiet, open the page in your browser.",v_open:"Open in browser",mic_tip:"The microphone is blocked inside this page. Use dictation instead: tap the text box, then tap the microphone key on your phone keyboard (set to German). On a computer: Windows + H, or press Fn twice on a Mac.",brand_tag:"German from A1 to B2",nav_read:"Reading",read_title:"Reading comprehension",read_lead:"Short texts for each level, from a daily routine to newspaper-style articles. Read, listen, then answer the questions. Open the translation only if you get stuck.",
+en:{hf_speak:"🔊 Lena is answering… I'll listen again right after.",tr_loading:"Translating…",tr_err:"Translation isn't available right now. Check your AI key and try again.",v_nat:"Natural voice for Lena (Gemini, uses your key)",ai_wait:"Lena needs a moment, the free AI plan is busy. Trying again…",hf_done:"Great session! Your conversation time is up. Tap Conversation to start another round.",hf_paused:"Conversation paused: I didn't hear anything for about 3 minutes. Tap Conversation to continue.",dur_inf:"No limit",dur_60:"60 min",dur_30:"30 min",dur_title:"Conversation length",v_practice:"Do the exercises",vlesson_sub:"About 1 minute · watch, listen, repeat",vlesson:"Video lesson",transcript_hide:"Hide transcript",transcript:"Show transcript",l_tip:"listen twice before you answer",l_announce:"Announcement",l_dialog:"Dialogue",hear_lead:"Tap the speaker, listen carefully and pick the exact sentence.",hear_title:"Which sentence did you hear?",hear_q:"Which sentence did you hear?",listen_lead:"Listen to everyday German, then answer. Play it as often as you like, and open the transcript only at the end.",listen_title:"Listening",tab_chat:"Lena",tab_read:"Read",tab_listen:"Listen",tab_grammar:"Grammar",tab_home:"Start",install:"Install app",install_ios:"To install on iPhone: tap the Share button at the bottom of Safari, then “Add to Home Screen”.",install_other:"To install: open your browser menu (⋮) and tap “Install app” or “Add to Home screen”.",ai_title:"Lena's AI key",ai_lead:"Lena needs an AI service to answer. Paste a key once: it's saved only in this browser and sent only to the service you pick.",ai_gemini:"Google Gemini · free",ai_claude:"Claude · paid",ai_get:"Get a free Gemini key ↗",ai_get_claude:"Get a Claude API key ↗",ai_save:"Save",ai_clear:"Remove key",ai_ph:"Paste your key here",ai_ready:"ready",ai_saved:"Key saved. Tap the microphone and say hallo to Lena!",no_key:"Add your AI key first (in “Lena's AI key”) so Lena can answer.",bad_key:"That key didn't work. Check it, paste it again and tap Save.",net_err:"No connection to the AI service. Check your internet, then send again.",hf:"Conversation",hf_on:"Conversation mode is on: speak, pause, and your sentence is sent. After Lena answers, the microphone opens again.",hf_listen:"🎙 I'm listening… speak German now.",autosend:"Send automatically when I stop talking",mic_on:"🎙 Listening… speak German now. Tap the microphone again to stop.",mic_none:"I didn't hear anything. Tap the microphone and try again.",mic_denied:"The microphone is blocked. Allow it for this site (tap the lock icon next to the address), then try again.",mic_unsupported:"Speech input doesn't work in this browser. Open the page in Chrome, Edge or Safari.",mic_net:"Speech recognition needs an internet connection. Check it and try again.",v_engine:"Voice engine",v_eng_auto:"Auto",v_eng_builtin:"Built-in",v_eng_device:"Phone",v_nodev:"No German voice on this device",v_loading:"Loading the German voice…",v_using_builtin:"Using the built-in German voice. It works on every device.",v_why_builtin:"Your phone has no working German voice, so this one is used instead.",v_err:"The built-in voice couldn't load. Reload the page and try again.",v_tap:"Your browser blocked the sound. Tap any speaker button once more to allow audio.",grammar_lead:"Each topic gives you the rule in a few lines, the forms in a table, real example sentences and ten exercises.",next_topic:"Next topic",all_done:"All done! Try the next level.",progress:"answered",v_btn:"Voice",v_title:"Voice settings",v_voice:"German voice",v_default:"Browser default",v_speed:"Speed",v_slow:"Slow",v_normal:"Normal",v_fast:"Fast",v_auto:"Read Lena's replies aloud",v_test:"Test the voice",v_ok:"Voice ready:",v_none:"No German voice was found in this browser, so the audio may sound wrong. On Android, install German in Settings › Text-to-speech. Or open the page in Chrome or Safari.",v_unsupported:"This view can't play speech. Open the page in Chrome, Edge or Safari to hear the audio.",v_silent:"The audio didn't start. Check that your phone isn't on silent and the volume is up, then try again. If it still stays quiet, open the page in your browser.",v_open:"Open in browser",mic_tip:"The microphone is blocked inside this page. Use dictation instead: tap the text box, then tap the microphone key on your phone keyboard (set to German). On a computer: Windows + H, or press Fn twice on a Mac.",brand_tag:"German from A1 to B2",nav_read:"Reading",read_title:"Reading comprehension",read_lead:"Short texts for each level, from a daily routine to newspaper-style articles. Read, listen, then answer the questions. Open the translation only if you get stuck.",
 read_q:"Questions",tr_text:"Show translation",tr_hide:"Hide translation",listen_text:"Listen to the text",
 f_grammar:"grammar topics",f_ex:"exercises",f_read:"reading texts",f_chat:"speaking situations",nav_levels:"Levels",nav_grammar:"Grammar",nav_videos:"Videos",nav_chat:"Speaking partner",
 hero_eyebrow:"Free German course · A1 to B2",hero_tr:"Speak German, step by step.",
@@ -676,7 +959,7 @@ chat_denied:"Lena can't answer because access to Claude was declined for this pa
 chat_limit:"The AI service is busy right now. Wait a minute, then send again.",chat_err:"Lena couldn't answer. Your message is back in the box, send it again.",
 mic_off:"Speech input isn't available in this view. Type your answer instead.",done:"done",
 footer:"Wortweg · free German course. Lesson videos and voices are generated by the app."},
-fr:{ai_wait:"Lena a besoin d'un instant, l'offre IA gratuite est chargée. Nouvel essai…",hf_done:"Belle séance ! Le temps de conversation est écoulé. Touchez Conversation pour recommencer.",hf_paused:"Conversation en pause : je n'ai rien entendu pendant environ 3 minutes. Touchez Conversation pour continuer.",dur_inf:"Illimitée",dur_60:"60 min",dur_30:"30 min",dur_title:"Durée de la conversation",v_practice:"Faire les exercices",vlesson_sub:"Environ 1 minute · regardez, écoutez, répétez",vlesson:"Leçon vidéo",transcript_hide:"Masquer la transcription",transcript:"Afficher la transcription",l_tip:"écoutez deux fois avant de répondre",l_announce:"Annonce",l_dialog:"Dialogue",hear_lead:"Touchez le haut-parleur, écoutez bien et choisissez la phrase exacte.",hear_title:"Quelle phrase avez-vous entendue ?",hear_q:"Quelle phrase avez-vous entendue ?",listen_lead:"Écoutez de l'allemand du quotidien, puis répondez. Réécoutez autant que vous voulez et n'ouvrez la transcription qu'à la fin.",listen_title:"Compréhension orale",tab_chat:"Lena",tab_read:"Lire",tab_listen:"Écouter",tab_grammar:"Grammaire",tab_home:"Accueil",install:"Installer l'appli",install_ios:"Pour installer sur iPhone : touchez le bouton Partager en bas de Safari, puis « Sur l'écran d'accueil ».",install_other:"Pour installer : ouvrez le menu du navigateur (⋮) et touchez « Installer l'application » ou « Ajouter à l'écran d'accueil ».",ai_title:"Clé IA de Lena",ai_lead:"Lena a besoin d'un service d'IA pour répondre. Collez une clé une seule fois : elle reste dans ce navigateur et n'est envoyée qu'au service choisi.",ai_gemini:"Google Gemini · gratuit",ai_claude:"Claude · payant",ai_get:"Obtenir une clé Gemini gratuite ↗",ai_get_claude:"Obtenir une clé API Claude ↗",ai_save:"Enregistrer",ai_clear:"Supprimer la clé",ai_ph:"Collez votre clé ici",ai_ready:"prête",ai_saved:"Clé enregistrée. Touchez le micro et dites hallo à Lena !",no_key:"Ajoutez d'abord votre clé IA (dans « Clé IA de Lena ») pour que Lena puisse répondre.",bad_key:"Cette clé ne fonctionne pas. Vérifiez-la, collez-la de nouveau et touchez Enregistrer.",net_err:"Pas de connexion au service d'IA. Vérifiez Internet, puis renvoyez.",hf:"Conversation",hf_on:"Mode conversation activé : parlez, faites une pause, et votre phrase est envoyée. Après la réponse de Lena, le micro se rouvre.",hf_listen:"🎙 J'écoute… parlez allemand.",autosend:"Envoyer automatiquement quand j'arrête de parler",mic_on:"🎙 J'écoute… parlez allemand. Touchez encore le micro pour arrêter.",mic_none:"Je n'ai rien entendu. Touchez le micro et réessayez.",mic_denied:"Le micro est bloqué. Autorisez-le pour ce site (icône de cadenas à côté de l'adresse), puis réessayez.",mic_unsupported:"La saisie vocale ne fonctionne pas dans ce navigateur. Ouvrez la page dans Chrome, Edge ou Safari.",mic_net:"La reconnaissance vocale a besoin d'Internet. Vérifiez la connexion et réessayez.",v_engine:"Moteur vocal",v_eng_auto:"Auto",v_eng_builtin:"Intégrée",v_eng_device:"Téléphone",v_nodev:"Aucune voix allemande sur cet appareil",v_loading:"Chargement de la voix allemande…",v_using_builtin:"Voix allemande intégrée utilisée. Elle fonctionne sur tous les appareils.",v_why_builtin:"Votre téléphone n'a pas de voix allemande qui fonctionne, celle-ci la remplace.",v_err:"La voix intégrée n'a pas pu se charger. Rechargez la page et réessayez.",v_tap:"Le navigateur a bloqué le son. Touchez encore une fois un bouton haut-parleur pour l'autoriser.",grammar_lead:"Pour chaque thème : la règle en quelques lignes, les formes dans un tableau, des phrases d'exemple et dix exercices.",next_topic:"Thème suivant",all_done:"Tout est fait ! Passez au niveau suivant.",progress:"répondues",v_btn:"Voix",v_title:"Réglages de la voix",v_voice:"Voix allemande",v_default:"Voix par défaut du navigateur",v_speed:"Vitesse",v_slow:"Lente",v_normal:"Normale",v_fast:"Rapide",v_auto:"Lire à voix haute les réponses de Lena",v_test:"Tester la voix",v_ok:"Voix prête :",v_none:"Aucune voix allemande n'a été trouvée dans ce navigateur : la prononciation risque d'être fausse. Sur Android, installez l'allemand dans Paramètres › Synthèse vocale. Ou ouvrez la page dans Chrome ou Safari.",v_unsupported:"Cette vue ne peut pas lire l'audio. Ouvrez la page dans Chrome, Edge ou Safari pour l'entendre.",v_silent:"L'audio n'a pas démarré. Vérifiez que le téléphone n'est pas en mode silencieux et que le volume est monté, puis réessayez. Si rien ne se passe, ouvrez la page dans votre navigateur.",v_open:"Ouvrir dans le navigateur",mic_tip:"Le micro est bloqué dans cette page. Utilisez plutôt la dictée : touchez la zone de texte, puis la touche micro de votre clavier (réglé en allemand). Sur ordinateur : Windows + H, ou deux fois Fn sur Mac.",brand_tag:"L'allemand de A1 à B2",nav_read:"Lecture",read_title:"Compréhension écrite",read_lead:"Des textes courts pour chaque niveau, de la routine quotidienne aux articles de presse. Lisez, écoutez, puis répondez aux questions. N'ouvrez la traduction que si vous bloquez.",
+fr:{hf_speak:"🔊 Lena répond… je vous écoute juste après.",tr_loading:"Traduction…",tr_err:"La traduction n'est pas disponible pour le moment. Vérifiez votre clé IA et réessayez.",v_nat:"Voix naturelle pour Lena (Gemini, avec votre clé)",ai_wait:"Lena a besoin d'un instant, l'offre IA gratuite est chargée. Nouvel essai…",hf_done:"Belle séance ! Le temps de conversation est écoulé. Touchez Conversation pour recommencer.",hf_paused:"Conversation en pause : je n'ai rien entendu pendant environ 3 minutes. Touchez Conversation pour continuer.",dur_inf:"Illimitée",dur_60:"60 min",dur_30:"30 min",dur_title:"Durée de la conversation",v_practice:"Faire les exercices",vlesson_sub:"Environ 1 minute · regardez, écoutez, répétez",vlesson:"Leçon vidéo",transcript_hide:"Masquer la transcription",transcript:"Afficher la transcription",l_tip:"écoutez deux fois avant de répondre",l_announce:"Annonce",l_dialog:"Dialogue",hear_lead:"Touchez le haut-parleur, écoutez bien et choisissez la phrase exacte.",hear_title:"Quelle phrase avez-vous entendue ?",hear_q:"Quelle phrase avez-vous entendue ?",listen_lead:"Écoutez de l'allemand du quotidien, puis répondez. Réécoutez autant que vous voulez et n'ouvrez la transcription qu'à la fin.",listen_title:"Compréhension orale",tab_chat:"Lena",tab_read:"Lire",tab_listen:"Écouter",tab_grammar:"Grammaire",tab_home:"Accueil",install:"Installer l'appli",install_ios:"Pour installer sur iPhone : touchez le bouton Partager en bas de Safari, puis « Sur l'écran d'accueil ».",install_other:"Pour installer : ouvrez le menu du navigateur (⋮) et touchez « Installer l'application » ou « Ajouter à l'écran d'accueil ».",ai_title:"Clé IA de Lena",ai_lead:"Lena a besoin d'un service d'IA pour répondre. Collez une clé une seule fois : elle reste dans ce navigateur et n'est envoyée qu'au service choisi.",ai_gemini:"Google Gemini · gratuit",ai_claude:"Claude · payant",ai_get:"Obtenir une clé Gemini gratuite ↗",ai_get_claude:"Obtenir une clé API Claude ↗",ai_save:"Enregistrer",ai_clear:"Supprimer la clé",ai_ph:"Collez votre clé ici",ai_ready:"prête",ai_saved:"Clé enregistrée. Touchez le micro et dites hallo à Lena !",no_key:"Ajoutez d'abord votre clé IA (dans « Clé IA de Lena ») pour que Lena puisse répondre.",bad_key:"Cette clé ne fonctionne pas. Vérifiez-la, collez-la de nouveau et touchez Enregistrer.",net_err:"Pas de connexion au service d'IA. Vérifiez Internet, puis renvoyez.",hf:"Conversation",hf_on:"Mode conversation activé : parlez, faites une pause, et votre phrase est envoyée. Après la réponse de Lena, le micro se rouvre.",hf_listen:"🎙 J'écoute… parlez allemand.",autosend:"Envoyer automatiquement quand j'arrête de parler",mic_on:"🎙 J'écoute… parlez allemand. Touchez encore le micro pour arrêter.",mic_none:"Je n'ai rien entendu. Touchez le micro et réessayez.",mic_denied:"Le micro est bloqué. Autorisez-le pour ce site (icône de cadenas à côté de l'adresse), puis réessayez.",mic_unsupported:"La saisie vocale ne fonctionne pas dans ce navigateur. Ouvrez la page dans Chrome, Edge ou Safari.",mic_net:"La reconnaissance vocale a besoin d'Internet. Vérifiez la connexion et réessayez.",v_engine:"Moteur vocal",v_eng_auto:"Auto",v_eng_builtin:"Intégrée",v_eng_device:"Téléphone",v_nodev:"Aucune voix allemande sur cet appareil",v_loading:"Chargement de la voix allemande…",v_using_builtin:"Voix allemande intégrée utilisée. Elle fonctionne sur tous les appareils.",v_why_builtin:"Votre téléphone n'a pas de voix allemande qui fonctionne, celle-ci la remplace.",v_err:"La voix intégrée n'a pas pu se charger. Rechargez la page et réessayez.",v_tap:"Le navigateur a bloqué le son. Touchez encore une fois un bouton haut-parleur pour l'autoriser.",grammar_lead:"Pour chaque thème : la règle en quelques lignes, les formes dans un tableau, des phrases d'exemple et dix exercices.",next_topic:"Thème suivant",all_done:"Tout est fait ! Passez au niveau suivant.",progress:"répondues",v_btn:"Voix",v_title:"Réglages de la voix",v_voice:"Voix allemande",v_default:"Voix par défaut du navigateur",v_speed:"Vitesse",v_slow:"Lente",v_normal:"Normale",v_fast:"Rapide",v_auto:"Lire à voix haute les réponses de Lena",v_test:"Tester la voix",v_ok:"Voix prête :",v_none:"Aucune voix allemande n'a été trouvée dans ce navigateur : la prononciation risque d'être fausse. Sur Android, installez l'allemand dans Paramètres › Synthèse vocale. Ou ouvrez la page dans Chrome ou Safari.",v_unsupported:"Cette vue ne peut pas lire l'audio. Ouvrez la page dans Chrome, Edge ou Safari pour l'entendre.",v_silent:"L'audio n'a pas démarré. Vérifiez que le téléphone n'est pas en mode silencieux et que le volume est monté, puis réessayez. Si rien ne se passe, ouvrez la page dans votre navigateur.",v_open:"Ouvrir dans le navigateur",mic_tip:"Le micro est bloqué dans cette page. Utilisez plutôt la dictée : touchez la zone de texte, puis la touche micro de votre clavier (réglé en allemand). Sur ordinateur : Windows + H, ou deux fois Fn sur Mac.",brand_tag:"L'allemand de A1 à B2",nav_read:"Lecture",read_title:"Compréhension écrite",read_lead:"Des textes courts pour chaque niveau, de la routine quotidienne aux articles de presse. Lisez, écoutez, puis répondez aux questions. N'ouvrez la traduction que si vous bloquez.",
 read_q:"Questions",tr_text:"Afficher la traduction",tr_hide:"Masquer la traduction",listen_text:"Écouter le texte",
 f_grammar:"thèmes de grammaire",f_ex:"exercices",f_read:"textes à lire",f_chat:"situations de conversation",nav_levels:"Niveaux",nav_grammar:"Grammaire",nav_videos:"Vidéos",nav_chat:"Partenaire de conversation",
 hero_eyebrow:"Cours d'allemand gratuit · A1 à B2",hero_tr:"Parler allemand, pas à pas.",
@@ -696,7 +979,7 @@ chat_denied:"Lena ne peut pas répondre, car l'accès à Claude a été refusé 
 chat_limit:"Le service d'IA est occupé. Attendez une minute, puis renvoyez.",chat_err:"Lena n'a pas pu répondre. Votre message est de retour dans le champ, renvoyez-le.",
 mic_off:"La saisie vocale n'est pas disponible ici. Écrivez votre réponse.",done:"terminé",
 footer:"Wortweg · cours d'allemand gratuit. Les vidéos et les voix sont générées par l'appli."},
-ar:{ai_wait:"لينا تحتاج لحظة، فالخطة المجانية مشغولة. نحاول مجدداً…",hf_done:"جلسة رائعة! انتهى وقت المحادثة. المس «محادثة» لبدء جولة جديدة.",hf_paused:"توقفت المحادثة مؤقتاً: لم أسمع شيئاً لنحو 3 دقائق. المس «محادثة» للمتابعة.",dur_inf:"بلا حد",dur_60:"60 د",dur_30:"30 د",dur_title:"مدة المحادثة",v_practice:"حلّ التمارين",vlesson_sub:"دقيقة تقريباً · شاهد واستمع وكرّر",vlesson:"درس فيديو",transcript_hide:"إخفاء النص المكتوب",transcript:"إظهار النص المكتوب",l_tip:"استمع مرتين قبل أن تجيب",l_announce:"إعلان",l_dialog:"حوار",hear_lead:"المس السماعة واستمع جيداً ثم اختر الجملة نفسها بالضبط.",hear_title:"أي جملة سمعت؟",hear_q:"أي جملة سمعت؟",listen_lead:"استمع إلى ألمانية الحياة اليومية ثم أجب. أعد الاستماع كما تشاء، ولا تفتح النص المكتوب إلا في النهاية.",listen_title:"فهم المسموع",tab_chat:"لينا",tab_read:"قراءة",tab_listen:"استماع",tab_grammar:"القواعد",tab_home:"الرئيسية",install:"ثبّت التطبيق",install_ios:"للتثبيت على iPhone: المس زر المشاركة أسفل Safari ثم «إضافة إلى الشاشة الرئيسية».",install_other:"للتثبيت: افتح قائمة المتصفح (⋮) والمس «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",ai_title:"مفتاح الذكاء الاصطناعي للينا",ai_lead:"تحتاج لينا إلى خدمة ذكاء اصطناعي لترد. الصق المفتاح مرة واحدة: يُحفظ في هذا المتصفح فقط ولا يُرسل إلا إلى الخدمة التي تختارها.",ai_gemini:"Google Gemini · مجاني",ai_claude:"Claude · مدفوع",ai_get:"احصل على مفتاح Gemini مجاني ↗",ai_get_claude:"احصل على مفتاح Claude API ↗",ai_save:"حفظ",ai_clear:"حذف المفتاح",ai_ph:"الصق مفتاحك هنا",ai_ready:"جاهز",ai_saved:"تم حفظ المفتاح. المس الميكروفون وقل hallo للينا!",no_key:"أضف مفتاح الذكاء الاصطناعي أولاً (في «مفتاح الذكاء الاصطناعي للينا») لكي ترد لينا.",bad_key:"هذا المفتاح لا يعمل. تحقق منه والصقه مجدداً ثم المس حفظ.",net_err:"لا يوجد اتصال بخدمة الذكاء الاصطناعي. تحقق من الإنترنت ثم أرسل مجدداً.",hf:"محادثة",hf_on:"وضع المحادثة مفعّل: تكلّم ثم توقف قليلاً فتُرسل جملتك. بعد رد لينا يفتح الميكروفون من جديد.",hf_listen:"🎙 أستمع… تكلّم بالألمانية الآن.",autosend:"أرسل تلقائياً عندما أتوقف عن الكلام",mic_on:"🎙 أستمع… تكلّم بالألمانية الآن. المس الميكروفون مرة أخرى للإيقاف.",mic_none:"لم أسمع شيئاً. المس الميكروفون وحاول مجدداً.",mic_denied:"الميكروفون محجوب. اسمح به لهذا الموقع (رمز القفل بجانب العنوان) ثم حاول مجدداً.",mic_unsupported:"الإدخال الصوتي لا يعمل في هذا المتصفح. افتح الصفحة في Chrome أو Edge أو Safari.",mic_net:"يحتاج التعرف على الكلام إلى اتصال بالإنترنت. تحقق منه وحاول مجدداً.",v_engine:"محرّك الصوت",v_eng_auto:"تلقائي",v_eng_builtin:"مدمج",v_eng_device:"الهاتف",v_nodev:"لا يوجد صوت ألماني على هذا الجهاز",v_loading:"جارٍ تحميل الصوت الألماني…",v_using_builtin:"يُستخدم الصوت الألماني المدمج، وهو يعمل على كل الأجهزة.",v_why_builtin:"لا يوجد في هاتفك صوت ألماني يعمل، لذلك يُستخدم هذا الصوت بدلاً منه.",v_err:"تعذّر تحميل الصوت المدمج. أعد تحميل الصفحة وحاول مجدداً.",v_tap:"منع المتصفح الصوت. المس أي زر سماعة مرة أخرى للسماح بالصوت.",grammar_lead:"لكل موضوع: القاعدة في بضعة أسطر، والصيغ في جدول، وجمل أمثلة حقيقية، وعشرة تمارين.",next_topic:"الموضوع التالي",all_done:"أنهيت كل شيء! جرّب المستوى التالي.",progress:"تمت الإجابة",v_btn:"الصوت",v_title:"إعدادات الصوت",v_voice:"الصوت الألماني",v_default:"الصوت الافتراضي للمتصفح",v_speed:"السرعة",v_slow:"بطيئة",v_normal:"عادية",v_fast:"سريعة",v_auto:"قراءة ردود لينا بصوت عالٍ",v_test:"جرّب الصوت",v_ok:"الصوت جاهز:",v_none:"لم يُعثر على صوت ألماني في هذا المتصفح، لذا قد يكون النطق غير صحيح. على أندرويد ثبّت اللغة الألمانية من الإعدادات › تحويل النص إلى كلام، أو افتح الصفحة في Chrome أو Safari.",v_unsupported:"لا يمكن تشغيل الصوت في هذا العرض. افتح الصفحة في Chrome أو Edge أو Safari لسماعه.",v_silent:"لم يبدأ الصوت. تأكد من أن الهاتف ليس في الوضع الصامت وأن الصوت مرتفع، ثم حاول مجدداً. إن بقي صامتاً فافتح الصفحة في متصفحك.",v_open:"افتح في المتصفح",mic_tip:"الميكروفون محجوب داخل هذه الصفحة. استخدم الإملاء الصوتي بدلاً منه: المس خانة النص، ثم زر الميكروفون في لوحة مفاتيح هاتفك (بعد ضبطها على الألمانية). على الحاسوب: Windows + H، أو اضغط Fn مرتين على Mac.",brand_tag:"الألمانية من A1 إلى B2",nav_read:"القراءة",read_title:"فهم المقروء",read_lead:"نصوص قصيرة لكل مستوى، من الروتين اليومي إلى مقالات بأسلوب الصحف. اقرأ واستمع ثم أجب عن الأسئلة. لا تفتح الترجمة إلا إذا احتجت إليها.",
+ar:{hf_speak:"🔊 لينا تجيب… سأستمع إليك مباشرة بعد ذلك.",tr_loading:"جارٍ الترجمة…",tr_err:"الترجمة غير متاحة الآن. تحقّق من مفتاح الذكاء الاصطناعي وحاول مرة أخرى.",v_nat:"صوت طبيعي للينا (Gemini، بمفتاحك)",ai_wait:"لينا تحتاج لحظة، فالخطة المجانية مشغولة. نحاول مجدداً…",hf_done:"جلسة رائعة! انتهى وقت المحادثة. المس «محادثة» لبدء جولة جديدة.",hf_paused:"توقفت المحادثة مؤقتاً: لم أسمع شيئاً لنحو 3 دقائق. المس «محادثة» للمتابعة.",dur_inf:"بلا حد",dur_60:"60 د",dur_30:"30 د",dur_title:"مدة المحادثة",v_practice:"حلّ التمارين",vlesson_sub:"دقيقة تقريباً · شاهد واستمع وكرّر",vlesson:"درس فيديو",transcript_hide:"إخفاء النص المكتوب",transcript:"إظهار النص المكتوب",l_tip:"استمع مرتين قبل أن تجيب",l_announce:"إعلان",l_dialog:"حوار",hear_lead:"المس السماعة واستمع جيداً ثم اختر الجملة نفسها بالضبط.",hear_title:"أي جملة سمعت؟",hear_q:"أي جملة سمعت؟",listen_lead:"استمع إلى ألمانية الحياة اليومية ثم أجب. أعد الاستماع كما تشاء، ولا تفتح النص المكتوب إلا في النهاية.",listen_title:"فهم المسموع",tab_chat:"لينا",tab_read:"قراءة",tab_listen:"استماع",tab_grammar:"القواعد",tab_home:"الرئيسية",install:"ثبّت التطبيق",install_ios:"للتثبيت على iPhone: المس زر المشاركة أسفل Safari ثم «إضافة إلى الشاشة الرئيسية».",install_other:"للتثبيت: افتح قائمة المتصفح (⋮) والمس «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",ai_title:"مفتاح الذكاء الاصطناعي للينا",ai_lead:"تحتاج لينا إلى خدمة ذكاء اصطناعي لترد. الصق المفتاح مرة واحدة: يُحفظ في هذا المتصفح فقط ولا يُرسل إلا إلى الخدمة التي تختارها.",ai_gemini:"Google Gemini · مجاني",ai_claude:"Claude · مدفوع",ai_get:"احصل على مفتاح Gemini مجاني ↗",ai_get_claude:"احصل على مفتاح Claude API ↗",ai_save:"حفظ",ai_clear:"حذف المفتاح",ai_ph:"الصق مفتاحك هنا",ai_ready:"جاهز",ai_saved:"تم حفظ المفتاح. المس الميكروفون وقل hallo للينا!",no_key:"أضف مفتاح الذكاء الاصطناعي أولاً (في «مفتاح الذكاء الاصطناعي للينا») لكي ترد لينا.",bad_key:"هذا المفتاح لا يعمل. تحقق منه والصقه مجدداً ثم المس حفظ.",net_err:"لا يوجد اتصال بخدمة الذكاء الاصطناعي. تحقق من الإنترنت ثم أرسل مجدداً.",hf:"محادثة",hf_on:"وضع المحادثة مفعّل: تكلّم ثم توقف قليلاً فتُرسل جملتك. بعد رد لينا يفتح الميكروفون من جديد.",hf_listen:"🎙 أستمع… تكلّم بالألمانية الآن.",autosend:"أرسل تلقائياً عندما أتوقف عن الكلام",mic_on:"🎙 أستمع… تكلّم بالألمانية الآن. المس الميكروفون مرة أخرى للإيقاف.",mic_none:"لم أسمع شيئاً. المس الميكروفون وحاول مجدداً.",mic_denied:"الميكروفون محجوب. اسمح به لهذا الموقع (رمز القفل بجانب العنوان) ثم حاول مجدداً.",mic_unsupported:"الإدخال الصوتي لا يعمل في هذا المتصفح. افتح الصفحة في Chrome أو Edge أو Safari.",mic_net:"يحتاج التعرف على الكلام إلى اتصال بالإنترنت. تحقق منه وحاول مجدداً.",v_engine:"محرّك الصوت",v_eng_auto:"تلقائي",v_eng_builtin:"مدمج",v_eng_device:"الهاتف",v_nodev:"لا يوجد صوت ألماني على هذا الجهاز",v_loading:"جارٍ تحميل الصوت الألماني…",v_using_builtin:"يُستخدم الصوت الألماني المدمج، وهو يعمل على كل الأجهزة.",v_why_builtin:"لا يوجد في هاتفك صوت ألماني يعمل، لذلك يُستخدم هذا الصوت بدلاً منه.",v_err:"تعذّر تحميل الصوت المدمج. أعد تحميل الصفحة وحاول مجدداً.",v_tap:"منع المتصفح الصوت. المس أي زر سماعة مرة أخرى للسماح بالصوت.",grammar_lead:"لكل موضوع: القاعدة في بضعة أسطر، والصيغ في جدول، وجمل أمثلة حقيقية، وعشرة تمارين.",next_topic:"الموضوع التالي",all_done:"أنهيت كل شيء! جرّب المستوى التالي.",progress:"تمت الإجابة",v_btn:"الصوت",v_title:"إعدادات الصوت",v_voice:"الصوت الألماني",v_default:"الصوت الافتراضي للمتصفح",v_speed:"السرعة",v_slow:"بطيئة",v_normal:"عادية",v_fast:"سريعة",v_auto:"قراءة ردود لينا بصوت عالٍ",v_test:"جرّب الصوت",v_ok:"الصوت جاهز:",v_none:"لم يُعثر على صوت ألماني في هذا المتصفح، لذا قد يكون النطق غير صحيح. على أندرويد ثبّت اللغة الألمانية من الإعدادات › تحويل النص إلى كلام، أو افتح الصفحة في Chrome أو Safari.",v_unsupported:"لا يمكن تشغيل الصوت في هذا العرض. افتح الصفحة في Chrome أو Edge أو Safari لسماعه.",v_silent:"لم يبدأ الصوت. تأكد من أن الهاتف ليس في الوضع الصامت وأن الصوت مرتفع، ثم حاول مجدداً. إن بقي صامتاً فافتح الصفحة في متصفحك.",v_open:"افتح في المتصفح",mic_tip:"الميكروفون محجوب داخل هذه الصفحة. استخدم الإملاء الصوتي بدلاً منه: المس خانة النص، ثم زر الميكروفون في لوحة مفاتيح هاتفك (بعد ضبطها على الألمانية). على الحاسوب: Windows + H، أو اضغط Fn مرتين على Mac.",brand_tag:"الألمانية من A1 إلى B2",nav_read:"القراءة",read_title:"فهم المقروء",read_lead:"نصوص قصيرة لكل مستوى، من الروتين اليومي إلى مقالات بأسلوب الصحف. اقرأ واستمع ثم أجب عن الأسئلة. لا تفتح الترجمة إلا إذا احتجت إليها.",
 read_q:"الأسئلة",tr_text:"إظهار الترجمة",tr_hide:"إخفاء الترجمة",listen_text:"استمع إلى النص",
 f_grammar:"موضوعاً في القواعد",f_ex:"تمريناً",f_read:"نصوص للقراءة",f_chat:"مواقف للمحادثة",nav_levels:"المستويات",nav_grammar:"القواعد",nav_videos:"الفيديوهات",nav_chat:"شريك المحادثة",
 hero_eyebrow:"دورة ألمانية مجانية · من A1 إلى B2",hero_tr:"تحدّث الألمانية خطوة بخطوة.",
@@ -717,6 +1000,10 @@ chat_limit:"خدمة الذكاء الاصطناعي مشغولة الآن. ان
 mic_off:"الإدخال الصوتي غير متاح هنا. اكتب إجابتك بدلاً من ذلك.",done:"مكتمل",
 footer:"Wortweg · دورة ألمانية مجانية. فيديوهات الدروس والأصوات مولّدة داخل التطبيق."}
 };
+
+Object.assign(L.en,{ideas_title:"Reply ideas",ideas_btn:"Ideas",ideas_hint:"Not sure what to say? Tap an idea to put it in your message, change it if you like, then send or say it.",ideas_use:"Tap to use",ideas_words:"Useful words",ideas_wait:"Lena is thinking of ideas…",fb_errors:"What to fix",fb_understood:"Lena understood",fb_pron:"Pronunciation tip",heard:"Heard by the mic",clarity:"clarity",et_spelling:"spelling",et_grammar:"grammar",et_word_order:"word order",et_vocabulary:"word choice",et_pronunciation:"pronunciation",lvl_changed:"Level changed. Lena now speaks at the new level. Tap Restart to begin again with a new first line.",vid_err_404:"This video file isn't on the server. Upload the whole “videos” folder next to index.html (GitHub: Add file → Upload files, and drag in the folder).",vid_err_lfs:"The server sent a placeholder instead of the video (this happens when videos are stored with Git LFS). Upload the .mp4 files directly, without Git LFS.",vid_err_play:"This browser couldn't play the video.",vid_open:"Open the video directly ↗",vid_retry:"Try again"});
+Object.assign(L.fr,{ideas_title:"Idées de réponse",ideas_btn:"Idées",ideas_hint:"Vous ne savez pas quoi dire ? Touchez une idée pour la mettre dans votre message, modifiez-la si vous voulez, puis envoyez-la ou dites-la.",ideas_use:"Toucher pour utiliser",ideas_words:"Mots utiles",ideas_wait:"Lena cherche des idées…",fb_errors:"À corriger",fb_understood:"Lena a compris",fb_pron:"Conseil de prononciation",heard:"Entendu par le micro",clarity:"clarté",et_spelling:"orthographe",et_grammar:"grammaire",et_word_order:"ordre des mots",et_vocabulary:"choix du mot",et_pronunciation:"prononciation",lvl_changed:"Niveau changé. Lena parle maintenant au nouveau niveau. Touchez Recommencer pour repartir avec une nouvelle première phrase.",vid_err_404:"Ce fichier vidéo n'est pas sur le serveur. Envoyez tout le dossier « videos » à côté de index.html (GitHub : Add file → Upload files, puis glissez le dossier).",vid_err_lfs:"Le serveur a envoyé un fichier de remplacement au lieu de la vidéo (cela arrive avec Git LFS). Envoyez les fichiers .mp4 directement, sans Git LFS.",vid_err_play:"Ce navigateur n'a pas pu lire la vidéo.",vid_open:"Ouvrir la vidéo directement ↗",vid_retry:"Réessayer"});
+Object.assign(L.ar,{ideas_title:"أفكار للرد",ideas_btn:"أفكار",ideas_hint:"لا تعرف ماذا تقول؟ المس فكرة لوضعها في رسالتك، عدّلها إن شئت، ثم أرسلها أو قلها.",ideas_use:"المس للاستخدام",ideas_words:"كلمات مفيدة",ideas_wait:"لينا تفكر في أفكار…",fb_errors:"ما يجب تصحيحه",fb_understood:"فهمت لينا",fb_pron:"نصيحة للنطق",heard:"ما سمعه الميكروفون",clarity:"الوضوح",et_spelling:"إملاء",et_grammar:"قواعد",et_word_order:"ترتيب الكلمات",et_vocabulary:"اختيار الكلمة",et_pronunciation:"نطق",lvl_changed:"تم تغيير المستوى. لينا تتحدث الآن بالمستوى الجديد. المس «إعادة» للبدء من جديد.",vid_err_404:"ملف الفيديو غير موجود على الخادم. ارفع مجلد «videos» كاملاً بجانب index.html (في GitHub: Add file ← Upload files ثم اسحب المجلد).",vid_err_lfs:"أرسل الخادم ملفاً بديلاً بدلاً من الفيديو (يحدث هذا مع Git LFS). ارفع ملفات ‎.mp4 مباشرة بدون Git LFS.",vid_err_play:"لم يتمكن هذا المتصفح من تشغيل الفيديو.",vid_open:"افتح الفيديو مباشرة ↗",vid_retry:"حاول مجدداً"});
 
 const LEVELS=[
 {id:"A1",name:"Einstieg",can:{en:"Introduce yourself, ask simple questions, order food.",fr:"Vous présenter, poser des questions simples, commander à manger.",ar:"تقديم نفسك، طرح أسئلة بسيطة، طلب الطعام."}},
@@ -846,6 +1133,56 @@ o:{de:"Hallo, Sie interessieren sich für die Wohnung? Was möchten Sie wissen?"
 o:{de:"Und, wie war dein Wochenende? Hast du etwas Schönes gemacht?",en:"So, how was your weekend? Did you do anything nice?",fr:"Alors, c'était comment ton week-end ? Tu as fait quelque chose de sympa ?",ar:"إذن، كيف كانت عطلة نهاية الأسبوع؟ هل فعلت شيئاً جميلاً؟"}}
 ];
 
+/* Lena's first line for each level (A2 uses the scenario's default line), and starter reply ideas per tier (A = A1/A2, B = B1/B2) */
+const OPEN={
+kennen:{
+ A1:ex("Hallo! Ich bin Lena. Wie heißt du?","Hi! I'm Lena. What's your name?","Salut ! Je suis Lena. Comment tu t'appelles ?","مرحباً! أنا لينا. ما اسمك؟"),
+ B1:ex("Hallo, ich bin Lena! Ich studiere hier Medizin. Und du, was machst du so, und warum lernst du Deutsch?","Hi, I'm Lena! I study medicine here. And you, what do you do, and why are you learning German?","Salut, je suis Lena ! J'étudie la médecine ici. Et toi, tu fais quoi, et pourquoi tu apprends l'allemand ?","مرحباً، أنا لينا! أدرس الطب هنا. وأنت، ماذا تعمل، ولماذا تتعلم الألمانية؟"),
+ B2:ex("Schön, dich kennenzulernen! Ich bin Lena. Was hat dich eigentlich dazu gebracht, Deutsch zu lernen, und wie gefällt es dir bisher?","Nice to meet you! I'm Lena. What actually made you decide to learn German, and how do you like it so far?","Ravie de te rencontrer ! Je suis Lena. Qu'est-ce qui t'a poussé à apprendre l'allemand, et ça te plaît jusqu'ici ?","سعيدة بالتعرف عليك! أنا لينا. ما الذي دفعك فعلاً لتعلم الألمانية، وكيف تجدها حتى الآن؟")},
+cafe:{
+ A1:ex("Hallo! Was möchten Sie trinken?","Hello! What would you like to drink?","Bonjour ! Qu'est-ce que vous voulez boire ?","مرحباً! ماذا تريد أن تشرب؟"),
+ B1:ex("Guten Tag! Haben Sie schon gewählt, oder darf ich Ihnen etwas empfehlen? Unser Apfelkuchen ist heute ganz frisch.","Good afternoon! Have you decided, or may I recommend something? Our apple cake is very fresh today.","Bonjour ! Vous avez choisi, ou je peux vous conseiller quelque chose ? Notre tarte aux pommes est toute fraîche aujourd'hui.","نهارك سعيد! هل اخترت، أم أقترح عليك شيئاً؟ كعكة التفاح طازجة جداً اليوم."),
+ B2:ex("Herzlich willkommen! Möchten Sie lieber drinnen sitzen oder auf der Terrasse? Und darf ich Ihnen schon mal etwas zu trinken bringen, während Sie die Karte anschauen?","Welcome! Would you rather sit inside or on the terrace? And may I bring you something to drink while you look at the menu?","Bienvenue ! Vous préférez vous installer à l'intérieur ou en terrasse ? Et je vous apporte quelque chose à boire pendant que vous regardez la carte ?","أهلاً وسهلاً! هل تفضل الجلوس في الداخل أم على الشرفة؟ وهل أحضر لك شيئاً تشربه بينما تتصفح القائمة؟")},
+markt:{
+ A1:ex("Hallo! Was suchen Sie?","Hello! What are you looking for?","Bonjour ! Vous cherchez quoi ?","مرحباً! عمّ تبحث؟"),
+ B1:ex("Guten Tag! Sie sehen aus, als ob Sie etwas suchen. Kann ich Ihnen helfen, es zu finden?","Hello! You look like you're looking for something. Can I help you find it?","Bonjour ! On dirait que vous cherchez quelque chose. Je peux vous aider à le trouver ?","مرحباً! يبدو أنك تبحث عن شيء. هل أساعدك في إيجاده؟"),
+ B2:ex("Guten Tag! Wir haben gerade unser Sortiment umgestellt, deshalb suchen viele Kunden ein bisschen. Wonach halten Sie denn Ausschau?","Hello! We've just rearranged our range, so a lot of customers are searching a bit. What are you looking for?","Bonjour ! Nous venons de réorganiser nos rayons, alors beaucoup de clients cherchent un peu. Qu'est-ce que vous cherchez ?","مرحباً! لقد أعدنا ترتيب المنتجات للتو، لذلك يبحث كثير من الزبائن قليلاً. عمّ تبحث؟")},
+arzt:{
+ A1:ex("Guten Morgen! Was haben Sie? Was tut weh?","Good morning! What's wrong? What hurts?","Bonjour ! Qu'est-ce que vous avez ? Où avez-vous mal ?","صباح الخير! ما بك؟ ما الذي يؤلمك؟"),
+ B1:ex("Guten Morgen, setzen Sie sich bitte. Seit wann haben Sie denn die Beschwerden, und was genau fehlt Ihnen?","Good morning, please sit down. How long have you had the symptoms, and what exactly is wrong?","Bonjour, asseyez-vous. Depuis quand avez-vous ces symptômes, et qu'est-ce qui ne va pas exactement ?","صباح الخير، تفضل بالجلوس. منذ متى تعاني من هذه الأعراض، وما الذي تشكو منه بالضبط؟"),
+ B2:ex("Guten Morgen! Beschreiben Sie mir bitte möglichst genau, welche Symptome Sie haben und ob sich in letzter Zeit etwas verändert hat.","Good morning! Please describe as precisely as possible what symptoms you have and whether anything has changed recently.","Bonjour ! Décrivez-moi aussi précisément que possible vos symptômes et dites-moi si quelque chose a changé récemment.","صباح الخير! صف لي من فضلك أعراضك بأكبر دقة ممكنة، وهل تغيّر شيء مؤخراً.")},
+wohnung:{
+ A1:ex("Hallo! Das ist die Wohnung. Sie hat zwei Zimmer. Gefällt sie Ihnen?","Hello! This is the flat. It has two rooms. Do you like it?","Bonjour ! Voici l'appartement. Il a deux pièces. Il vous plaît ?","مرحباً! هذه هي الشقة. فيها غرفتان. هل تعجبك؟"),
+ B1:ex("Guten Tag! Kommen Sie rein. Die Wohnung hat drei Zimmer und einen Balkon. Was ist Ihnen bei einer Wohnung besonders wichtig?","Hello! Come in. The flat has three rooms and a balcony. What's especially important to you in a flat?","Bonjour ! Entrez. L'appartement a trois pièces et un balcon. Qu'est-ce qui est particulièrement important pour vous dans un logement ?","مرحباً! تفضل بالدخول. في الشقة ثلاث غرف وشرفة. ما الأهم بالنسبة لك في الشقة؟"),
+ B2:ex("Willkommen! Die Wohnung wurde letztes Jahr komplett renoviert. Bevor ich Ihnen alles zeige: Erzählen Sie mir doch kurz etwas über sich und warum Sie umziehen möchten.","Welcome! The flat was completely renovated last year. Before I show you everything: tell me a bit about yourself and why you'd like to move.","Bienvenue ! L'appartement a été entièrement rénové l'année dernière. Avant de tout vous montrer, parlez-moi un peu de vous et de la raison de votre déménagement.","أهلاً بك! جُدّدت الشقة بالكامل العام الماضي. قبل أن أريك كل شيء: حدّثني قليلاً عن نفسك ولماذا تريد الانتقال.")},
+wochenende:{
+ A1:ex("Hallo! Was machst du am Wochenende?","Hi! What are you doing at the weekend?","Salut ! Tu fais quoi ce week-end ?","مرحباً! ماذا تفعل في عطلة نهاية الأسبوع؟"),
+ B1:ex("Na, wie war dein Wochenende? Ich war mit Freunden am See, das Wetter war super. Und was hast du so erlebt?","So, how was your weekend? I was at the lake with friends, the weather was great. And what did you get up to?","Alors, ton week-end ? J'étais au lac avec des amis, il faisait super beau. Et toi, qu'est-ce que tu as fait ?","إذن، كيف كانت عطلتك؟ كنت عند البحيرة مع أصدقائي، وكان الطقس رائعاً. وأنت، ماذا فعلت؟"),
+ B2:ex("Erzähl mal, wie war dein Wochenende? Ich hatte mir eigentlich vorgenommen, endlich mal abzuschalten, aber am Ende war es total stressig.","Tell me, how was your weekend? I'd actually planned to finally switch off, but in the end it was really stressful.","Raconte, ton week-end ? Je comptais enfin décrocher, mais finalement c'était super stressant.","احكِ لي، كيف كانت عطلتك؟ كنت أنوي أخيراً أن أرتاح، لكنها في النهاية كانت مرهقة جداً.")}
+};
+const START={
+kennen:{A:[ex("Hallo! Ich heiße … Ich komme aus …","Hi! My name is … I'm from …","Salut ! Je m'appelle … Je viens de …","مرحباً! اسمي … أنا من …"),ex("Ich wohne in … Und du?","I live in … And you?","J'habite à … Et toi ?","أسكن في … وأنت؟"),ex("Freut mich! Ich lerne Deutsch.","Nice to meet you! I'm learning German.","Enchanté ! J'apprends l'allemand.","تشرفت! أنا أتعلم الألمانية.")],
+ B:[ex("Freut mich! Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.","Nice to meet you! I'm learning German because I want to work in Germany.","Enchanté ! J'apprends l'allemand parce que je veux travailler en Allemagne.","تشرفت! أتعلم الألمانية لأنني أريد العمل في ألمانيا."),ex("Ich arbeite als … und interessiere mich sehr für die deutsche Kultur.","I work as … and I'm very interested in German culture.","Je travaille comme … et je m'intéresse beaucoup à la culture allemande.","أعمل كـ… وأهتم كثيراً بالثقافة الألمانية."),ex("Ehrlich gesagt war es am Anfang schwierig, aber inzwischen macht es mir Spaß.","Honestly, it was hard at first, but now I enjoy it.","Honnêtement, c'était difficile au début, mais maintenant ça me plaît.","بصراحة كان الأمر صعباً في البداية، لكنني الآن أستمتع به.")]},
+cafe:{A:[ex("Einen Kaffee, bitte.","A coffee, please.","Un café, s'il vous plaît.","قهوة من فضلك."),ex("Ich möchte einen Tee und ein Stück Kuchen.","I'd like a tea and a piece of cake.","Je voudrais un thé et une part de gâteau.","أريد شاياً وقطعة كعك."),ex("Was kostet ein Cappuccino?","How much is a cappuccino?","Combien coûte un cappuccino ?","كم ثمن الكابتشينو؟")],
+ B:[ex("Ich hätte gern einen Cappuccino. Was können Sie mir denn empfehlen?","I'd like a cappuccino. What can you recommend?","Je prendrais bien un cappuccino. Qu'est-ce que vous me conseillez ?","أودّ كابتشينو. بماذا تنصحني؟"),ex("Gibt es auch Kuchen ohne Zucker oder etwas Veganes?","Do you also have cake without sugar or something vegan?","Vous avez aussi des gâteaux sans sucre ou quelque chose de végan ?","هل يوجد كعك بدون سكر أو شيء نباتي؟"),ex("Gern auf der Terrasse, solange das Wetter so schön ist.","The terrace, please, as long as the weather is this nice.","En terrasse volontiers, tant qu'il fait si beau.","على الشرفة من فضلك، ما دام الطقس جميلاً هكذا.")]},
+markt:{A:[ex("Ich suche Milch. Wo ist die Milch?","I'm looking for milk. Where is the milk?","Je cherche du lait. Où est le lait ?","أبحث عن الحليب. أين الحليب؟"),ex("Haben Sie Brot?","Do you have bread?","Vous avez du pain ?","هل عندكم خبز؟"),ex("Was kostet das?","How much is that?","Ça coûte combien ?","كم ثمن هذا؟")],
+ B:[ex("Ja, ich suche glutenfreie Nudeln. Wissen Sie, ob Sie die führen?","Yes, I'm looking for gluten-free pasta. Do you know if you stock it?","Oui, je cherche des pâtes sans gluten. Vous savez si vous en avez ?","نعم، أبحث عن معكرونة خالية من الغلوتين. هل تعرف إن كانت متوفرة لديكم؟"),ex("Könnten Sie mir sagen, in welchem Gang die Gewürze sind?","Could you tell me which aisle the spices are in?","Vous pourriez me dire dans quel rayon sont les épices ?","هل يمكنك أن تخبرني في أي ممر توجد التوابل؟"),ex("Gibt es das Produkt auch in einer größeren Packung?","Is this product also available in a bigger pack?","Ce produit existe aussi en plus grand format ?","هل يتوفر هذا المنتج في عبوة أكبر؟")]},
+arzt:{A:[ex("Ich habe Kopfschmerzen.","I have a headache.","J'ai mal à la tête.","عندي صداع."),ex("Mein Bauch tut weh.","My stomach hurts.","J'ai mal au ventre.","بطني يؤلمني."),ex("Ich habe Fieber und Husten.","I have a fever and a cough.","J'ai de la fièvre et je tousse.","عندي حمى وسعال.")],
+ B:[ex("Seit drei Tagen habe ich starke Halsschmerzen und kann kaum schlucken.","For three days I've had a bad sore throat and can hardly swallow.","Depuis trois jours, j'ai très mal à la gorge et j'ai du mal à avaler.","منذ ثلاثة أيام أعاني من ألم شديد في الحلق ولا أكاد أبلع."),ex("Mir ist oft schwindelig, besonders wenn ich schnell aufstehe.","I often feel dizzy, especially when I stand up quickly.","J'ai souvent des vertiges, surtout quand je me lève vite.","أشعر بالدوار كثيراً، خاصة عندما أقف بسرعة."),ex("Ich nehme schon Tabletten, aber es ist leider nicht besser geworden.","I'm already taking tablets, but unfortunately it hasn't got better.","Je prends déjà des comprimés, mais ça ne s'est malheureusement pas amélioré.","أتناول الأقراص بالفعل، لكن للأسف لم تتحسن حالتي.")]},
+wohnung:{A:[ex("Ja, die Wohnung ist schön. Wie viel kostet sie?","Yes, the flat is nice. How much is it?","Oui, l'appartement est beau. Il coûte combien ?","نعم، الشقة جميلة. كم ثمنها؟"),ex("Gibt es eine Küche?","Is there a kitchen?","Il y a une cuisine ?","هل يوجد مطبخ؟"),ex("Ist die Wohnung frei?","Is the flat available?","L'appartement est libre ?","هل الشقة متاحة؟")],
+ B:[ex("Mir ist wichtig, dass die Wohnung ruhig ist und gut mit der Bahn erreichbar.","It's important to me that the flat is quiet and easy to reach by train.","C'est important pour moi que l'appartement soit calme et bien desservi par le train.","من المهم لي أن تكون الشقة هادئة ويسهل الوصول إليها بالقطار."),ex("Wie hoch sind die Nebenkosten, und ist die Heizung schon inklusive?","How high are the additional costs, and is heating already included?","À combien s'élèvent les charges, et le chauffage est-il compris ?","كم تبلغ التكاليف الإضافية، وهل التدفئة مشمولة؟"),ex("Ab wann wäre die Wohnung frei, und darf man Haustiere halten?","When would the flat be available, and are pets allowed?","À partir de quand l'appartement serait-il libre, et les animaux sont-ils autorisés ?","متى ستكون الشقة متاحة، وهل يُسمح بالحيوانات الأليفة؟")]},
+wochenende:{A:[ex("Ich spiele Fußball. Und du?","I'm playing football. And you?","Je joue au foot. Et toi ?","ألعب كرة القدم. وأنت؟"),ex("Am Samstag war ich im Kino.","On Saturday I was at the cinema.","Samedi, j'étais au cinéma.","يوم السبت كنت في السينما."),ex("Ich habe viel geschlafen!","I slept a lot!","J'ai beaucoup dormi !","نمت كثيراً!")],
+ B:[ex("Ich habe meine Familie besucht und wir haben zusammen gekocht.","I visited my family and we cooked together.","J'ai rendu visite à ma famille et on a cuisiné ensemble.","زرت عائلتي وطبخنا معاً."),ex("Leider musste ich arbeiten, aber am Sonntag konnte ich mich endlich ausruhen.","Unfortunately I had to work, but on Sunday I could finally rest.","Malheureusement j'ai dû travailler, mais dimanche j'ai enfin pu me reposer.","للأسف اضطررت للعمل، لكنني استطعت أخيراً أن أرتاح يوم الأحد."),ex("Oh, das klingt anstrengend! Was ist denn passiert?","Oh, that sounds exhausting! What happened?","Oh, ça a l'air épuisant ! Qu'est-ce qui s'est passé ?","أوه، يبدو هذا مرهقاً! ماذا حدث؟")]}
+};
+/* how Lena talks and corrects at each level */
+const LVGUIDE={
+A1:`LEVEL A1 (beginner). Your reply: 1–2 very short sentences, at most ~8 words each, present tense only, only very common everyday words, no subordinate clauses, no idioms. Ask ONE simple question (yes/no or a W-question). Corrections: only the 1–2 most important mistakes; explanations in one very simple sentence. Reply ideas: 3–7 words, present tense, very easy.`,
+A2:`LEVEL A2 (elementary). Your reply: 1–3 short sentences, present tense, Perfekt and modal verbs allowed, simple connectors (und, aber, oder, weil, denn), everyday topics. Ask one clear question. Corrections: up to 3 mistakes, short simple explanations. Reply ideas: 5–10 words, may use Perfekt, modal verbs or weil.`,
+B1:`LEVEL B1 (intermediate). Your reply: 2–3 connected sentences with subordinate clauses (weil, dass, wenn, obwohl), Präteritum of common verbs, opinions and reasons, a few common idioms. Ask open questions that invite the learner to explain or tell a story. Corrections: all grammar and spelling mistakes, plus register (du/Sie). Reply ideas: 8–15 words, giving a reason, example or opinion.`,
+B2:`LEVEL B2 (upper intermediate). Your reply: 2–4 fluent, natural sentences with rich vocabulary, Konjunktiv II, passive, varied connectors (trotzdem, dennoch, je … desto, sowohl … als auch) and idiomatic phrasing. You may gently disagree or ask the learner to justify an opinion. Corrections: all mistakes including style, collocations and register; suggest a more idiomatic version. Reply ideas: 12–20 words, nuanced, using connectors or Konjunktiv II.`
+};
+function opener(s){const o=OPEN[s.id]&&OPEN[s.id][state.level];return o||s.o}
+function startIdeas(s){const tier=state.level[0]==="A"?"A":"B";return ((START[s.id]||{})[tier]||[]).map(x=>({de:x.de,trs:x}))}
 /* four more exercises per grammar topic */
 const MORE={
 artikel:[{p:"___ Freiheit ist wichtig.",o:["Der","Die","Das"],a:1},{p:"___ Häuschen ist klein.",o:["Der","Die","Das"],a:2},{p:"___ Kinder spielen im Park.",o:["Der","Die","Das"],a:1},{p:"Ich habe ___ Idee.",o:["ein","eine","einer"],a:1}],
@@ -1066,7 +1403,7 @@ const HERO=[["der","Tisch",{en:"the table",fr:"la table",ar:"الطاولة"}],[
 
 /* ---------- state ---------- */
 const store={get(k,d){try{const v=localStorage.getItem("wortweg:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("wortweg:"+k,JSON.stringify(v))}catch(e){}}};
-const state={lang:store.get("lang","en"),level:store.get("level","A1"),topic:store.get("topic",{}),answers:store.get("answers",{}),scen:"kennen",msgs:[],busy:false,rtext:{},rtrOpen:false,hf:false,litem:{},ltrOpen:false,lmode:store.get("lmode","videos"),dur:store.get("dur",0),screen:"home",autosend:store.get("autosend",true),rate:store.get("rate",0.9),autoread:store.get("autoread",true),engine:store.get("engine","auto"),just:null,shown:0};
+const state={lang:store.get("lang","en"),level:store.get("level","A1"),topic:store.get("topic",{}),answers:store.get("answers",{}),scen:"kennen",msgs:[],busy:false,rtext:{},rtrOpen:false,hf:false,litem:{},ltrOpen:false,lmode:store.get("lmode","videos"),dur:store.get("dur",0),screen:"home",autosend:store.get("autosend",true),rate:store.get("rate",0.9),autoread:store.get("autoread",true),natural:store.get("natural",true),engine:store.get("engine","auto"),just:null,shown:0};
 const t=k=>(L[state.lang]&&L[state.lang][k])||L.en[k]||k;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const $=id=>document.getElementById(id);
@@ -1220,8 +1557,8 @@ const TTS=(()=>{
     let started=false;u.onstart=()=>{started=true};u.onend=()=>nextDev(id,text);
     u.onerror=e=>{if(id!==runId||e.error==="interrupted"||e.error==="canceled")return;fallback(id,text)};
     try{speechSynthesis.speak(u)}catch(e){fallback(id,text);return}
-    setTimeout(()=>{if(id===runId&&!started&&!speechSynthesis.speaking)fallback(id,text)},3500)}
-  function fallback(id,text){if(id!==runId)return;devFailed=true;emit();const b=btn,cb=endCb;stop();speakBuiltin(text,b);endCb=cb}
+    setTimeout(()=>{if(id===runId&&!started&&!speechSynthesis.speaking&&!speechSynthesis.pending)fallback(id,text)},9000)}
+  function fallback(id,text){if(id!==runId)return;devFailed=true;emit();const b=btn,cb=endCb;stop();speakBuiltin(text,b,cb)}
 
   /* built-in playback */
   const wpm=()=>Math.round(165*state.rate);
@@ -1229,35 +1566,70 @@ const TTS=(()=>{
     if(!buf)throw new Error("tts");if(blobUrl)URL.revokeObjectURL(blobUrl);blobUrl=URL.createObjectURL(new Blob([buf],{type:"audio/wav"}));return blobUrl}
   function playNext(id){
     if(id!==runId)return;const part=queue.shift();if(part===undefined){mark(null);const cb=endCb;endCb=null;if(cb)cb();return}
-    try{player.src=wav(part)}catch(e){mark(null);return}
+    try{player.src=wav(part)}catch(e){mark(null);const cb=endCb;endCb=null;if(cb)cb();return}
     player.onended=()=>playNext(id);
     const p=player.play();if(p&&p.catch)p.catch(err=>{if(id!==runId)return;mark(null);espBlocked=true;emit();const cb=endCb;endCb=null;if(cb)cb()})}
   let espBlocked=false;
-  function speakBuiltin(text,b){
-    stop();const id=runId;queue=chunks(text);mark(b);espBlocked=false;
+  function speakBuiltin(text,b,cb){
+    stop();const id=runId;queue=chunks(text);mark(b);espBlocked=false;endCb=cb||null;
     if(esp==="ready"){playNext(id);return}
     if(b)b.classList.add("loadingv");
-    loadEsp().then(()=>{if(id===runId){if(b)b.classList.remove("loadingv");playNext(id)}}).catch(()=>{if(id===runId)mark(null)})}
+    loadEsp().then(()=>{if(id===runId){if(b)b.classList.remove("loadingv");playNext(id)}}).catch(()=>{if(id===runId){mark(null);const c=endCb;endCb=null;if(c)c()}})}
 
   function speak(text,b,cb){
     if(b&&b===btn){stop();return}
     if(engine()==="device"){
-      const busy=speechSynthesis.speaking||speechSynthesis.pending;stop();const id=runId;queue=chunks(text);mark(b);
+      const busy=speechSynthesis.speaking||speechSynthesis.pending;stop();const id=runId;queue=chunks(text);mark(b);endCb=cb||null;
       const go=()=>{try{speechSynthesis.resume()}catch(e){}nextDev(id,text)};busy?setTimeout(go,120):go();
-    }else speakBuiltin(text,b);
-    endCb=cb||null;
+    }else speakBuiltin(text,b,cb);
   }
   function unlock(){
     if(!playerUnlocked){playerUnlocked=true;try{player.src=SILENT_WAV;const p=player.play();if(p&&p.catch)p.catch(()=>{playerUnlocked=false})}catch(e){}}
     if(hasDev&&!devUnlocked){devUnlocked=true;try{const u=new SpeechSynthesisUtterance(" ");u.volume=0;speechSynthesis.speak(u)}catch(e){}}
   }
-  return {speak,stop,unlock,engine,loadEsp,
+  /* natural voice for Lena: Gemini text-to-speech with the learner's own key */
+  const GTTS=["gemini-3.1-flash-tts-preview","gemini-2.5-flash-preview-tts"];let natPauseUntil=0;const natCache=new Map();
+  function pcmWav(b64,rate){const bin=atob(b64);const n=bin.length;const buf=new ArrayBuffer(44+n);const v=new DataView(buf);
+    const w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+    w(0,"RIFF");v.setUint32(4,36+n,true);w(8,"WAVE");w(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+    v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,n,true);
+    const u8=new Uint8Array(buf,44);for(let i=0;i<n;i++)u8[i]=bin.charCodeAt(i);return URL.createObjectURL(new Blob([buf],{type:"audio/wav"}))}
+  async function geminiAudio(text){
+    if(natCache.has(text))return natCache.get(text);
+    const key=AI.key("gemini");if(!key)throw new Error("nokey");
+    const pace=state.rate<0.8?"slowly and very clearly":state.rate>1?"at a natural, lively pace":"clearly, at a calm pace";
+    for(const m of GTTS){
+      const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
+        body:JSON.stringify({contents:[{parts:[{text:`Say in German, in a warm, friendly voice, ${pace}: ${text}`}]}],generationConfig:{responseModalities:["AUDIO"],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:"Kore"}}}}})});
+      if(r.status===404||r.status===400)continue;
+      if(r.status===429){natPauseUntil=Date.now()+15*60000;throw new Error("quota")}
+      if(!r.ok)throw new Error("http");
+      const j=await r.json();const parts=(j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[];
+      const a=parts.find(x=>x.inlineData&&x.inlineData.data);if(!a)throw new Error("noaudio");
+      const rate=+((a.inlineData.mimeType||"").match(/rate=(\d+)/)||[0,24000])[1];
+      const url=pcmWav(a.inlineData.data,rate);natCache.set(text,url);if(natCache.size>30){const k=natCache.keys().next().value;URL.revokeObjectURL(natCache.get(k));natCache.delete(k)}
+      return url;
+    }
+    throw new Error("nomodel");
+  }
+  function natOK(){return state.natural!==false&&AI.prov==="gemini"&&!!AI.key("gemini")&&Date.now()>natPauseUntil}
+  function speakLena(text,b,cb){
+    if(!natOK()){speak(text,b,cb);return}
+    if(b&&b===btn){stop();return}
+    stop();const id=runId;mark(b);if(b)b.classList.add("loadingv");endCb=cb||null;
+    geminiAudio(text).then(url=>{
+      if(id!==runId)return;if(b)b.classList.remove("loadingv");
+      player.src=url;player.playbackRate=1;player.onended=()=>{if(id!==runId)return;mark(null);const c=endCb;endCb=null;if(c)c()};
+      const pr=player.play();if(pr&&pr.catch)pr.catch(()=>{if(id===runId){const c=endCb;endCb=null;speak(text,b,c)}});
+    }).catch(()=>{if(id!==runId)return;if(b)b.classList.remove("loadingv");const c=endCb;endCb=null;speak(text,b,c)});
+  }
+  return {speak,speakLena,stop,unlock,engine,loadEsp,
     get devState(){return devState},get devFailed(){return devFailed},get esp(){return esp},get blocked(){return espBlocked},
     get voice(){return voice},get list(){return de},hasDev,
     setVoice(uri){store.set("voice",uri);choose();devFailed=false},on(f){listeners.push(f)}};
 })();
 document.addEventListener("pointerdown",TTS.unlock,{capture:true});
-document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b)TTS.speak(b.dataset.say,b)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b){if(b.dataset.nat)TTS.speakLena(b.dataset.say,b);else TTS.speak(b.dataset.say,b)}});
 function speak(text){TTS.speak(text)}
 
 /* voice settings panel */
@@ -1268,7 +1640,7 @@ function renderVoice(){
   $("vdevrow").hidden=state.engine==="builtin"||!TTS.list.length;
   document.querySelectorAll("[data-rate]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.rate===state.rate)));
   document.querySelectorAll("[data-engine]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.engine===(state.engine||"auto"))));
-  $("vauto").checked=!!state.autoread;
+  $("vauto").checked=!!state.autoread;$("vnat").checked=state.natural!==false;
   const s=$("vstat");const eng=TTS.engine();
   if(TTS.blocked){s.className="vstat warn";s.textContent=t("v_tap")}
   else if(eng==="builtin"&&TTS.esp==="error"){s.className="vstat warn";s.textContent=t("v_err")}
@@ -1284,6 +1656,7 @@ $("vclose").addEventListener("click",()=>openVoice(false));
 document.addEventListener("click",e=>{if(!$("vpop").hidden&&!e.target.closest("#vpop,#vpill"))openVoice(false)});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")openVoice(false)});
 $("vsel").addEventListener("change",e=>{TTS.setVoice(e.target.value);renderVoice()});
+$("vnat").addEventListener("change",e=>{state.natural=e.target.checked;store.set("natural",state.natural)});
 $("vauto").addEventListener("change",e=>{state.autoread=e.target.checked;store.set("autoread",state.autoread)});
 $("vtest").addEventListener("click",e=>{TTS.speak("Hallo! Ich bin Lena. Schön, dass du Deutsch lernst.",e.currentTarget);setTimeout(renderVoice,300)});
 document.addEventListener("click",e=>{
@@ -1351,15 +1724,45 @@ function renderVideos(){
   $("v-levels").innerHTML=lvlChips();
   $("vids").innerHTML=G.filter(g=>g.level===state.level).map(g=>`<button class="vcard" data-vid="${g.id}"><span class="vthumb"><img src="videos/${g.id}.jpg" alt="" loading="lazy"><span class="vplay">${PLAY}</span></span><span class="vmeta"><b lang="de" dir="ltr">${esc(g.de)}</b><small>${esc(g.t[state.lang])}</small></span></button>`).join("");
 }
+const VID_V="2"; /* bump when the video files change so phones fetch the new versions */
 function openVideo(id){
   const g=G.find(x=>x.id===id);if(!g)return;TTS.stop();
-  const v=$("vplayer");v.poster=`videos/${id}.jpg`;v.src=`videos/${id}.mp4`;
+  /* an open microphone switches phones into "call" audio, which makes video sound quiet or tinny */
+  if(state.hf)endHF(null);else if(typeof stopMic==="function")stopMic();
+  const v=$("vplayer");v.muted=false;v.volume=1;v.playbackRate=1;$("vwrap").classList.add("loading");
+  $("vs-err").hidden=true;$("vs-err").innerHTML="";v.hidden=false;v.dataset.vid=id;
+  v.poster=`videos/${id}.jpg`;v.src=`videos/${id}.mp4?v=${VID_V}`;
   $("vs-lv").textContent=`${g.level} · ${t("vlesson")}`;$("vs-title").textContent=g.de;$("vs-sub").textContent=g.t[state.lang];
   $("vs-practice").dataset.topic=G.filter(x=>x.level===g.level).indexOf(g);$("vs-practice").dataset.tlevel=g.level;
   $("vsheet").hidden=false;document.body.classList.add("sheet-open");
   const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{});
 }
-function closeVideo(){const v=$("vplayer");try{v.pause()}catch(e){}v.removeAttribute("src");v.load();$("vsheet").hidden=true;document.body.classList.remove("sheet-open")}
+/* when a video can't load, find out why and say so plainly instead of showing a dead player */
+async function videoFailed(){
+  const v=$("vplayer"),id=v.dataset.vid;if(!id||$("vsheet").hidden)return;
+  const src=new URL(`videos/${id}.mp4?v=${VID_V}`,location.href).href;let why="vid_err_play";
+  if(location.protocol.startsWith("http")){
+    try{const r=await fetch(src,{headers:{Range:"bytes=0-199"},cache:"no-store"});
+      if(r.status===404)why="vid_err_404";
+      else{const ct=r.headers.get("content-type")||"",txt=ct.includes("text")||ct.includes("octet")?await r.text().catch(()=>""):"";
+        if(/git-lfs|oid sha256/.test(txt))why="vid_err_lfs";else if(!r.ok)why="vid_err_404"}
+    }catch(e){}
+  }
+  const box=$("vs-err");v.hidden=true;
+  box.innerHTML=`<span>${esc(t(why))}</span><span><a href="${esc(src)}" target="_blank" rel="noopener">${esc(t("vid_open"))}</a> · <button type="button" class="linkbtn" id="vs-retry">${esc(t("vid_retry"))}</button></span>`;
+  box.hidden=false;
+  $("vs-retry").onclick=()=>openVideo(id);
+}
+$("vplayer").addEventListener("error",videoFailed);
+function closeVideo(){const v=$("vplayer");delete v.dataset.vid;try{v.pause()}catch(e){}v.removeAttribute("src");v.load();$("vwrap").classList.remove("loading");$("vsheet").hidden=true;document.body.classList.remove("sheet-open")}
+(()=>{const v=$("vplayer"),w=$("vwrap");
+  const on=()=>w.classList.add("loading"),off=()=>w.classList.remove("loading");
+  ["waiting","seeking","loadstart"].forEach(e=>v.addEventListener(e,()=>{if(!v.paused||e==="loadstart")on()}));
+  ["playing","canplay","pause","seeked","error","emptied"].forEach(e=>v.addEventListener(e,off));
+  v.addEventListener("play",()=>{TTS.stop();v.muted=false});
+  document.addEventListener("visibilitychange",()=>{if(document.hidden&&!$("vsheet").hidden)try{v.pause()}catch(e){}});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("vsheet").hidden)closeVideo()});
+})();
 function renderListen(){
   $("l-levels").innerHTML=lvlChips();
   const items=LZ.filter(l=>l.level===state.level);
@@ -1388,23 +1791,46 @@ function scen(){return SC.find(s=>s.id===state.scen)}
 function renderChatSide(){
   $("c-levels").innerHTML=lvlChips();
   $("scen").innerHTML=SC.map(s=>`<button data-scen="${s.id}" aria-pressed="${s.id===state.scen}"><b lang="de">${s.de}</b><span>${esc(s.t[state.lang])}</span></button>`).join("");
-  $("c-sub").textContent=`${scen().de} · ${state.level}`;
+  $("c-sub").innerHTML=`${esc(scen().de)}<span class="lvbadge">${state.level}</span>`;
+  $("ideas-lv").textContent=state.level;
 }
-function resetChat(){const s=scen();state.shown=0;state.msgs=[{role:"bot",de:s.o.de,trs:s.o,open:false}];renderLog()}
+function resetChat(){const s=scen(),o=opener(s);state.shown=0;state.msgs=[{role:"bot",de:o.de,trs:{en:o.en,fr:o.fr,ar:o.ar},open:false}];state.ideas=startIdeas(s);state.words=[];state.ideasBusy=false;state.speech=null;renderLog();renderIdeas()}
+function renderIdeas(){
+  const list=$("ideas-list");if(!list)return;
+  if(state.ideasBusy){list.innerHTML=`<p class="ideas-loading"><span class="typing"><i></i><i></i><i></i></span>${esc(t("ideas_wait"))}</p>`;$("ideas-words").innerHTML="";return}
+  list.innerHTML=(state.ideas||[]).map((x,i)=>{const tr=x.trs?x.trs[state.lang]:x.tr;
+    return `<div class="idea" role="button" tabindex="0" data-idea="${i}"><span class="use">${esc(t("ideas_use"))}</span><span class="de" lang="de" dir="ltr">${esc(x.de)}</span>${tr?`<span class="tr">${esc(tr)}</span>`:""}<button type="button" class="say sm" data-say="${esc(x.de)}" aria-label="${esc(t("listen"))}">${SPK}</button></div>`}).join("");
+  const w=state.words||[];
+  $("ideas-words").innerHTML=w.length?`<h4 style="margin:6px 0 8px">${esc(t("ideas_words"))}</h4><div class="words">${w.map(x=>`<span class="wchip"><b lang="de" dir="ltr">${esc(x.de)}</b><span>${esc(x.tr||"")}</span></span>`).join("")}</div>`:"";
+}
+function useIdea(i){const x=(state.ideas||[])[i];if(!x)return;const m=$("msg");m.value=x.de.replace(/\s*…\s*/g," ").trim();m.dispatchEvent(new Event("input"));state.speech=null;m.focus();const c=document.querySelector(".chat");if(innerWidth<1000){c.classList.remove("ideas-open");$("ideabtn").setAttribute("aria-expanded","false")}}
+/* underline the words the learner got wrong */
+function markErrors(text,errs){
+  let h=esc(text);
+  (errs||[]).forEach(e=>{const w=String(e.wrong||"").trim();if(!w||w.length>60)return;const ew=esc(w).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    try{h=h.replace(new RegExp(`(^|[^\\p{L}])(${ew})(?![\\p{L}])`,"gu"),`$1<span class="err">$2</span>`)}catch(x){}});
+  return h;
+}
 function renderLog(){
   const log=$("log");
   log.innerHTML=state.msgs.map((m,i)=>{
     if(m.role==="typing")return `<div class="msg bot"><div class="bubble typing" aria-label="${esc(t("thinking"))}"><i></i><i></i><i></i></div></div>`;
     if(m.role==="bot"){
-      const tr=m.trs?m.trs[state.lang]:m.tr;
-      return `<div class="msg bot"><div class="bubble de" lang="de" dir="ltr">${esc(m.de)}</div><div class="tools"><button class="tiny" data-say="${esc(m.de)}">${SPK}${esc(t("listen"))}</button>${tr?`<button class="tiny" data-tr="${i}">${esc(m.open?t("hide_tr"):t("show_tr"))}</button>`:""}</div>${m.open&&tr?`<p class="tr-line">${esc(tr)}</p>`:""}</div>`;
+      const trs=trList(m);
+      const lines=m.open?(m.trLoading?`<p class="tr-line">${esc(t("tr_loading"))}</p>`:trs.length?`<div class="tr-box">${trs.map(([k,v])=>`<p class="tr-line" lang="${k}" dir="${k==="ar"?"rtl":"ltr"}"><span class="tr-lab" dir="ltr">${k.toUpperCase()}</span>${esc(v)}</p>`).join("")}</div>`:m.trErr?`<p class="tr-line">${esc(t("tr_err"))}</p>`:""):"";
+      return `<div class="msg bot"><div class="bubble de" lang="de" dir="ltr">${esc(m.de)}</div><div class="tools"><button class="tiny" data-say="${esc(m.de)}" data-nat="1">${SPK}${esc(t("listen"))}</button><button class="tiny" data-tr="${i}" aria-expanded="${!!m.open}">${esc(m.open?t("hide_tr"):t("show_tr"))}</button></div>${lines}</div>`;
     }
     let fb="";
     if(m.fb){const f=m.fb;
-      if(f.ok)fb=`<div class="fb ok"><span class="lab">✓ ${esc(t("fb_ok"))}</span>${f.suggestion&&f.suggestion.trim()!==m.text.trim()?`<div class="sug"><span class="lab">${esc(t("fb_sugg"))}</span><span class="de" lang="de" dir="ltr">${esc(f.suggestion)}</span>${f.suggestion_tr?`<span class="ex">${esc(f.suggestion_tr)}</span>`:""}</div>`:""}</div>`;
-      else fb=`<div class="fb"><div class="fix"><span class="lab">${esc(t("fb_fix"))}</span><span class="de" lang="de" dir="ltr">${esc(f.corrected)}</span>${f.explanation?`<span class="ex">${esc(f.explanation)}</span>`:""}</div>${f.suggestion?`<div class="sug"><span class="lab">${esc(t("fb_sugg"))}</span><span class="de" lang="de" dir="ltr">${esc(f.suggestion)}</span>${f.suggestion_tr?`<span class="ex">${esc(f.suggestion_tr)}</span>`:""}</div>`:""}</div>`;
+      const sug=f.suggestion&&f.suggestion.trim()!==m.text.trim()&&f.suggestion.trim()!==(f.corrected||"").trim()?`<div class="sug"><span class="lab">${esc(t("fb_sugg"))}</span><span class="de" lang="de" dir="ltr">${esc(f.suggestion)}</span>${f.suggestion_tr?`<span class="ex">${esc(f.suggestion_tr)}</span>`:""}</div>`:"";
+      const und=f.understood?`<div class="und-w"><span class="lab">${esc(t("fb_understood"))}</span><span class="ex und">${esc(f.understood)}</span></div>`:"";
+      const pron=f.pron?`<div class="pron"><span class="lab">🗣 ${esc(t("fb_pron"))}</span><span class="ex">${esc(f.pron)}</span></div>`:"";
+      const errs=f.errors&&f.errors.length?`<ul class="errs">${f.errors.map(e=>`<li><span class="ch"><span class="etype ${esc(e.type)}">${esc(t("et_"+e.type))}</span>${e.wrong?`<s lang="de" dir="ltr">${esc(e.wrong)}</s> →`:""} <ins lang="de" dir="ltr">${esc(e.right)}</ins></span>${e.why?`<span class="ex">${esc(e.why)}</span>`:""}</li>`).join("")}</ul>`:(f.explanation?`<span class="ex">${esc(f.explanation)}</span>`:"");
+      if(f.ok)fb=`<div class="fb ok"><span class="lab">✓ ${esc(t("fb_ok"))}</span>${und}${pron}${sug}</div>`;
+      else fb=`<div class="fb"><div class="fix"><span class="lab">${esc(t("fb_fix"))}</span><span class="de" lang="de" dir="ltr">${esc(f.corrected)}</span></div>${errs?`<div><span class="lab" style="color:var(--muted)">${esc(t("fb_errors"))}</span>${errs}</div>`:""}${und}${pron}${sug}</div>`;
     }
-    return `<div class="msg me"><div class="bubble" lang="de" dir="ltr">${esc(m.text)}</div>${fb}</div>`;
+    const v=m.voice;const heard=v?`<div class="heard">🎙 ${esc(t("heard"))}${v.conf?` · ${esc(t("clarity"))} <span class="clar" title="${Math.round(v.conf*100)}%"><i style="width:${Math.round(v.conf*100)}%"></i></span>`:""}</div>`:"";
+    return `<div class="msg me"><div class="bubble" lang="de" dir="ltr">${m.fb&&!m.fb.ok?markErrors(m.text,m.fb.errors):esc(m.text)}</div>${heard}${fb}</div>`;
   }).join("");
   const kids=log.children;for(let i=state.shown;i<kids.length;i++)kids[i].classList.add("new");
   state.shown=state.msgs.length;
@@ -1417,7 +1843,7 @@ function applyLang(){
   $("mic").setAttribute("aria-label",t("listen"));if(state.screen)$("screen-title").textContent=state.screen==="home"?"Wortweg":t(TITLE[state.screen]);
   renderAll();
 }
-function renderAll(){renderHero();renderStairs();renderGrammar();renderReading();renderVideos();renderListen();renderChatSide();renderLog()}
+function renderAll(){renderHero();renderStairs();renderGrammar();renderReading();renderVideos();renderListen();renderChatSide();renderLog();renderIdeas()}
 
 
 
@@ -1476,7 +1902,8 @@ function initFluid(){
 }
 
 /* ---------- events ---------- */
-function setLevel(lv){state.level=lv;store.set("level",lv);renderStairs();renderGrammar();renderReading();renderVideos();renderListen();renderChatSide()}
+function setLevel(lv){const changed=state.level!==lv;state.level=lv;store.set("level",lv);renderStairs();renderGrammar();renderReading();renderVideos();renderListen();renderChatSide();
+  if(changed){if(!state.busy&&!state.msgs.some(m=>m.role==="user"))resetChat();else{state.ideas=state.ideas&&state.ideas.length?state.ideas:startIdeas(scen());renderIdeas();note("lvl_changed")}}}
 document.addEventListener("click",e=>{
   const lb=e.target.closest("[data-lang]");if(lb){state.lang=lb.dataset.lang;store.set("lang",state.lang);applyLang();return}
   const lv=e.target.closest("button[data-level]");if(lv){setLevel(lv.dataset.level);swap("g-panel");swap("r-panel");swap("vids");swap("l-panel");if(lv.classList.contains("step"))go("grammar");else if(lv.dataset.jump)scrollTo({top:0,behavior:"smooth"});return}
@@ -1488,11 +1915,11 @@ document.addEventListener("click",e=>{
   const vd=e.target.closest("[data-vid]");if(vd){openVideo(vd.dataset.vid);return}
   const lt=e.target.closest("[data-litem]");if(lt){state.litem[state.level]=+lt.dataset.litem;state.ltrOpen=false;TTS.stop();renderListen();swap("l-panel");return}
   const lr=e.target.closest("[data-ltr]");if(lr){state.ltrOpen=!state.ltrOpen;renderListen();return}
-  const lm=e.target.closest("[data-lmode]");if(lm){state.lmode=lm.dataset.lmode;store.set("lmode",state.lmode);renderLMode();return}
+  const lm=e.target.closest("button[data-lmode]");if(lm){state.lmode=lm.dataset.lmode;store.set("lmode",state.lmode);renderLMode();return}
   const du=e.target.closest("[data-dur]");if(du){state.dur=+du.dataset.dur;store.set("dur",state.dur);renderHF();return}
   const rs=e.target.closest("[data-reset]");if(rs){delete state.answers[rs.dataset.reset];store.set("answers",state.answers);renderGrammar();renderReading();renderListen();renderStairs();return}
   const sc=e.target.closest("[data-scen]");if(sc){state.scen=sc.dataset.scen;TTS.stop();renderChatSide();resetChat();centerChip($("scen"));return}
-  const tr=e.target.closest("[data-tr]");if(tr){const m=state.msgs[+tr.dataset.tr];m.open=!m.open;renderLog();return}
+  const tr=e.target.closest("[data-tr]");if(tr){const m=state.msgs[+tr.dataset.tr];if(!m)return;m.open=!m.open;if(m.open)ensureTr(m);renderLog();return}
 });
 $("cta-a1").addEventListener("click",()=>setLevel("A1"));
 $("restart").addEventListener("click",resetChat);
@@ -1505,7 +1932,7 @@ async function aiJSON(prompt,onWait){
   for(let attempt=0;attempt<4;attempt++){
     try{return await aiOnce(prompt,attempt)}
     catch(e){last=e;if(!e||!["rate_limited","http","network","invalid_json"].includes(e.code))throw e;
-      if(attempt<3){if(onWait)onWait(attempt);await new Promise(r=>setTimeout(r,[2500,6000,12000][attempt]))}}
+      if(attempt<3){if(onWait)onWait(attempt);await new Promise(r=>setTimeout(r,[1500,4000,9000][attempt]))}}
   }
   throw last;
 }
@@ -1515,12 +1942,12 @@ async function aiOnce(prompt,attempt){
   const fail=r=>{if([400,401,403].includes(r.status))throw {code:"bad_key"};if(r.status===429||r.status===529||r.status===503)throw {code:"rate_limited"};throw {code:"http"}};
   try{
     if(prov==="gemini"){
-      const call=m=>fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.7}})});
-      const first=attempt>=1?"gemini-flash-lite-latest":"gemini-flash-latest";r=await call(first);if(r.status===404)r=await call(attempt>=1?"gemini-2.5-flash-lite":"gemini-2.5-flash");
+      const call=m=>fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.7,maxOutputTokens:3072}})});
+      const first=attempt>=2?"gemini-flash-latest":"gemini-flash-lite-latest";r=await call(first);if(r.status===404)r=await call(attempt>=2?"gemini-2.5-flash":"gemini-2.5-flash-lite");
       if(!r.ok)fail(r);
       const j=await r.json();if(j.promptFeedback&&j.promptFeedback.blockReason)throw {code:"http"};text=((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(x=>x.text||"").join("");
     }else{
-      r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-haiku-5-5",max_tokens:800,messages:[{role:"user",content:prompt}]})});
+      r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-haiku-5-5",max_tokens:1800,messages:[{role:"user",content:prompt}]})});
       if(!r.ok)fail(r);
       const j=await r.json();text=(j.content||[]).map(x=>x.text||"").join("");
     }
@@ -1528,30 +1955,60 @@ async function aiOnce(prompt,attempt){
   const m=text.match(/\{[\s\S]*\}/);if(!m)throw {code:"invalid_json"};
   try{return JSON.parse(m[0])}catch(e){throw {code:"invalid_json"}}
 }
+/* translations of Lena's lines: English and Arabic always, plus French when the app is in French */
+function trWant(){return state.lang==="fr"?["fr","en","ar"]:state.lang==="ar"?["ar","en"]:["en","ar"]}
+function trList(m){const src=Object.assign({},m.trs);if(m.tr&&!src[state.lang])src[state.lang]=m.tr;return trWant().filter(k=>src[k]).map(k=>[k,src[k]])}
+async function ensureTr(m){
+  m.trs=m.trs||{};if(m.tr&&!m.trs[state.lang])m.trs[state.lang]=m.tr;
+  const miss=trWant().filter(k=>!m.trs[k]);if(!miss.length||m.trLoading)return;
+  if(!AI.key()){m.trErr=true;return}
+  m.trLoading=true;m.trErr=false;
+  try{
+    const r=await aiJSON(`Translate this German sentence. Reply with only this JSON object: {${miss.map(k=>`"${k}":"(${LANGNAME[k]} translation)"`).join(",")}}\n\nGerman: "${m.de.replace(/"/g,"'")}"`);
+    miss.forEach(k=>{if(r&&typeof r[k]==="string"&&r[k].trim())m.trs[k]=r[k].trim()});
+    if(!trList(m).length)m.trErr=true;
+  }catch(e){m.trErr=true}
+  m.trLoading=false;renderLog();
+}
 function note(k){const n=$("c-note");if(!k){n.hidden=true;return}n.textContent=t(k);n.hidden=false}
 function disableChat(k){note(k);$("send").disabled=true;$("msg").disabled=true}
 
 function buildPrompt(){
   const s=scen(),lang=LANGNAME[state.lang];
   const hist=state.msgs.filter(m=>m.role==="bot"||m.role==="user").slice(-14).map(m=>m.role==="bot"?`Lena: ${m.de}`:`Learner: ${m.text}`).join("\n");
-  const last=[...state.msgs].reverse().find(m=>m.role==="user").text;
-  return `You are Lena, a warm German conversation partner for a learner at CEFR level ${state.level}.
-Scenario: ${s.desc}. Stay in this scenario.
+  const lastMsg=[...state.msgs].reverse().find(m=>m.role==="user"),last=lastMsg.text,v=lastMsg.voice;
+  const how=v?`The learner SPOKE this message; it was turned into text by the browser's speech recognizer.${v.conf?` Recognizer confidence: ${v.conf.toFixed(2)} (below 0.7 means the recognizer struggled).`:""}${v.alts&&v.alts.length?` Other things the recognizer thought it heard: ${v.alts.map(a=>`"${a}"`).join(", ")}.`:""}
+- Do NOT mark capitalisation or punctuation: the recognizer decides those, not the learner.
+- Work out what the learner most likely meant (use the alternatives and the conversation). Put it in "understood".
+- Words that look wrong but sound similar to the right word (e.g. "isch" for "ich", "Bahnhoff", wrong umlaut, missing ending) are probably PRONUNCIATION problems: list them with type "pronunciation", and give a short, concrete "pronunciation_tip" in ${lang} (how to shape the sound, e.g. "ü = say 'ee' with rounded lips"). Empty tip if the speech was clear.`
+  :`The learner TYPED this message.
+- Check spelling strictly: umlauts (ä, ö, ü), ß, capitalised nouns, typos. If the learner wrote ae/oe/ue/ss instead of ä/ö/ü/ß, accept the meaning but list it once as "spelling".
+- "pronunciation_tip" must be an empty string.`;
+  return `You are Lena, a warm, encouraging German conversation partner and tutor. The learner is at CEFR level ${state.level}.
+Scenario: ${s.desc}. Stay in this scenario and in your role.
 Language for translations and explanations: ${lang}.
 
-How to reply:
-- Write your reply in natural German suited to ${state.level}. A1: very short, simple present-tense sentences and everyday words. A2: short sentences, Perfekt allowed. B1: connected everyday speech. B2: fluent, natural speech with richer vocabulary.
-- 1 to 3 sentences, and usually end with a question that keeps the conversation going.
-- If the learner writes in another language or asks for help, answer briefly in German and model how to say it.
+${LVGUIDE[state.level]||LVGUIDE.A2}
 
-How to correct:
-- Check ONLY the learner's last message for grammar, word order, articles and cases, verb forms, spelling, noun capitalisation and word choice. Ignore missing final punctuation.
-- "corrected" is the learner's sentence with the smallest fixes needed. If it was already correct, repeat it unchanged and set is_correct to true.
-- "explanation" names each mistake in one short sentence, written in ${lang}. Empty string if correct.
-- "suggestion" is how a native speaker would naturally say the same thing at about this level (German). It may equal "corrected".
+How to reply:
+- Respond to what the learner actually MEANT, so the conversation feels real, and usually end with a question that keeps it going.
+- If the learner writes in another language or asks for help, answer briefly in German and model the German sentence they need.
+- Never use grammar or vocabulary above ${state.level}.
+
+How to analyse the learner's last message:
+${how}
+- Check grammar, word order, articles and cases, verb forms and endings, and word choice.
+- "corrected": the learner's sentence with the smallest fixes. If it was correct, repeat it unchanged and set is_correct to true.
+- "errors": one item per mistake: {"wrong":"exact words from the learner's message","right":"fixed words","type":"spelling|grammar|word_order|vocabulary|pronunciation","why":"one short sentence in ${lang}"}. Empty array if correct.
+- "understood": one short sentence in ${lang} saying what you understood the learner wanted to say. Empty string if the message was perfectly clear and correct.
+- "suggestion": how a native speaker would naturally say it at about ${state.level} (German).
+
+Then help the learner answer YOUR reply:
+- "ideas": exactly 3 different possible answers the learner could give to your reply, in German, at level ${state.level}, written in the first person, varied (e.g. one short, one with a detail, one with a question back). Each: {"de":"…","tr":"(in ${lang})"}.
+- "words": 3 to 5 useful German words or short phrases for answering, with article for nouns: {"de":"…","tr":"(in ${lang})"}.
 
 Reply with only this JSON object:
-{"reply":"…","reply_translation":"(reply in ${lang})","is_correct":true,"corrected":"…","explanation":"…","suggestion":"…","suggestion_translation":"(suggestion in ${lang})"}
+{"reply":"…","reply_en":"(reply translated into English)","reply_ar":"(reply translated into Arabic)",${state.lang==="fr"?'"reply_fr":"(reply translated into French)",':""}"is_correct":true,"corrected":"…","errors":[],"understood":"","pronunciation_tip":"","suggestion":"…","suggestion_translation":"(in ${lang})","ideas":[{"de":"…","tr":"…"}],"words":[{"de":"…","tr":"…"}]}
 
 Conversation so far:
 ${hist}
@@ -1565,20 +2022,31 @@ async function send(text){
   stopMic();
   state.busy=true;$("send").disabled=true;note(null);
   const user={role:"user",text:text.trim()};
+  if(state.speech&&state.speech.text.trim()===user.text)user.voice=state.speech;
+  state.speech=null;
   state.msgs.push(user);
   const prompt=buildPrompt();
   state.msgs.push({role:"typing"});renderLog();
+  const prevIdeas=state.ideas,prevWords=state.words;state.ideasBusy=true;renderIdeas();
   $("msg").value="";
   try{
     const r=await aiJSON(prompt,()=>note("ai_wait"));if(state.hf)note(null);
     state.msgs=state.msgs.filter(m=>m.role!=="typing");
     if(r&&typeof r.reply==="string"){
-      user.fb={ok:!!r.is_correct,corrected:String(r.corrected||user.text),explanation:String(r.explanation||""),suggestion:String(r.suggestion||""),suggestion_tr:String(r.suggestion_translation||"")};
-      state.msgs.push({role:"bot",de:r.reply,tr:String(r.reply_translation||""),open:false});
-      if(state.autoread)TTS.speak(r.reply,null,afterLena);else afterLena();
+      const TYPES=["spelling","grammar","word_order","vocabulary","pronunciation"];
+      const errors=(Array.isArray(r.errors)?r.errors:[]).filter(e=>e&&e.right).map(e=>({wrong:String(e.wrong||""),right:String(e.right),type:TYPES.includes(e.type)?e.type:"grammar",why:String(e.why||"")})).slice(0,6);
+      user.fb={ok:!!r.is_correct&&!errors.length,corrected:String(r.corrected||user.text),errors,explanation:String(r.explanation||""),understood:String(r.understood||""),pron:user.voice?String(r.pronunciation_tip||""):"",suggestion:String(r.suggestion||""),suggestion_tr:String(r.suggestion_translation||"")};
+      const ideas=(Array.isArray(r.ideas)?r.ideas:[]).filter(x=>x&&x.de).slice(0,4).map(x=>({de:String(x.de),tr:String(x.tr||"")}));
+      state.ideas=ideas.length?ideas:prevIdeas;
+      state.words=(Array.isArray(r.words)?r.words:[]).filter(x=>x&&x.de).slice(0,6).map(x=>({de:String(x.de),tr:String(x.tr||"")}));
+      const trs={};["en","ar","fr"].forEach(k=>{const v=r["reply_"+k];if(typeof v==="string"&&v.trim())trs[k]=v.trim()});
+      if(r.reply_translation&&!trs[state.lang])trs[state.lang]=String(r.reply_translation);
+      state.msgs.push({role:"bot",de:r.reply,trs,open:false});
+      if(state.autoread||state.hf){if(state.hf)note("hf_speak");speakThenListen(r.reply)}else afterLena();
     }else throw {code:"invalid_json"};
   }catch(e){
     state.msgs=state.msgs.filter(m=>m.role!=="typing"&&m!==user);
+    state.ideas=prevIdeas;state.words=prevWords;
     $("msg").value=user.text;
     const c=e&&e.code;
     if(c==="no_key"){note("no_key");openKey(true)}
@@ -1588,11 +2056,16 @@ async function send(text){
     else if(c!=="cancelled")note("chat_err");
     if(state.hf){if(c==="no_key"||c==="bad_key")endHF(null);else setTimeout(()=>{if(state.hf)startMic()},2500)}
   }finally{
-    state.busy=false;if(!$("msg").disabled)$("send").disabled=false;renderLog();
+    state.busy=false;state.ideasBusy=false;if(!$("msg").disabled)$("send").disabled=false;renderLog();renderIdeas();
   }
 }
 $("composer").addEventListener("submit",e=>{e.preventDefault();send($("msg").value)});
 $("msg").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send($("msg").value)}});
+/* the learner edited the recognised text by hand: treat the message as typed */
+$("msg").addEventListener("input",e=>{if(e.isTrusted&&state.speech&&e.target.value.trim()!==state.speech.text)state.speech=null});
+$("ideabtn").addEventListener("click",()=>{const c=document.querySelector(".chat");const o=!c.classList.contains("ideas-open");c.classList.toggle("ideas-open",o);$("ideabtn").setAttribute("aria-expanded",String(o));if(o)renderIdeas()});
+$("ideas").addEventListener("click",e=>{if(e.target.closest("[data-say]"))return;const c=e.target.closest("[data-idea]");if(c)useIdea(+c.dataset.idea)});
+$("ideas").addEventListener("keydown",e=>{const c=e.target.closest("[data-idea]");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();useIdea(+c.dataset.idea)}});
 $("msg").addEventListener("input",e=>{e.target.style.height="auto";e.target.style.height=Math.min(e.target.scrollHeight,140)+"px"});
 
 /* microphone: browser speech recognition (Chrome, Edge, Safari) + long hands-free conversations */
@@ -1607,9 +2080,12 @@ function startMic(){
   if(!SR){note("mic_unsupported");if(state.hf)endHF(null);return}
   if(rec||state.busy||document.hidden)return;
   TTS.stop();micWanted=true;
-  const r=new SR();rec=r;r.lang="de-DE";r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+  const r=new SR();rec=r;r.lang="de-DE";r.interimResults=true;r.continuous=false;r.maxAlternatives=3;
   const base=$("msg").value?$("msg").value.trim()+" ":"";let heard=false,denied=false,neterr=false;
-  r.onresult=ev=>{heard=true;let fin="",tmp="";for(const x of ev.results){if(x.isFinal)fin+=x[0].transcript;else tmp+=x[0].transcript}$("msg").value=(base+fin+tmp).trim();$("msg").dispatchEvent(new Event("input"))};
+  r.onresult=ev=>{heard=true;let fin="",tmp="";const confs=[],alts=[];
+    for(const x of ev.results){if(x.isFinal){fin+=x[0].transcript;if(x[0].confidence>0)confs.push(x[0].confidence);for(let k=1;k<x.length;k++)if(x[k]&&x[k].transcript)alts.push((base+x[k].transcript).trim())}else tmp+=x[0].transcript}
+    const txt=(base+fin+tmp).trim();$("msg").value=txt;$("msg").dispatchEvent(new Event("input"));
+    state.speech={text:txt,conf:confs.length?Math.min(...confs):0,alts:[...new Set(alts)].filter(a=>a!==txt).slice(0,3)}};
   r.onerror=ev=>{if(["not-allowed","service-not-allowed","audio-capture"].includes(ev.error)){denied=true}else if(ev.error==="network")neterr=true};
   r.onend=()=>{if(rec!==r)return;rec=null;$("mic").classList.remove("rec");
     if(denied){note("mic_denied");if(state.hf)endHF(null);return}
@@ -1622,17 +2098,29 @@ function startMic(){
     note(neterr?"mic_net":"mic_none")};
   try{r.start();$("mic").classList.add("rec");note(state.hf?"hf_listen":"mic_on")}catch(err){rec=null;if(state.hf)setTimeout(()=>{if(state.hf)startMic()},800);else note("mic_unsupported")}
 }
-$("mic").addEventListener("click",()=>{if(rec){micWanted=false;try{rec.stop()}catch(e){}return}startMic()});
-function afterLena(){if(state.hf)setTimeout(()=>{if(state.hf)startMic()},350)}
+$("mic").addEventListener("click",()=>{
+  if(state.hf){endHF(null);return}
+  if(rec){micWanted=false;try{rec.stop()}catch(e){}return}
+  if(state.autosend&&SR){startHF();return}
+  startMic()});
+function afterLena(){if(state.hf)setTimeout(()=>{if(state.hf&&!rec&&!state.busy)startMic()},300)}
+let lenaGuard=null;
+function speakThenListen(text){
+  let done=false;clearTimeout(lenaGuard);
+  const fin=()=>{if(done)return;done=true;clearTimeout(lenaGuard);afterLena()};
+  /* if the voice engine never says it finished, start listening again anyway */
+  lenaGuard=setTimeout(()=>{if(!done&&state.hf){TTS.stop();fin()}},6000+String(text).length*110/Math.max(.5,state.rate));
+  TTS.speakLena(text,null,fin);
+}
 function fmt(ms){const s=Math.floor(ms/1000);return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`}
 function tickHF(){
   if(!state.hf)return;const el=Date.now()-hfStart;
   $("hftime").textContent=fmt(el)+(state.dur?` / ${state.dur}:00`:"");
   if(state.dur&&el>=state.dur*60000)endHF("hf_done");
 }
-function startHF(){state.hf=true;silent=0;hfStart=Date.now();keepAwake(true);clearInterval(hfTick);hfTick=setInterval(tickHF,1000);tickHF();$("hftime").hidden=false;renderHF();note("hf_on");startMic()}
-function endHF(msg){state.hf=false;stopMic();clearInterval(hfTick);keepAwake(false);$("hftime").hidden=true;renderHF();if(msg)note(msg)}
-function renderHF(){const b=$("hf");b.setAttribute("aria-pressed",String(!!state.hf));$("autosend").checked=!!state.autosend;document.querySelectorAll("[data-dur]").forEach(x=>x.setAttribute("aria-pressed",String(+x.dataset.dur===state.dur)))}
+function startHF(){TTS.unlock();state.hf=true;silent=0;hfStart=Date.now();keepAwake(true);clearInterval(hfTick);hfTick=setInterval(tickHF,1000);tickHF();$("hftime").hidden=false;renderHF();note("hf_on");startMic()}
+function endHF(msg){state.hf=false;clearTimeout(lenaGuard);stopMic();if(!msg)TTS.stop();clearInterval(hfTick);keepAwake(false);$("hftime").hidden=true;renderHF();if(msg)note(msg)}
+function renderHF(){const b=$("hf");b.setAttribute("aria-pressed",String(!!state.hf));$("mic").classList.toggle("hfon",!!state.hf);$("autosend").checked=!!state.autosend;document.querySelectorAll("[data-dur]").forEach(x=>x.setAttribute("aria-pressed",String(+x.dataset.dur===state.dur)))}
 $("hf").addEventListener("click",()=>{state.hf?endHF(null):startHF()});
 $("autosend").addEventListener("change",e=>{state.autosend=e.target.checked;store.set("autosend",state.autosend)});
 document.addEventListener("visibilitychange",()=>{
