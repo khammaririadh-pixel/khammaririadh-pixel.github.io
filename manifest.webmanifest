@@ -7,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F3F4EF",
-  "theme_color": "#F3F4EF",
+  "background_color": "#F7EFE3",
+  "theme_color": "#F7EFE3",
   "lang": "de",
   "categories": ["education"],
   "icons": [
