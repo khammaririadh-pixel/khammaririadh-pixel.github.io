@@ -8,7 +8,14 @@ const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(M
 const uniq=a=>[...new Set(a)];
 const gloss=w=>state.lang==="ar"?w.ar:w.en;
 const artWord=w=>(w.art?w.art+" ":"")+w.de;
-const ARTC=s=>esc(s).replace(/(^|[\s(„"])(der|die|das|den|dem|des|ein|eine|einen|einem|einer)(?=[\s.,!?])/gi,(m,p,a)=>{const k=a.toLowerCase();const c=k==="die"||k==="eine"||k==="einer"?"die":k==="das"?"das":"der";return `${p}<span class="ac-${c}">${a}</span>`});
+const ARTC=s=>esc(s).replace(/(^|[\s(„"])(der|die|das|den|dem|des|ein|eine|einen|einem|einer)(?=[\s.,!?]|$)/gi,(m,p,a)=>{const k=a.toLowerCase();const c=k==="die"||k==="eine"||k==="einer"?"die":k==="das"?"das":"der";return `${p}<span class="ac-${c}">${a}</span>`});
+
+/* all verbs from the verb tables also become a vocabulary topic */
+if(typeof VERBS!=="undefined"&&!VOCAB.some(x=>x.id==="verben")){
+  const th={id:"verben",icon:"🏃",de:"Wichtige Verben",en:"Important verbs",fr:"Verbes importants",ar:"أفعال مهمة",
+    items:VERBS.map(v=>({art:"",de:v.inf.replace("~",""),pl:"",en:v.en,ar:v.ar,lv:v.lv,th:"verben"}))};
+  VOCAB.push(th);ALLWORDS.push(...th.items);
+}
 
 /* ---------------- texts ---------------- */
 Object.assign(L.en,{tab_words:"Words",words_title:"Vocabulary",words_lead:"Hundreds of everyday words sorted by topic, each with English and Arabic. Tap the speaker to hear a word, tick the words you know, or practise with flashcards.",w_search:"Search in German, English or Arabic…",w_all:"All",w_learned:"learned",w_list:"List",w_cards:"Flashcards",w_flip:"Tap the card to see the meaning",w_know:"I know it ✓",w_again:"Again",w_done:"Great, you went through all the cards!",w_back:"All topics",w_none:"No words found.",w_mark:"Mark as learned",w_restart:"Start again",
@@ -16,22 +23,22 @@ g_lessons:"Lessons",g_ref:"Overview",g_verbs:"Verbs",g_train:"Training",ref_lead
 train_title:"Training",train_lead:"Mixed exercises from every topic of your level: grammar, articles, verb forms, plurals, word order, vocabulary, listening and spelling. Every round is new.",train_start:"Start a round",train_best:"Best",train_q:"Question",train_check:"Check",train_next:"Next",train_done:"Round finished!",train_again:"New round",train_review:"To review",train_of:"of",train_correct:"correct",
 tq_gram:"Fill the gap",tq_art:"Which article?",tq_mean:"What does it mean?",tq_rev:"How do you say it in German?",tq_conj:"Choose the right verb form",tq_plural:"What is the plural?",tq_order:"Put the words in the right order",tq_type:"Write it in German",tq_hear:"Listen and choose the word you hear",tq_order_hint:"Tap the words in order. Tap a chosen word to take it back.",tq_type_ph:"Type in German…",tq_article_tip:"Remember the article:",
 sc_title:"Scenes",sc_lead:"Animated everyday scenes: people talk in German, you read along and can show the translation. Pick a scene for your level.",sc_lines:"lines",sc_seen:"watched",
-pl_tr:"Translation",pl_replay:"Replay",pl_orig:"Original video",pl_practice:"Do the exercises",pl_chat:"Practise this with Lena",pl_turn:"Your turn! Say it out loud.",pl_rule:"The rule",pl_forms:"Forms",pl_ex:"Example",pl_end:"Well done!",pl_end_sub:"Now practise what you heard.",pl_nat:"natural voice",pl_dev:"device voice",pl_lesson:"Video lesson",pl_scene:"Scene",pl_close:"Close",
-pr_title:"Your progress",pr_lead:"Everything you do is saved automatically on this device. Save a backup file to keep it safe or move it to another phone.",pr_ex:"exercises done",pr_words:"words learned",pr_train:"best training score",pr_scenes:"scenes watched",pr_lessons:"lessons watched",pr_save:"Save progress file",pr_load:"Load progress file",pr_saved:"Saved! Keep this file to restore your progress later.",pr_loaded:"Progress loaded.",pr_bad:"This file isn't a Wortweg progress file.",pr_confirm:"Replace the progress on this device with the progress from this file?",pr_auto:"✓ Saved automatically on this device"});
+pl_tr:"Translation",pl_replay:"Replay",pl_orig:"Original video",pl_practice:"Do the exercises",pl_chat:"Practise this with Lena",pl_turn:"Your turn! Say it out loud.",pl_rule:"The rule",pl_forms:"Forms",pl_ex:"Example",pl_end:"Well done!",pl_end_sub:"Now practise what you heard.",pl_nat:"natural voice",pl_dev:"device voice",pl_lesson:"Video lesson",pl_scene:"Scene",pl_close:"Close",pl_basic:"basic voice ⚠",pl_basic_tip:"This device has no German voice, so a basic robot voice is used. For correct German pronunciation: open the app in Microsoft Edge or Chrome, or on Windows add a German voice (Settings › Time & language › Speech › Add voices › Deutsch), or add a free Gemini key for Lena's natural voice.",
+pr_title:"Your progress",pr_lead:"Everything you do is saved automatically on this device. Save a backup file to keep it safe or move it to another phone.",pr_ex:"exercises done",pr_words:"words learned",pr_train:"best training score",pr_scenes:"scenes watched",pr_lessons:"lessons watched",pr_save:"Save progress file",pr_load:"Load progress file",pr_saved:"Saved! Keep this file to restore your progress later.",pr_loaded:"Progress loaded.",pr_bad:"This file isn't a Wortflug progress file.",pr_confirm:"Replace the progress on this device with the progress from this file?",pr_auto:"✓ Saved automatically on this device"});
 Object.assign(L.fr,{tab_words:"Mots",words_title:"Vocabulaire",words_lead:"Des centaines de mots du quotidien classés par thème, avec l'anglais et l'arabe. Touchez le haut-parleur pour écouter, cochez les mots que vous connaissez ou entraînez-vous avec les cartes.",w_search:"Chercher en allemand, anglais ou arabe…",w_all:"Tous",w_learned:"appris",w_list:"Liste",w_cards:"Cartes",w_flip:"Touchez la carte pour voir le sens",w_know:"Je sais ✓",w_again:"Encore",w_done:"Bravo, vous avez vu toutes les cartes !",w_back:"Tous les thèmes",w_none:"Aucun mot trouvé.",w_mark:"Marquer comme appris",w_restart:"Recommencer",
 g_lessons:"Leçons",g_ref:"Résumé",g_verbs:"Verbes",g_train:"Entraînement",ref_lead:"Toute la grammaire allemande, thème par thème : la règle, les tableaux et des exemples.",verbs_lead:"verbes importants à tous les temps avec ich, du, er/sie/es, wir, ihr, sie/Sie. Touchez un verbe pour voir toutes ses formes.",verbs_search:"Chercher un verbe en allemand, anglais ou arabe…",v_aux:"Parfait avec",v_sep:"séparable",v_refl:"pronominal",v_hear:"Écouter",
 train_title:"Entraînement",train_lead:"Des exercices variés sur tous les thèmes de votre niveau : grammaire, articles, conjugaison, pluriels, ordre des mots, vocabulaire, écoute et orthographe. Chaque série est nouvelle.",train_start:"Commencer une série",train_best:"Meilleur",train_q:"Question",train_check:"Vérifier",train_next:"Suivant",train_done:"Série terminée !",train_again:"Nouvelle série",train_review:"À revoir",train_of:"sur",train_correct:"justes",
 tq_gram:"Complétez",tq_art:"Quel article ?",tq_mean:"Que veut dire ce mot ?",tq_rev:"Comment dit-on en allemand ?",tq_conj:"Choisissez la bonne forme du verbe",tq_plural:"Quel est le pluriel ?",tq_order:"Mettez les mots dans le bon ordre",tq_type:"Écrivez en allemand",tq_hear:"Écoutez et choisissez le mot entendu",tq_order_hint:"Touchez les mots dans l'ordre. Touchez un mot choisi pour le retirer.",tq_type_ph:"Écrivez en allemand…",tq_article_tip:"N'oubliez pas l'article :",
 sc_title:"Scènes",sc_lead:"Des scènes animées du quotidien : des personnes parlent allemand, vous lisez en même temps et pouvez afficher la traduction. Choisissez une scène de votre niveau.",sc_lines:"répliques",sc_seen:"vue",
-pl_tr:"Traduction",pl_replay:"Revoir",pl_orig:"Vidéo d'origine",pl_practice:"Faire les exercices",pl_chat:"S'entraîner avec Lena",pl_turn:"À vous ! Dites-le à voix haute.",pl_rule:"La règle",pl_forms:"Les formes",pl_ex:"Exemple",pl_end:"Bravo !",pl_end_sub:"Entraînez-vous maintenant sur ce que vous avez entendu.",pl_nat:"voix naturelle",pl_dev:"voix de l'appareil",pl_lesson:"Leçon vidéo",pl_scene:"Scène",pl_close:"Fermer",
-pr_title:"Votre progression",pr_lead:"Tout ce que vous faites est enregistré automatiquement sur cet appareil. Enregistrez un fichier de sauvegarde pour le garder ou le transférer sur un autre téléphone.",pr_ex:"exercices faits",pr_words:"mots appris",pr_train:"meilleur entraînement",pr_scenes:"scènes vues",pr_lessons:"leçons vues",pr_save:"Enregistrer ma progression",pr_load:"Charger une progression",pr_saved:"Enregistré ! Gardez ce fichier pour retrouver votre progression plus tard.",pr_loaded:"Progression chargée.",pr_bad:"Ce fichier n'est pas une sauvegarde Wortweg.",pr_confirm:"Remplacer la progression de cet appareil par celle du fichier ?",pr_auto:"✓ Enregistré automatiquement sur cet appareil"});
+pl_tr:"Traduction",pl_replay:"Revoir",pl_orig:"Vidéo d'origine",pl_practice:"Faire les exercices",pl_chat:"S'entraîner avec Lena",pl_turn:"À vous ! Dites-le à voix haute.",pl_rule:"La règle",pl_forms:"Les formes",pl_ex:"Exemple",pl_end:"Bravo !",pl_end_sub:"Entraînez-vous maintenant sur ce que vous avez entendu.",pl_nat:"voix naturelle",pl_dev:"voix de l'appareil",pl_lesson:"Leçon vidéo",pl_scene:"Scène",pl_close:"Fermer",pl_basic:"voix basique ⚠",pl_basic_tip:"Cet appareil n'a pas de voix allemande : une voix robotique de base est utilisée. Pour une prononciation correcte : ouvrez l'app dans Microsoft Edge ou Chrome, ou sous Windows ajoutez une voix allemande (Paramètres › Heure et langue › Voix › Ajouter des voix › Deutsch), ou ajoutez une clé Gemini gratuite pour la voix naturelle.",
+pr_title:"Votre progression",pr_lead:"Tout ce que vous faites est enregistré automatiquement sur cet appareil. Enregistrez un fichier de sauvegarde pour le garder ou le transférer sur un autre téléphone.",pr_ex:"exercices faits",pr_words:"mots appris",pr_train:"meilleur entraînement",pr_scenes:"scènes vues",pr_lessons:"leçons vues",pr_save:"Enregistrer ma progression",pr_load:"Charger une progression",pr_saved:"Enregistré ! Gardez ce fichier pour retrouver votre progression plus tard.",pr_loaded:"Progression chargée.",pr_bad:"Ce fichier n'est pas une sauvegarde Wortflug.",pr_confirm:"Remplacer la progression de cet appareil par celle du fichier ?",pr_auto:"✓ Enregistré automatiquement sur cet appareil"});
 Object.assign(L.ar,{tab_words:"الكلمات",words_title:"المفردات",words_lead:"مئات الكلمات اليومية مرتبة حسب الموضوع، مع الإنجليزية والعربية. المس السماعة لسماع الكلمة، وضع علامة على الكلمات التي تعرفها، أو تدرّب بالبطاقات.",w_search:"ابحث بالألمانية أو الإنجليزية أو العربية…",w_all:"الكل",w_learned:"تم تعلمها",w_list:"القائمة",w_cards:"البطاقات",w_flip:"المس البطاقة لرؤية المعنى",w_know:"أعرفها ✓",w_again:"مرة أخرى",w_done:"رائع، أنهيت كل البطاقات!",w_back:"كل المواضيع",w_none:"لم يتم العثور على كلمات.",w_mark:"تعليم كمحفوظة",w_restart:"ابدأ من جديد",
 g_lessons:"الدروس",g_ref:"ملخص القواعد",g_verbs:"الأفعال",g_train:"التدريب",ref_lead:"قواعد اللغة الألمانية كاملة، موضوعاً بموضوع: القاعدة والجداول والأمثلة.",verbs_lead:"فعلاً مهماً بكل الأزمنة مع ich و du و er/sie/es و wir و ihr و sie/Sie. المس فعلاً لرؤية كل صيغه.",verbs_search:"ابحث عن فعل بالألمانية أو الإنجليزية أو العربية…",v_aux:"الماضي التام مع",v_sep:"منفصل",v_refl:"انعكاسي",v_hear:"استمع",
 train_title:"التدريب",train_lead:"تمارين متنوعة من كل مواضيع مستواك: القواعد والأدوات وتصريف الأفعال والجمع وترتيب الكلمات والمفردات والاستماع والإملاء. كل جولة جديدة.",train_start:"ابدأ جولة",train_best:"الأفضل",train_q:"السؤال",train_check:"تحقق",train_next:"التالي",train_done:"انتهت الجولة!",train_again:"جولة جديدة",train_review:"للمراجعة",train_of:"من",train_correct:"صحيحة",
 tq_gram:"أكمل الفراغ",tq_art:"ما الأداة الصحيحة؟",tq_mean:"ما معنى هذه الكلمة؟",tq_rev:"كيف تقولها بالألمانية؟",tq_conj:"اختر صيغة الفعل الصحيحة",tq_plural:"ما صيغة الجمع؟",tq_order:"رتّب الكلمات ترتيباً صحيحاً",tq_type:"اكتبها بالألمانية",tq_hear:"استمع واختر الكلمة التي سمعتها",tq_order_hint:"المس الكلمات بالترتيب. المس كلمة مختارة لإرجاعها.",tq_type_ph:"اكتب بالألمانية…",tq_article_tip:"لا تنسَ الأداة:",
 sc_title:"مشاهد",sc_lead:"مشاهد متحركة من الحياة اليومية: أشخاص يتحدثون بالألمانية، تقرأ معهم ويمكنك إظهار الترجمة. اختر مشهداً يناسب مستواك.",sc_lines:"جمل",sc_seen:"تمت المشاهدة",
-pl_tr:"الترجمة",pl_replay:"إعادة",pl_orig:"الفيديو الأصلي",pl_practice:"حلّ التمارين",pl_chat:"تدرّب على هذا مع لينا",pl_turn:"دورك! قلها بصوت عالٍ.",pl_rule:"القاعدة",pl_forms:"الصيغ",pl_ex:"مثال",pl_end:"أحسنت!",pl_end_sub:"تدرّب الآن على ما سمعته.",pl_nat:"صوت طبيعي",pl_dev:"صوت الجهاز",pl_lesson:"درس فيديو",pl_scene:"مشهد",pl_close:"إغلاق",
-pr_title:"تقدّمك",pr_lead:"كل ما تنجزه يُحفظ تلقائياً على هذا الجهاز. احفظ ملفاً احتياطياً للحفاظ عليه أو لنقله إلى هاتف آخر.",pr_ex:"تمارين أُنجزت",pr_words:"كلمات تم تعلمها",pr_train:"أفضل نتيجة تدريب",pr_scenes:"مشاهد تمت مشاهدتها",pr_lessons:"دروس تمت مشاهدتها",pr_save:"حفظ ملف التقدم",pr_load:"تحميل ملف التقدم",pr_saved:"تم الحفظ! احتفظ بهذا الملف لاستعادة تقدمك لاحقاً.",pr_loaded:"تم تحميل التقدم.",pr_bad:"هذا الملف ليس ملف تقدم من Wortweg.",pr_confirm:"هل تريد استبدال التقدم على هذا الجهاز بالتقدم الموجود في الملف؟",pr_auto:"✓ يُحفظ تلقائياً على هذا الجهاز"});
+pl_tr:"الترجمة",pl_replay:"إعادة",pl_orig:"الفيديو الأصلي",pl_practice:"حلّ التمارين",pl_chat:"تدرّب على هذا مع لينا",pl_turn:"دورك! قلها بصوت عالٍ.",pl_rule:"القاعدة",pl_forms:"الصيغ",pl_ex:"مثال",pl_end:"أحسنت!",pl_end_sub:"تدرّب الآن على ما سمعته.",pl_nat:"صوت طبيعي",pl_dev:"صوت الجهاز",pl_lesson:"درس فيديو",pl_scene:"مشهد",pl_close:"إغلاق",pl_basic:"صوت بسيط ⚠",pl_basic_tip:"لا يوجد صوت ألماني على هذا الجهاز، لذا يُستخدم صوت آلي بسيط. للحصول على نطق ألماني صحيح: افتح التطبيق في Microsoft Edge أو Chrome، أو أضف صوتاً ألمانياً في Windows (الإعدادات › الوقت واللغة › الكلام › إضافة أصوات › Deutsch)، أو أضف مفتاح Gemini مجانياً للصوت الطبيعي.",
+pr_title:"تقدّمك",pr_lead:"كل ما تنجزه يُحفظ تلقائياً على هذا الجهاز. احفظ ملفاً احتياطياً للحفاظ عليه أو لنقله إلى هاتف آخر.",pr_ex:"تمارين أُنجزت",pr_words:"كلمات تم تعلمها",pr_train:"أفضل نتيجة تدريب",pr_scenes:"مشاهد تمت مشاهدتها",pr_lessons:"دروس تمت مشاهدتها",pr_save:"حفظ ملف التقدم",pr_load:"تحميل ملف التقدم",pr_saved:"تم الحفظ! احتفظ بهذا الملف لاستعادة تقدمك لاحقاً.",pr_loaded:"تم تحميل التقدم.",pr_bad:"هذا الملف ليس ملف تقدم من Wortflug.",pr_confirm:"هل تريد استبدال التقدم على هذا الجهاز بالتقدم الموجود في الملف؟",pr_auto:"✓ يُحفظ تلقائياً على هذا الجهاز"});
 
 /* ---------------- styles ---------------- */
 const css=`
@@ -50,7 +57,7 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .px-theme{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:16px;text-align:start;display:grid;gap:6px;box-shadow:var(--sh-1);transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
 .px-theme:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--brand)}
 .px-theme .ic{font-size:1.7rem;line-height:1}
-.px-theme b{font-family:var(--f-display);font-weight:400;font-size:1.15rem;line-height:1.2}
+.px-theme b{font-family:var(--f-display);font-weight:800;font-size:1.15rem;line-height:1.2}
 .px-theme small{color:var(--muted)}
 .px-meter{height:6px;border-radius:99px;background:var(--soft);overflow:hidden}.px-meter i{display:block;height:100%;border-radius:99px;background:var(--grad)}
 .px-words{display:grid;gap:8px}
@@ -70,7 +77,7 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .fcard.flip{transform:rotateY(180deg)}
 .fface{position:absolute;inset:0;border-radius:28px;display:grid;place-items:center;align-content:center;gap:10px;padding:24px;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:var(--sh-2)}
 .ffront{background:var(--grad-ink);color:#fff}.fback{background:var(--surface);border:1px solid var(--line);transform:rotateY(180deg)}
-.ffront .w{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,6vw,2.8rem);line-height:1.1}
+.ffront .w{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,2.8rem);line-height:1.1}
 .fback .en{font-size:1.4rem;font-weight:700}.fback .ar{font-family:var(--f-ar);font-size:1.6rem}
 .fbtns{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
 .px-split{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start}
@@ -83,7 +90,7 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .px-item b{font-size:.95rem}.px-item small{color:var(--muted);font-size:.8rem}
 @media (max-width:900px){.px-item{border-color:var(--line);background:var(--surface);max-width:240px}}
 .px-panel{display:grid;gap:18px}
-.px-panel h3{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em}
+.px-panel h3{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em}
 .px-panel .lead{font-size:1.04rem;line-height:1.75;max-width:75ch}
 .px-tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
 .px-tables .tbl table td,.px-tables .tbl table th{white-space:normal}
@@ -120,7 +127,7 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .px-score{font-family:var(--f-display);font-size:clamp(3rem,10vw,5rem);font-weight:600;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .px-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .px-stat{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--surface);display:grid;gap:2px}
-.px-stat b{font-family:var(--f-display);font-weight:400;font-size:1.9rem;line-height:1.1}
+.px-stat b{font-family:var(--f-display);font-weight:800;font-size:1.9rem;line-height:1.1}
 .px-stat small{color:var(--muted)}
 .px-lvbars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .px-lvbar{display:grid;gap:4px;font-family:var(--f-mono);font-size:.8rem}
@@ -130,40 +137,46 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .px-scene .th{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--soft)}
 .px-scene .th svg{position:absolute;inset:0;width:100%;height:100%}
 .px-scene .meta{padding:12px 14px 16px;display:grid;gap:3px}
-.px-scene .meta b{font-family:var(--f-display);font-weight:400;font-size:1.15rem}
+.px-scene .meta b{font-family:var(--f-display);font-weight:800;font-size:1.15rem}
 .px-scene .meta small{color:var(--muted)}
 .px-scene .seen{position:absolute;top:10px;inset-inline-end:10px;background:var(--das);color:#fff;font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:99px}
 .px-scene .lvt{position:absolute;top:10px;inset-inline-start:10px;background:rgba(0,0,0,.55);color:#fff;font-family:var(--f-mono);font-size:.72rem;padding:3px 8px;border-radius:99px}
 /* player */
-.stage-sheet{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,#140D08 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;place-items:center;padding:calc(10px + var(--sat,0px)) 10px calc(10px + var(--sab,0px));animation:fadeUp .25s var(--ease) both}
+.stage-sheet{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,#0C0714 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;place-items:center;padding:calc(10px + var(--sat,0px)) 10px calc(10px + var(--sab,0px));animation:fadeUp .25s var(--ease) both}
 .stage-sheet[hidden]{display:none}
-.stage-box{width:min(1040px,100%);max-height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto auto;background:#241912;color:#fff;border-radius:28px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
+.stage-box{width:min(1040px,100%);max-height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto auto;background:#160F22;color:#fff;border-radius:28px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
 .st-top{display:flex;align-items:center;gap:12px;padding:12px 16px}
 .st-top .tt{display:grid;flex:1;min-width:0}
 .st-top small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#EDB56A}
-.st-top b{font-family:var(--f-display);font-weight:400;font-size:1.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.st-voice{font-size:.72rem;color:#E8D8C4;border:1px solid rgba(255,255,255,.2);padding:3px 9px;border-radius:99px;white-space:nowrap}
+.st-top b{font-family:var(--f-display);font-weight:800;font-size:1.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-voice{font-size:.72rem;color:#D9CCEA;border:1px solid rgba(255,255,255,.2);padding:3px 9px;border-radius:99px;white-space:nowrap}
 .st-top .vclose{background:rgba(255,255,255,.12);color:#fff}
-.st-view{position:relative;aspect-ratio:16/9;max-height:62dvh;overflow:hidden;background:#2E2118}
+.st-view{position:relative;aspect-ratio:16/9;max-height:62dvh;overflow:hidden;background:#1E1530}
 @media (max-width:640px){.st-view{aspect-ratio:4/5;max-height:58dvh}}
-.st-sub{min-height:72px;padding:12px 18px;display:grid;gap:3px;align-content:center;text-align:center;background:#1A120D}
+.st-sub{min-height:72px;padding:12px 18px;display:grid;gap:3px;align-content:center;text-align:center;background:#120B1C}
 .st-sub .de{font-size:clamp(1.05rem,2.6vw,1.35rem);font-weight:700;line-height:1.35}
-.st-sub .tr{font-size:.92rem;color:#E8D8C4}
+.st-sub .tr{font-size:.92rem;color:#D9CCEA}
 .st-sub .tr[dir="rtl"]{font-family:var(--f-ar);font-size:1.02rem}
 .st-bar{height:4px;background:rgba(255,255,255,.1)}.st-bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s var(--ease)}
 .st-ctrl{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px 16px;flex-wrap:wrap}
 .st-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center}
 .st-btn svg{width:20px;height:20px}
-.st-btn.big{width:58px;height:58px;background:var(--grad);border:0;color:#2E1F15}
+.st-btn.big{width:58px;height:58px;background:var(--grad);border:0;color:#fff}
 .st-btn.big svg{width:24px;height:24px}
 .st-pill{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:99px;padding:8px 14px;font-weight:700;font-size:.85rem}
 .st-pill[aria-pressed="true"]{background:#fff;color:#2E1F15}
+/* karaoke words */
+.kara.live .kw{opacity:.5;transition:opacity .18s ease,color .18s ease}
+.kara.live .kw.on{opacity:1}
+.kara.live .kw.now{color:#FFB38A;text-shadow:0 0 18px rgba(255,140,90,.45)}
+.sc-bub .kara.live .kw.now{color:#E0592F;text-shadow:none}
+.st-voice.warn{border-color:#F2B24C;color:#FFD08A;cursor:help}
 /* lesson slides */
-.ls{position:absolute;inset:0;display:grid;place-items:center;padding:clamp(18px,4vw,48px);text-align:center;background:radial-gradient(800px 400px at 80% 0%,rgba(200,85,61,.45),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(110,127,58,.35),transparent 60%),#2E2118;animation:lsIn .6s var(--ease) both}
+.ls{position:absolute;inset:0;display:grid;place-items:center;padding:clamp(18px,4vw,48px);text-align:center;background:radial-gradient(800px 400px at 80% 0%,rgba(242,97,63,.42),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(142,75,255,.42),transparent 60%),#1E1530;animation:lsIn .6s var(--ease) both}
 @keyframes lsIn{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:none}}
 .ls .k{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#EDB56A}
-.ls h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.02em;margin:10px 0}
-.ls .sub{font-size:clamp(1rem,2.4vw,1.3rem);color:#F1E4D3}
+.ls h2{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.02em;margin:10px 0}
+.ls .sub{font-size:clamp(1rem,2.4vw,1.3rem);color:#EFE6FA}
 .ls .bars{display:flex;gap:6px;justify-content:center;margin-top:18px}.ls .bars i{width:10px;height:34px;border-radius:5px;animation:barUp .8s var(--ease) both}
 .ls .bars i:nth-child(2){animation-delay:.1s}.ls .bars i:nth-child(3){animation-delay:.2s}
 @keyframes barUp{from{transform:scaleY(0)}to{transform:none}}
@@ -171,14 +184,14 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .ls .rule span{opacity:0;animation:fadeUp .5s var(--ease) both}
 .ls table{border-collapse:separate;border-spacing:0;font-size:clamp(.85rem,2.2vw,1.15rem);background:rgba(255,255,255,.05);border-radius:16px;overflow:hidden;max-width:100%}
 .ls th,.ls td{padding:clamp(6px,1.2vw,10px) clamp(8px,1.6vw,16px);border-bottom:1px solid rgba(255,255,255,.08);color:#fff;text-align:start;white-space:nowrap}
-.ls th{background:rgba(255,255,255,.1);font-family:var(--f-mono);font-size:.75em;letter-spacing:.06em;text-transform:uppercase;color:#E8D8C4}
+.ls th{background:rgba(255,255,255,.1);font-family:var(--f-mono);font-size:.75em;letter-spacing:.06em;text-transform:uppercase;color:#D9CCEA}
 .ls td:first-child{color:#EDB56A}
 .ls tr.hi td{background:rgba(255,180,60,.22)}
 .ls tr.dim td{opacity:.45}
-.ls .ex{font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,5vw,3.1rem);line-height:1.2;max-width:900px}
+.ls .ex{font-family:var(--f-display);font-weight:800;font-size:clamp(1.7rem,5vw,3.1rem);line-height:1.2;max-width:900px}
 .ls .ex .ac-der{color:#7FB7D1}.ls .ex .ac-die{color:#EE8B6B}.ls .ex .ac-das{color:#A9BB6A}
-.ls .ext{margin-top:12px;font-size:clamp(1rem,2.4vw,1.3rem);color:#F1E4D3}
-.ls .turn{margin-top:22px;display:inline-flex;gap:8px;align-items:center;background:var(--grad);color:#2E1F15;font-weight:800;border-radius:99px;padding:10px 18px;animation:pop .5s var(--ease) both}
+.ls .ext{margin-top:12px;font-size:clamp(1rem,2.4vw,1.3rem);color:#EFE6FA}
+.ls .turn{margin-top:22px;display:inline-flex;gap:8px;align-items:center;background:var(--grad);color:#fff;font-weight:800;border-radius:99px;padding:10px 18px;animation:pop .5s var(--ease) both}
 .ls .end{display:grid;gap:14px;justify-items:center}
 .ls .end .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .ls .end .btn{color:#fff;border-color:rgba(255,255,255,.4)}.ls .end .btn.primary{color:#2E1F15}
@@ -198,14 +211,14 @@ body[data-gmode="lessons"] #px-gx,body:not([data-gmode]) #px-gx{display:none}
 .sc-char .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.2s infinite}
 .sc-char.b .eye{animation-delay:1.7s}
 @keyframes blink{0%,94%,100%{transform:none}97%{transform:scaleY(.1)}}
-.sc-name{position:absolute;bottom:4%;background:rgba(36,25,18,.82);color:#fff;font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:99px}
+.sc-name{position:absolute;bottom:4%;background:rgba(22,15,34,.82);color:#fff;font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:99px}
 .sc-name.a{left:10%}.sc-name.b{right:10%}
 .sc-bub{position:absolute;top:6%;max-width:min(56%,520px);background:#fff;color:#2E1F15;border-radius:22px;padding:12px 16px;font-weight:700;font-size:clamp(.95rem,2.2vw,1.2rem);line-height:1.4;box-shadow:0 18px 40px -18px rgba(0,0,0,.6);animation:pop .35s var(--ease) both}
 .sc-bub.a{left:6%;border-bottom-left-radius:6px}.sc-bub.b{right:6%;border-bottom-right-radius:6px}
-.sc-bub small{display:block;font-weight:600;color:#C0532F;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.sc-bub small{display:block;font-weight:600;color:#8E4BFF;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
 @media (max-width:640px){.sc-char{width:44%}.sc-char.a{left:2%}.sc-char.b{right:2%}.sc-bub{max-width:88%;left:6%!important;right:6%!important}}
-.sc-title{position:absolute;inset:0;display:grid;place-items:center;background:rgba(36,25,18,.6);text-align:center;color:#fff;animation:fadeUp .4s var(--ease) both}
-.sc-title h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.8rem,5vw,3rem)}
+.sc-title{position:absolute;inset:0;display:grid;place-items:center;background:rgba(22,15,34,.6);text-align:center;color:#fff;animation:fadeUp .4s var(--ease) both}
+.sc-title h2{font-family:var(--f-display);font-weight:800;font-size:clamp(1.8rem,5vw,3rem)}
 .sc-title .k{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#EDB56A}
 `;
 const st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
@@ -281,7 +294,7 @@ function renderWords(){
       return `<button class="px-theme" data-pxtheme="${th.id}"><span class="ic">${th.icon}</span><b lang="de">${esc(th.de)}</b><small>${esc(tr(th))} · ${items.length}</small><span class="px-meter"><i style="width:${items.length?Math.round(100*done/items.length):0}%"></i></span><small>${done} ${esc(t("w_learned"))}</small></button>`}).join("")}</div>`;
   }else{
     const th=VOCAB.find(x=>x.id===W.theme);const items=wordFilter(th.items);
-    body=`<div class="px-row"><button class="tiny" data-pxtheme="">← ${esc(t("w_back"))}</button><h3 style="font-family:var(--f-display);font-weight:400;font-size:1.5rem;margin-inline-end:auto">${th.icon} <span lang="de">${esc(th.de)}</span></h3>
+    body=`<div class="px-row"><button class="tiny" data-pxtheme="">← ${esc(t("w_back"))}</button><h3 style="font-family:var(--f-display);font-weight:800;font-size:1.5rem;margin-inline-end:auto">${th.icon} <span lang="de">${esc(th.de)}</span></h3>
       <div class="seg seg2" style="min-width:220px"><button type="button" data-wmode="list" aria-pressed="${W.mode==="list"}">${esc(t("w_list"))}</button><button type="button" data-wmode="cards" aria-pressed="${W.mode==="cards"}">${esc(t("w_cards"))}</button></div></div>`;
     if(W.mode==="list")body+=items.length?`<div class="px-words">${items.map(wordRow).join("")}</div>`:`<p class="hq">${esc(t("w_none"))}</p>`;
     else body+=renderCards(items);
@@ -384,7 +397,7 @@ function newRound(){
 function renderTrain(box){
   if(!TQ||TQ.L!==state.level&&!TQ.qs.length){TQ=null}
   if(!TQ){
-    box.innerHTML=`<div class="px-card" style="display:grid;gap:16px"><div><p class="eyebrow">${state.level}</p><h3 style="font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);margin-top:6px">${esc(t("train_title"))}</h3></div>
+    box.innerHTML=`<div class="px-card" style="display:grid;gap:16px"><div><p class="eyebrow">${state.level}</p><h3 style="font-family:var(--f-display);font-weight:800;font-size:clamp(1.7rem,3vw,2.3rem);margin-top:6px">${esc(t("train_title"))}</h3></div>
       <p class="lead" style="max-width:70ch">${esc(t("train_lead"))}</p>
       <div class="lvl-tabs" style="margin:0">${lvlChips()}</div>
       <div class="px-lvbars">${LEVELS.map(l=>`<div class="px-lvbar"><span>${l.id} · ${esc(t("train_best"))}: ${P.trainBest[l.id]!=null?P.trainBest[l.id]+"/12":"–"}</span><span class="px-meter"><i style="width:${Math.round(100*(P.trainBest[l.id]||0)/12)}%"></i></span></div>`).join("")}</div>
@@ -393,7 +406,7 @@ function renderTrain(box){
   }
   if(TQ.done){
     const n=TQ.qs.length;
-    box.innerHTML=`<div class="px-card" style="display:grid;gap:16px;text-align:center;justify-items:center"><p class="eyebrow">${TQ.L}</p><h3 style="font-family:var(--f-display);font-weight:400;font-size:1.8rem">${esc(t("train_done"))}</h3>
+    box.innerHTML=`<div class="px-card" style="display:grid;gap:16px;text-align:center;justify-items:center"><p class="eyebrow">${TQ.L}</p><h3 style="font-family:var(--f-display);font-weight:800;font-size:1.8rem">${esc(t("train_done"))}</h3>
       <div class="px-score">${TQ.score}/${n}</div><p class="hq">${TQ.score} ${esc(t("train_of"))} ${n} ${esc(t("train_correct"))} · ${esc(t("train_best"))}: ${P.trainBest[TQ.L]}/12</p>
       ${TQ.miss.length?`<div style="text-align:start;width:100%;max-width:640px"><h4 style="margin-bottom:8px">${esc(t("train_review"))}</h4><ul class="exs">${TQ.miss.map(m=>`<li><button class="say sm" data-say="${esc(m.say||"")}">${SPK}</button><div>${m.explain}</div></li>`).join("")}</ul></div>`:""}
       <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn primary" data-tq="start">${esc(t("train_again"))}</button><button class="btn" data-tq="home">${esc(t("train_title"))}</button></div></div>`;
@@ -460,7 +473,7 @@ function renderProgress(){
 function exportProgress(){
   const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith("wortweg:")&&!k.startsWith("wortweg:ai_key_"))data[k]=localStorage.getItem(k)}
   const blob=new Blob([JSON.stringify({app:"wortweg",v:1,date:new Date().toISOString(),data},null,1)],{type:"application/json"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`wortweg-progress-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`wortflug-progress-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
   const m=document.getElementById("px-prmsg");if(m)m.textContent=t("pr_saved");
 }
 function importProgress(file){
@@ -561,30 +574,44 @@ function charSVG(c){return `<svg viewBox="0 0 200 330" aria-hidden="true">${char
 /* ---------------- player engine (lessons + scenes) ---------------- */
 const PL={steps:[],i:0,run:0,paused:false,kind:"",ctx:null,timer:null};
 const VOICES={f:[{vn:"Kore",pitch:1.08},{vn:"Aoede",pitch:1.18}],m:[{vn:"Puck",male:true,pitch:.88},{vn:"Charon",male:true,pitch:.8}]};
+/* speak one line; resolves when it has finished (or false when there's no voice for that language) */
 function say(text,opt,run){
   return new Promise(res=>{
     const lang=(opt&&opt.lang)||"de";
-    if(lang!=="de"&&!TTS.natural&&!(TTS.engine()==="device"&&TTS.hasLang&&TTS.hasLang(lang))){res(false);return}
+    if(lang!=="de"&&!TTS.natural&&!(TTS.engine()==="device"&&TTS.hasLang(lang))){res(false);return}
     let done=false;const fin=()=>{if(done)return;done=true;clearTimeout(g);res(true)};
-    const g=setTimeout(fin,(TTS.natural?9000:3500)+String(text).length*95/Math.max(.5,state.rate));
+    const g=setTimeout(fin,(TTS.natural?9000:4000)+String(text).length*110/Math.max(.5,state.rate));
     PL.guard=g;
     try{TTS.speakLena(text,null,()=>{if(run===PL.run)fin()},opt||{})}catch(e){fin()}
   });
 }
 const wait=(ms,run)=>new Promise(res=>{PL.timer=setTimeout(()=>res(run===PL.run),ms)});
+/* karaoke: every word carries its character offset, so it lights up exactly when it is spoken */
+const normT=s=>String(s).replace(/\s+/g," ").trim();
+function kwHTML(s){let o=0;return normT(s).split(" ").map(w=>{const h=`<span class="kw" data-o="${o}">${ARTC(w)}</span>`;o+=w.length+1;return h}).join(" ")}
+function highlight(i){
+  document.querySelectorAll("#px-stage .kara").forEach(box=>{box.classList.add("live");let last=null;
+    box.querySelectorAll(".kw").forEach(k=>{const on=+k.dataset.o<=i;k.classList.toggle("on",on);k.classList.remove("now");if(on)last=k});if(last)last.classList.add("now")})}
 function setSub(de,trs){
-  const showTr=P.stTr&&trs;
-  document.getElementById("px-st-sub").innerHTML=de?`<span class="de" lang="de" dir="ltr">${ARTC(de)}</span>${showTr?`<span class="tr" dir="${state.lang==="ar"?"rtl":"ltr"}">${esc(trs)}</span>`:""}`:"";
+  const showTr=P.stTr&&trs;PL.subText=de?normT(de):"";
+  document.getElementById("px-st-sub").innerHTML=de?`<span class="de kara" lang="de" dir="ltr">${kwHTML(de)}</span>${showTr?`<span class="tr" dir="${state.lang==="ar"?"rtl":"ltr"}">${esc(trs)}</span>`:""}`:"";
 }
-function voiceLabel(){document.getElementById("px-st-voice").textContent="🔊 "+t(TTS.natural?"pl_nat":"pl_dev")}
+function voiceLabel(){const el=document.getElementById("px-st-voice");const basic=!TTS.natural&&TTS.engine()==="builtin";el.textContent="🔊 "+t(TTS.natural?"pl_nat":basic?"pl_basic":"pl_dev");el.classList.toggle("warn",basic);el.title=basic?t("pl_basic_tip"):""}
+function prefetchStep(s){if(!s||!s.speak)return;const it=s.speak[0];if(it)TTS.prefetch(it.text,it.opt)}
 async function playStep(i){
   const run=++PL.run;clearTimeout(PL.timer);TTS.stop();
   PL.i=Math.max(0,Math.min(i,PL.steps.length-1));const s=PL.steps[PL.i];
   document.getElementById("px-st-prog").style.width=Math.round(100*(PL.i+1)/PL.steps.length)+"%";
   s.show();voiceLabel();
   if(PL.paused){return}
-  for(const it of (s.speak||[])){if(run!==PL.run)return;if(it.before)it.before();if(it.sub!==undefined)setSub(it.sub,it.tr);
-    const spoke=await say(it.text,it.opt,run);if(run!==PL.run)return;
+  (s.speak||[]).forEach((it,k)=>{if(k>0)TTS.prefetch(it.text,it.opt)});prefetchStep(PL.steps[PL.i+1]);
+  for(const it of (s.speak||[])){if(run!==PL.run)return;if(it.sub!==undefined)setSub(it.sub,it.tr);
+    let started=false;const kara=normT(it.text)===PL.subText;
+    /* animations start when the sound starts, and words light up as they are spoken */
+    const o=Object.assign({},it.opt,{onstart:()=>{if(run!==PL.run||started)return;started=true;if(it.before)it.before()},onword:ci=>{if(run===PL.run&&kara)highlight(ci)}});
+    const spoke=await say(it.text,o,run);if(run!==PL.run)return;
+    if(!started&&it.before)it.before();
+    if(kara)highlight(1e9);
     if(!spoke&&it.read)await wait(it.read,run);if(it.after)it.after();if(it.gap)await wait(it.gap,run);if(run!==PL.run)return}
   if(s.hold&&!(await wait(s.hold,run)))return;
   if(run!==PL.run||s.end)return;
@@ -596,7 +623,7 @@ function openStage(kicker,name,steps,kind,ctx){
   try{const v=document.getElementById("vplayer");v&&v.pause()}catch(e){}
   PL.steps=steps;PL.kind=kind;PL.ctx=ctx;PL.paused=false;
   document.getElementById("px-st-k").textContent=kicker;document.getElementById("px-st-name").textContent=name;
-  document.getElementById("px-st-orig").hidden=kind!=="lesson";
+  document.getElementById("px-st-orig").hidden=true;   /* the old recorded videos use a robot voice: the animated lesson replaces them */
   document.getElementById("px-st-tr").setAttribute("aria-pressed",String(P.stTr));
   document.getElementById("px-stage").hidden=false;document.body.classList.add("sheet-open");
   document.getElementById("px-st-play").innerHTML=PAUSEI;
@@ -633,7 +660,7 @@ function openLesson(id){
       speak:[{text:e.de,opt:{vn:"Kore"},after:()=>{const tn=document.getElementById("px-turn");if(tn)tn.innerHTML=`<span class="turn">🗣 ${esc(t("pl_turn"))}</span>`},gap:2800}],hold:300});
   });
   const idx=G.filter(x=>x.level===g.level).indexOf(g);
-  steps.push({end:true,show:()=>{view().innerHTML=`<div class="ls"><div class="end"><div class="ic">🎉</div><h2>${esc(t("pl_end"))}</h2><p class="sub">${esc(t("pl_end_sub"))}</p><div class="btns"><button class="btn primary" data-pl="practice" data-tlevel="${g.level}" data-topic-i="${idx}">${esc(t("pl_practice"))}</button><button class="btn" data-pl="replay">↺ ${esc(t("pl_replay"))}</button><button class="btn" data-pl="orig">▶ ${esc(t("pl_orig"))}</button></div></div></div>`;setSub("","")}});
+  steps.push({end:true,show:()=>{view().innerHTML=`<div class="ls"><div class="end"><div class="ic">🎉</div><h2>${esc(t("pl_end"))}</h2><p class="sub">${esc(t("pl_end_sub"))}</p><div class="btns"><button class="btn primary" data-pl="practice" data-tlevel="${g.level}" data-topic-i="${idx}">${esc(t("pl_practice"))}</button><button class="btn" data-pl="replay">↺ ${esc(t("pl_replay"))}</button></div></div></div>`;setSub("","")}});
   PL.lessonId=id;
   openStage(`${t("pl_lesson")} · ${g.level}`,g.de,steps,"lesson",g);
 }
@@ -648,12 +675,76 @@ function openScene(id){
   const steps=[{show:()=>{build();view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div><div class="k">${t("pl_scene")} · ${s.lv}</div><h2 lang="de">${esc(s.t.de)}</h2><p>${esc(tr(s.t))}</p></div></div>`);setSub("","")},hold:2200}];
   s.lines.forEach((ln,i)=>{const [who,de,en,fr,ar]=ln;const trs={en,fr,ar}[state.lang]||en;
     steps.push({show:()=>{if(!document.getElementById("px-ca"))build();const tt=view().querySelector(".sc-title");if(tt)tt.remove();
-      document.getElementById("px-bub").innerHTML=`<div class="sc-bub ${who}"><small>${esc(s.cast[who].name)}</small><span lang="de" dir="ltr">${ARTC(de)}</span></div>`;talk(null);setSub(de,trs)},
+      document.getElementById("px-bub").innerHTML=`<div class="sc-bub ${who}"><small>${esc(s.cast[who].name)}</small><span class="kara" lang="de" dir="ltr">${kwHTML(de)}</span></div>`;talk(null);setSub(de,trs)},
       speak:[{text:de,opt:vo[who],before:()=>talk(who),after:()=>talk(null)}],hold:450});
   });
   steps.push({end:true,show:()=>{talk(null);view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div class="end" style="display:grid;gap:12px;justify-items:center"><div style="font-size:2.4rem">🎉</div><h2>${esc(t("pl_end"))}</h2><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn primary" data-pl="chat">${esc(t("pl_chat"))}</button><button class="btn" data-pl="replay" style="color:#fff;border-color:rgba(255,255,255,.4)">↺ ${esc(t("pl_replay"))}</button></div></div></div>`);setSub("","")}});
   openStage(`${t("pl_scene")} · ${s.lv}`,s.t.de,steps,"scene",s);
 }
+
+/* ---------------- Free talk with Lena: any topic, spontaneous ---------------- */
+SC.unshift({id:"frei",de:"Freies Gespräch ✨",t:{en:"Free talk: any topic",fr:"Discussion libre : tous sujets",ar:"حديث حر: أي موضوع"},desc:"a spontaneous, free conversation between friends about any topic the learner brings up",
+  o:{de:"Hallo, schön dich zu sehen! Ich habe heute etwas Lustiges erlebt. Aber erzähl du zuerst: Worüber möchtest du sprechen?",en:"Hi, nice to see you! Something funny happened to me today. But you first: what would you like to talk about?",fr:"Salut, contente de te voir ! Il m'est arrivé un truc drôle aujourd'hui. Mais toi d'abord : de quoi veux-tu parler ?",ar:"مرحباً، سعيدة برؤيتك! حدث لي اليوم شيء مضحك. لكن أخبرني أنت أولاً: عن ماذا تريد أن نتحدث؟"}});
+OPEN.frei={A1:ex("Hallo! Ich bin Lena. Worüber möchtest du sprechen?","Hi! I'm Lena. What would you like to talk about?","Salut ! Je suis Lena. De quoi veux-tu parler ?","مرحباً! أنا لينا. عن ماذا تريد أن نتحدث؟"),
+ B1:ex("Hey, schön, dass du da bist! Ich habe gerade über eine verrückte Idee nachgedacht. Aber zuerst: Worüber möchtest du heute reden?","Hey, nice that you're here! I was just thinking about a crazy idea. But first: what would you like to talk about today?","Hé, content que tu sois là ! Je pensais justement à une idée folle. Mais d'abord : de quoi veux-tu parler aujourd'hui ?","أهلاً، جميل أنك هنا! كنت أفكر للتو في فكرة مجنونة. لكن أولاً: عن ماذا تريد أن نتحدث اليوم؟"),
+ B2:ex("Schön, dich zu sehen! Mir geht seit heute Morgen eine Frage nicht aus dem Kopf, aber vielleicht hast du ja ein spannenderes Thema. Worüber würdest du gern sprechen?","Nice to see you! A question has been on my mind since this morning, but maybe you have a more exciting topic. What would you like to talk about?","Contente de te voir ! Une question me trotte dans la tête depuis ce matin, mais tu as peut-être un sujet plus passionnant. De quoi aimerais-tu parler ?","سعيدة برؤيتك! هناك سؤال لا يفارق ذهني منذ الصباح، لكن ربما لديك موضوع أكثر إثارة. عن ماذا تودّ أن نتحدث؟")};
+START.frei={A:[ex("Ich möchte über Musik sprechen.","I'd like to talk about music.","Je voudrais parler de musique.","أريد أن أتحدث عن الموسيقى."),ex("Was ist passiert? Erzähl!","What happened? Tell me!","Qu'est-ce qui s'est passé ? Raconte !","ماذا حدث؟ احكي لي!"),ex("Lass uns über Essen sprechen.","Let's talk about food.","Parlons de cuisine.","لنتحدث عن الطعام.")],
+ B:[ex("Erzähl mir zuerst von deiner verrückten Idee!","Tell me about your crazy idea first!","Raconte-moi d'abord ton idée folle !","أخبريني أولاً عن فكرتك المجنونة!"),ex("Ich würde gern über Reisen sprechen. Wo warst du zuletzt?","I'd like to talk about travel. Where did you go last?","J'aimerais parler de voyages. Où es-tu allée la dernière fois ?","أودّ أن أتحدث عن السفر. أين كنتِ آخر مرة؟"),ex("Was ist dein größter Traum?","What is your biggest dream?","Quel est ton plus grand rêve ?","ما هو أكبر حلم لديك؟")]};
+const FT_TOPICS=[["Reisen","Travel","Voyages","السفر"],["Essen & Kochen","Food & cooking","Cuisine","الطعام والطبخ"],["Musik","Music","Musique","الموسيقى"],["Filme & Serien","Films & series","Films et séries","الأفلام والمسلسلات"],["Sport","Sport","Sport","الرياضة"],["Arbeit & Träume","Work & dreams","Travail et rêves","العمل والأحلام"],["Familie & Freunde","Family & friends","Famille et amis","العائلة والأصدقاء"],["Technik & KI","Tech & AI","Technologie et IA","التقنية والذكاء الاصطناعي"],["Natur & Umwelt","Nature","Nature","الطبيعة والبيئة"],["Feste & Kultur","Festivals & culture","Fêtes et culture","الأعياد والثقافة"],["Die Zukunft","The future","L'avenir","المستقبل"]];
+Object.assign(L.en,{ft_btn:"Free talk",ft_q:"What would you like to talk about?",ft_ph:"Any topic… or leave empty for a surprise",ft_start:"Start talking",ft_change:"Change topic",ft_topic:"Topic",ft_surprise:"Surprise me ✨"});
+Object.assign(L.fr,{ft_btn:"Discussion libre",ft_q:"De quoi aimeriez-vous parler ?",ft_ph:"N'importe quel sujet… ou laissez vide pour une surprise",ft_start:"Commencer",ft_change:"Changer de sujet",ft_topic:"Sujet",ft_surprise:"Surprends-moi ✨"});
+Object.assign(L.ar,{ft_btn:"حديث حر",ft_q:"عن ماذا تريد أن تتحدث؟",ft_ph:"أي موضوع… أو اتركه فارغاً لمفاجأة",ft_start:"ابدأ الحديث",ft_change:"غيّر الموضوع",ft_topic:"الموضوع",ft_surprise:"فاجئيني ✨"});
+const chatTop=document.querySelector(".chat-top");
+document.getElementById("hf").insertAdjacentHTML("beforebegin",`<button class="tiny ftbtn" id="px-ftbtn"><span aria-hidden="true">✨</span> <span data-i18n="ft_btn"></span></button>`);
+chatTop.insertAdjacentHTML("afterend",`<div class="ftpanel" id="px-free"></div>`);
+const FT={open:true};
+function renderFree(){
+  const chat=document.querySelector(".chat");const on=state.scen==="frei";chat.classList.toggle("free",on);
+  document.getElementById("px-ftbtn").setAttribute("aria-pressed",String(on));
+  const box=document.getElementById("px-free");if(!on){box.innerHTML="";return}
+  if(!FT.open&&state.topic_free!==undefined){box.innerHTML=`<div class="ft-mini"><span>✨ ${esc(t("ft_topic"))}: <b lang="de">${esc(state.topic_free||"Überraschung")}</b></span><button class="linkbtn" data-ft="edit">${esc(t("ft_change"))}</button></div>`;return}
+  box.innerHTML=`<div class="ft-box"><b class="ft-q">${esc(t("ft_q"))}</b>
+    <form class="ft-form" id="px-ftform"><input id="px-ftin" lang="de" dir="ltr" autocomplete="off" placeholder="${esc(t("ft_ph"))}" value="${esc(state.topic_free||"")}"><button class="sendbtn">${esc(t("ft_start"))}</button></form>
+    <div class="ft-chips">${FT_TOPICS.map(([de,en,fr,ar])=>`<button type="button" class="chip" data-fttopic="${esc(de)}" title="${esc({en,fr,ar}[state.lang]||en)}" lang="de">${esc(de)}</button>`).join("")}<button type="button" class="chip" data-fttopic="">${esc(t("ft_surprise"))}</button></div></div>`;
+}
+async function startFree(topic){
+  state.scen="frei";state.topic_free=topic||"";FT.open=false;TTS.stop();try{stopMic()}catch(e){}
+  renderChatSide();
+  if(!AI.key()){resetChat();renderFree();note("no_key");openKey(true);return}
+  state.shown=0;state.msgs=[{role:"typing"}];state.ideasBusy=true;renderLog();renderIdeas();renderFree();
+  try{
+    const r=await aiJSON(buildPrompt("open",topic||""),()=>note("ai_wait"),{max:900,temp:1});
+    if(!r||typeof r.reply!=="string")throw {code:"invalid_json"};
+    const trs={};["en","ar","fr"].forEach(k=>{const v=r["reply_"+k];if(typeof v==="string"&&v.trim())trs[k]=v.trim()});
+    state.msgs=[{role:"bot",de:r.reply,trs,open:false}];
+    const ideas=(Array.isArray(r.ideas)?r.ideas:[]).filter(x=>x&&x.de).slice(0,4).map(x=>({de:String(x.de),tr:String(x.tr||"")}));
+    state.ideas=ideas.length?ideas:startIdeas(scen());
+    state.words=(Array.isArray(r.words)?r.words:[]).filter(x=>x&&x.de).slice(0,6).map(x=>({de:String(x.de),tr:String(x.tr||"")}));
+    state.ideasBusy=false;note(null);renderLog();renderIdeas();
+    if(state.autoread||state.hf)speakThenListen(r.reply);
+  }catch(e){state.ideasBusy=false;resetChat();renderFree();note(e&&e.code==="bad_key"?"bad_key":e&&e.code==="rate_limited"?"chat_limit":"chat_err")}
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("#px-ftbtn")){if(state.scen!=="frei"){state.scen="frei";FT.open=true;state.topic_free=undefined;TTS.stop();renderChatSide();resetChat()}else{FT.open=true;renderFree()}return}
+  if(e.target.closest('[data-scen="frei"]')){FT.open=true;state.topic_free=undefined;renderFree();return}
+  const tp=e.target.closest("[data-fttopic]");if(tp){startFree(tp.dataset.fttopic);return}
+  if(e.target.closest('[data-ft="edit"]')){FT.open=true;renderFree();const i=document.getElementById("px-ftin");if(i)i.focus()}
+});
+document.addEventListener("submit",e=>{if(e.target.id==="px-ftform"){e.preventDefault();startFree(document.getElementById("px-ftin").value.trim())}});
+const _renderChatSide=renderChatSide;renderChatSide=function(){_renderChatSide();try{renderFree()}catch(e){}};
+document.head.insertAdjacentHTML("beforeend",`<style>
+.chat.free .chat-main{grid-template-rows:auto auto minmax(0,1fr) auto}
+.ftpanel:empty{display:none}
+.ft-box{display:grid;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.ft-q{font-family:var(--f-display);font-size:1.2rem;font-weight:600}
+.ft-form{display:flex;gap:8px}.ft-form input{flex:1;min-width:0;font:inherit;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;background:var(--surface);color:var(--ink)}
+.ft-form input:focus{outline:none;border-color:var(--brand)}
+.ft-form .sendbtn{height:auto;padding:10px 18px}
+.ft-chips{display:flex;gap:6px;flex-wrap:wrap}.ft-chips .chip{padding:6px 12px;font-size:.85rem}
+.ft-mini{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 18px;border-bottom:1px solid var(--line);font-size:.9rem;background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.ftbtn[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent}
+@media (max-width:640px){.ft-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.ft-chips .chip{flex:none}.ft-box{padding:12px}}
+</style>`);
 
 /* ---------------- render hooks ---------------- */
 function plusRender(){renderWords();renderGX();renderProgress();renderScenes()}

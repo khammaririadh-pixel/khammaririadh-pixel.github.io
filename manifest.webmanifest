@@ -1,14 +1,14 @@
 {
-  "name": "Wortweg Deutsch",
-  "short_name": "Wortweg",
+  "name": "Wortflug · Deutsch lernen",
+  "short_name": "Wortflug",
   "description": "German from A1 to B2: grammar, exercises, reading and a speaking partner you talk to with your voice.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F7EFE3",
-  "theme_color": "#F7EFE3",
+  "background_color": "#FFF6F1",
+  "theme_color": "#FFF6F1",
   "lang": "de",
   "categories": ["education"],
   "icons": [

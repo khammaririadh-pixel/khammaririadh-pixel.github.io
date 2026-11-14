@@ -764,7 +764,203 @@ die|Voraussetzung|Voraussetzungen|prerequisite|الشرط المسبق|B2
 |zustimmen||to agree|يوافق|B1
 |widersprechen||to contradict|يعارض|B2
 |überzeugen||to convince|يقنع|B2
-|diskutieren||to discuss|يناقش|B1`}
+|diskutieren||to discuss|يناقش|B1`},
+{id:"haushalt",icon:"🧹",de:"Haushalt & Küche",en:"Household & kitchen",fr:"Ménage et cuisine",ar:"المنزل والمطبخ",w:`
+der|Haushalt|Haushalte|household|شؤون المنزل|A2
+der|Topf|Töpfe|pot|القدر|A2
+die|Pfanne|Pfannen|pan|المقلاة|A2
+der|Backofen|Backöfen|oven|الفرن|A2
+die|Mikrowelle|Mikrowellen|microwave|الميكروويف|A2
+die|Spülmaschine|Spülmaschinen|dishwasher|غسالة الصحون|A2
+das|Spülbecken|Spülbecken|sink|المغسلة|B1
+der|Wasserkocher|Wasserkocher|kettle|الغلاية|A2
+die|Kaffeemaschine|Kaffeemaschinen|coffee machine|آلة القهوة|A2
+die|Schüssel|Schüsseln|bowl|الوعاء|A2
+das|Schneidebrett|Schneidebretter|chopping board|لوح التقطيع|B1
+der|Staubsauger|Staubsauger|vacuum cleaner|المكنسة الكهربائية|A2
+der|Besen|Besen|broom|المكنسة|A2
+der|Eimer|Eimer|bucket|الدلو|A2
+der|Mülleimer|Mülleimer|bin|سلة المهملات|A2
+das|Handtuch|Handtücher|towel|المنشفة|A2
+die|Seife|Seifen|soap|الصابون|A1
+das|Waschmittel|Waschmittel|detergent|مسحوق الغسيل|B1
+die|Wäsche|-|laundry|الغسيل|A2
+das|Bügeleisen|Bügeleisen|iron|المكواة|B1
+das|Kissen|Kissen|pillow, cushion|الوسادة|A2
+die|Decke|Decken|blanket / ceiling|البطانية / السقف|A2
+der|Teppich|Teppiche|carpet|السجادة|A2
+der|Spiegel|Spiegel|mirror|المرآة|A2
+der|Vorhang|Vorhänge|curtain|الستارة|B1
+die|Steckdose|Steckdosen|socket|المقبس الكهربائي|B1
+aufräumen||-|to tidy up|يرتّب|A2
+spülen||-|to wash the dishes|يغسل الصحون|A2
+staubsaugen||-|to vacuum|ينظف بالمكنسة الكهربائية|A2
+waschen||-|to wash|يغسل|A2
+bügeln||-|to iron|يكوي|B1
+backen||-|to bake|يخبز|A2
+braten||-|to fry|يقلي|B1
+schälen||-|to peel|يقشّر|B1`},
+{id:"aemter",icon:"🏦",de:"Bank, Post & Ämter",en:"Bank, post & offices",fr:"Banque, poste et administrations",ar:"البنك والبريد والدوائر الرسمية",w:`
+das|Amt|Ämter|office (authority)|الدائرة الرسمية|B1
+die|Behörde|Behörden|authority|السلطة / الهيئة|B1
+das|Formular|Formulare|form|الاستمارة|A2
+der|Antrag|Anträge|application|الطلب الرسمي|B1
+die|Unterschrift|Unterschriften|signature|التوقيع|A2
+der|Ausweis|Ausweise|ID card|بطاقة الهوية|A2
+die|Aufenthaltserlaubnis|Aufenthaltserlaubnisse|residence permit|تصريح الإقامة|B1
+das|Visum|Visa|visa|التأشيرة|B1
+die|Anmeldung|Anmeldungen|registration|التسجيل|B1
+die|Adresse|Adressen|address|العنوان|A1
+die|Postleitzahl|Postleitzahlen|postcode|الرمز البريدي|A2
+der|Brief|Briefe|letter|الرسالة|A1
+das|Paket|Pakete|parcel|الطرد|A2
+die|Briefmarke|Briefmarken|stamp|الطابع البريدي|A2
+der|Briefkasten|Briefkästen|letterbox|صندوق البريد|A2
+die|Überweisung|Überweisungen|bank transfer|التحويل البنكي|B1
+die|Gebühr|Gebühren|fee|الرسوم|B1
+der|Geldautomat|Geldautomaten|cash machine|الصراف الآلي|A2
+die|Steuer|Steuern|tax|الضريبة|B1
+der|Termin|Termine|appointment|الموعد|A2
+die|Wartenummer|Wartenummern|queue number|رقم الانتظار|B1
+der|Schalter|Schalter|counter|الشبّاك|B1
+die|Bescheinigung|Bescheinigungen|certificate|الشهادة / الإفادة|B2
+die|Frist|Fristen|deadline|المهلة|B2
+die|Unterlagen|-|documents|الوثائق|B1
+unterschreiben||-|to sign|يوقّع|A2
+ausfüllen||-|to fill in|يملأ|A2
+abholen||-|to collect|يستلم|A2
+überweisen||-|to transfer (money)|يحوّل (مالاً)|B1
+beantragen||-|to apply for|يقدّم طلباً|B1
+verlängern||-|to extend|يمدّد|B1`},
+{id:"sport",icon:"🏋️",de:"Sport & Fitness",en:"Sport & fitness",fr:"Sport et forme",ar:"الرياضة واللياقة",w:`
+die|Mannschaft|Mannschaften|team|الفريق|A2
+der|Spieler|Spieler|player|اللاعب|A2
+das|Tor|Tore|goal / gate|الهدف / البوابة|A2
+der|Ball|Bälle|ball|الكرة|A1
+das|Training|Trainings|training|التدريب|A2
+der|Trainer|Trainer|coach|المدرب|A2
+der|Wettkampf|Wettkämpfe|competition|المسابقة|B1
+der|Sieg|Siege|victory|الفوز|B1
+die|Niederlage|Niederlagen|defeat|الهزيمة|B1
+das|Stadion|Stadien|stadium|الملعب|A2
+der|Tennis|-|tennis|التنس|A1
+der|Basketball|-|basketball|كرة السلة|A1
+das|Joggen|-|jogging|الركض|A2
+das|Yoga|-|yoga|اليوغا|A2
+das|Radfahren|-|cycling|ركوب الدراجة|A2
+der|Muskel|Muskeln|muscle|العضلة|B1
+die|Kondition|-|stamina|اللياقة البدنية|B1
+die|Ernährung|-|nutrition|التغذية|B1
+gewinnen||-|to win|يفوز|A2
+verlieren||-|to lose|يخسر|A2
+trainieren||-|to train|يتدرّب|A2
+joggen||-|to jog|يركض|A2
+sich bewegen||-|to move, to exercise|يتحرك / يمارس الرياضة|B1
+fit||-|fit|لائق بدنياً|A2
+sportlich||-|sporty|رياضي|A2
+anstrengend||-|tiring|مرهق|B1`},
+{id:"kultur",icon:"🎭",de:"Musik, Kunst & Kultur",en:"Music, art & culture",fr:"Musique, art et culture",ar:"الموسيقى والفن والثقافة",w:`
+die|Kunst|Künste|art|الفن|A2
+das|Bild|Bilder|picture|الصورة / اللوحة|A1
+das|Gemälde|Gemälde|painting|اللوحة الزيتية|B1
+der|Künstler|Künstler|artist|الفنان|A2
+die|Ausstellung|Ausstellungen|exhibition|المعرض|B1
+das|Instrument|Instrumente|instrument|الآلة الموسيقية|A2
+die|Gitarre|Gitarren|guitar|الغيتار|A1
+das|Klavier|Klaviere|piano|البيانو|A2
+die|Geige|Geigen|violin|الكمان|A2
+die|Trommel|Trommeln|drum|الطبل|A2
+die|Band|Bands|band|الفرقة الموسيقية|A2
+der|Sänger|Sänger|singer|المغني|A2
+die|Sängerin|Sängerinnen|singer (f)|المغنية|A2
+das|Gedicht|Gedichte|poem|القصيدة|B1
+der|Roman|Romane|novel|الرواية|B1
+der|Schriftsteller|Schriftsteller|writer|الكاتب|B1
+die|Bühne|Bühnen|stage|المسرح (الخشبة)|B1
+die|Eintrittskarte|Eintrittskarten|admission ticket|تذكرة الدخول|A2
+das|Festival|Festivals|festival|المهرجان|A2
+die|Tradition|Traditionen|tradition|التقليد|B1
+das|Fest|Feste|celebration, festival|العيد / الاحتفال|A2
+der|Feiertag|Feiertage|public holiday|يوم العطلة الرسمية|A2
+Weihnachten||-|Christmas|عيد الميلاد|A2
+Ostern||-|Easter|عيد الفصح|A2
+der|Ramadan|-|Ramadan|رمضان|A2
+das|Zuckerfest|-|Eid al-Fitr|عيد الفطر|B1
+das|Opferfest|-|Eid al-Adha|عيد الأضحى|B1
+das|Silvester|-|New Year's Eve|ليلة رأس السنة|A2`},
+{id:"beziehungen",icon:"💬",de:"Beziehungen & Kommunikation",en:"Relationships & communication",fr:"Relations et communication",ar:"العلاقات والتواصل",w:`
+die|Beziehung|Beziehungen|relationship|العلاقة|B1
+die|Freundschaft|Freundschaften|friendship|الصداقة|B1
+der|Partner|Partner|partner|الشريك|B1
+die|Partnerin|Partnerinnen|partner (f)|الشريكة|B1
+das|Vertrauen|-|trust|الثقة|B1
+der|Streit|Streite|argument, quarrel|الخلاف|B1
+das|Missverständnis|Missverständnisse|misunderstanding|سوء الفهم|B2
+das|Gespräch|Gespräche|conversation|المحادثة|A2
+die|Einladung|Einladungen|invitation|الدعوة|A2
+die|Entschuldigung|Entschuldigungen|apology|الاعتذار|A2
+das|Kompliment|Komplimente|compliment|المجاملة|B1
+der|Rat|Ratschläge|advice|النصيحة|B1
+die|Hilfe|-|help|المساعدة|A1
+sich kennenlernen||-|to get to know each other|يتعارف|A2
+sich verlieben||-|to fall in love|يقع في الحب|B1
+sich streiten||-|to argue|يتشاجر|B1
+sich versöhnen||-|to make up|يتصالح|B2
+vermissen||-|to miss (someone)|يشتاق إلى|B1
+vertrauen||-|to trust|يثق|B1
+zuhören||-|to listen|يصغي|A2
+überraschen||-|to surprise|يفاجئ|B1
+loben||-|to praise|يمدح|B1
+beraten||-|to advise|ينصح|B2
+einverstanden||-|in agreement|موافق|B1
+eifersüchtig||-|jealous|غيور|B1
+verliebt||-|in love|عاشق|B1
+treu||-|loyal|وفيّ|B1`},
+{id:"natur2",icon:"🌍",de:"Länder & Sprachen",en:"Countries & languages",fr:"Pays et langues",ar:"البلدان واللغات",w:`
+das|Land|Länder|country|البلد|A1
+die|Welt|-|world|العالم|A1
+die|Hauptstadt|Hauptstädte|capital|العاصمة|A2
+Deutschland||-|Germany|ألمانيا|A1
+Österreich||-|Austria|النمسا|A1
+die|Schweiz|-|Switzerland|سويسرا|A1
+Tunesien||-|Tunisia|تونس|A1
+Marokko||-|Morocco|المغرب|A1
+Algerien||-|Algeria|الجزائر|A1
+Ägypten||-|Egypt|مصر|A1
+Frankreich||-|France|فرنسا|A1
+Spanien||-|Spain|إسبانيا|A1
+Italien||-|Italy|إيطاليا|A1
+die|Türkei|-|Turkey|تركيا|A1
+Deutsch||-|German (language)|الألمانية|A1
+Englisch||-|English|الإنجليزية|A1
+Französisch||-|French|الفرنسية|A1
+Arabisch||-|Arabic|العربية|A1
+die|Muttersprache|Muttersprachen|mother tongue|اللغة الأم|A2
+die|Fremdsprache|Fremdsprachen|foreign language|اللغة الأجنبية|A2
+der|Ausländer|Ausländer|foreigner|الأجنبي|B1
+die|Heimat|-|homeland|الوطن|B1
+die|Staatsangehörigkeit|Staatsangehörigkeiten|nationality|الجنسية|B1
+international||-|international|دولي|B1`},
+{id:"gefahr",icon:"🚨",de:"Notfall & Sicherheit",en:"Emergency & safety",fr:"Urgence et sécurité",ar:"الطوارئ والأمان",w:`
+der|Unfall|Unfälle|accident|الحادث|A2
+der|Krankenwagen|Krankenwagen|ambulance|سيارة الإسعاف|A2
+die|Feuerwehr|Feuerwehren|fire brigade|الإطفاء|A2
+das|Feuer|Feuer|fire|النار|A2
+der|Dieb|Diebe|thief|اللص|B1
+die|Gefahr|Gefahren|danger|الخطر|B1
+der|Verletzte|Verletzten|injured person|المصاب|B1
+die|Notaufnahme|Notaufnahmen|emergency room|قسم الطوارئ|B1
+die|Notrufnummer|Notrufnummern|emergency number|رقم الطوارئ|A2
+der|Ausgang|Ausgänge|exit|المخرج|A2
+der|Notausgang|Notausgänge|emergency exit|مخرج الطوارئ|B1
+|Hilfe!||help!|النجدة!|A1
+|Vorsicht!||careful!|انتبه!|A2
+|Rufen Sie bitte einen Krankenwagen!||please call an ambulance!|اتصل بالإسعاف من فضلك!|A2
+|Ich habe mich verletzt.||I've hurt myself.|لقد أصبت نفسي.|B1
+|Man hat mir die Tasche gestohlen.||my bag has been stolen.|سُرقت حقيبتي.|B1
+stehlen||-|to steal|يسرق|B1
+retten||-|to rescue|ينقذ|B1
+melden||-|to report|يبلّغ|B1`}
 ];
 /* parse the compact lines into word objects */
 VOCAB.forEach(th=>{th.items=th.w.trim().split("\n").map(l=>{let [a,w,pl,en,ar,lv]=l.split("|");
