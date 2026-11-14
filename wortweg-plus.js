@@ -746,8 +746,83 @@ document.head.insertAdjacentHTML("beforeend",`<style>
 @media (max-width:640px){.ft-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.ft-chips .chip{flex:none}.ft-box{padding:12px}}
 </style>`);
 
+/* ---------------- Lena: hands-free by default, close & restart, big view ---------------- */
+Object.assign(L.en,{lena_close:"Close and start a new conversation",lena_big:"Big view",lena_auto:"Listen automatically: no need to press the microphone",lena_paused:"Listening is paused. Tap the microphone to talk again."});
+Object.assign(L.fr,{lena_close:"Fermer et commencer une nouvelle conversation",lena_big:"Grand écran",lena_auto:"Écoute automatique : pas besoin d'appuyer sur le micro",lena_paused:"L'écoute est en pause. Touchez le micro pour reparler."});
+Object.assign(L.ar,{lena_close:"أغلق وابدأ محادثة جديدة",lena_big:"عرض كبير",lena_auto:"استماع تلقائي: لا حاجة للضغط على الميكروفون",lena_paused:"الاستماع متوقف مؤقتاً. المس الميكروفون للتحدث مجدداً."});
+state.autolisten=store.get("autolisten",true);
+const EXPAND='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+const SHRINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
+chatTop.insertAdjacentHTML("beforeend",`<button class="tiny iconic" id="px-big" aria-pressed="false">${EXPAND}</button><button class="tiny iconic closebtn" id="px-close">✕</button>`);
+document.querySelector(".chat-side").insertAdjacentHTML("beforeend",`<label class="vcheck"><input type="checkbox" id="px-autolisten"><span data-i18n="lena_auto"></span></label>`);
+document.getElementById("composer").insertAdjacentHTML("beforebegin",`<div class="ideas-strip" id="px-strip"></div>`);
+function lenaLabels(){const c=document.getElementById("px-close"),b=document.getElementById("px-big");c.title=c.ariaLabel=t("lena_close");b.title=b.ariaLabel=t("lena_big");document.getElementById("px-autolisten").checked=!!state.autolisten}
+function autoStart(){
+  if(!state.autolisten||state.hf||state.busy||!SR||!AI.key())return;
+  setTimeout(()=>{if(state.screen==="chat"&&!state.hf&&!state.busy&&!document.hidden)try{startHF()}catch(e){}},350);
+}
+function setBig(on){document.body.classList.toggle("chat-full",on);const b=document.getElementById("px-big");b.setAttribute("aria-pressed",String(on));b.innerHTML=on?SHRINK:EXPAND;const lg=document.getElementById("log");setTimeout(()=>{lg.scrollTop=lg.scrollHeight},60)}
+function closeConversation(){
+  if(state.hf)endHF(null);TTS.stop();try{stopMic()}catch(e){}
+  document.getElementById("msg").value="";state.speech=null;note(null);
+  if(state.scen==="frei"){FT.open=true;state.topic_free=undefined}
+  resetChat();renderChatSide();
+  if(state.autolisten)autoStart();
+}
+/* small swipeable strip of reply ideas above the text box (phones) */
+function renderStrip(){
+  const s=document.getElementById("px-strip");if(!s)return;
+  if(state.ideasBusy){s.innerHTML=`<span class="strip-wait"><span class="typing"><i></i><i></i><i></i></span></span>`;return}
+  s.innerHTML=(state.ideas||[]).slice(0,4).map((x,i)=>`<button type="button" class="strip-idea" data-idea-strip="${i}" lang="de" dir="ltr">💡 ${esc(x.de)}</button>`).join("");
+}
+const _renderIdeas=renderIdeas;renderIdeas=function(){_renderIdeas();try{renderStrip()}catch(e){}};
+const _go=go;go=function(s,fromHash){const prev=state.screen;_go(s,fromHash);
+  if(state.screen==="chat"&&prev!=="chat")autoStart();
+  if(state.screen!=="chat"){if(state.hf)endHF(null);setBig(false)}};
+document.getElementById("px-close").addEventListener("click",closeConversation);
+document.getElementById("px-big").addEventListener("click",()=>setBig(!document.body.classList.contains("chat-full")));
+document.getElementById("px-autolisten").addEventListener("change",e=>{state.autolisten=e.target.checked;store.set("autolisten",state.autolisten);if(state.autolisten)autoStart();else if(state.hf)endHF("lena_paused")});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-idea-strip]");if(b){useIdea(+b.dataset.ideaStrip);if(state.hf){/* speak it yourself: the mic is still listening */}}});
+/* after the key is saved, start listening right away */
+document.getElementById("keyform").addEventListener("submit",()=>setTimeout(autoStart,300));
+document.head.insertAdjacentHTML("beforeend",`<style>
+.chat-top .iconic{width:36px;height:34px;padding:0;display:inline-grid;place-items:center}
+.chat-top .iconic svg{width:17px;height:17px}
+.chat-top .closebtn{font-size:1rem;font-weight:800}
+.chat-top .closebtn:hover{background:var(--bad);border-color:var(--bad);color:#fff}
+.chat .autosend{display:none}
+.ideas-strip{display:none;gap:6px;overflow-x:auto;padding:8px 12px 0;scrollbar-width:none}
+.ideas-strip::-webkit-scrollbar{display:none}
+.strip-idea{flex:none;max-width:78vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid var(--line);background:var(--solid,var(--surface));border-radius:999px;padding:7px 12px;font-weight:700;font-size:.85rem;color:var(--ink)}
+.strip-idea:hover{border-color:var(--brand)}
+.strip-wait{padding:4px 8px}
+@media (max-width:999px){
+  .ideas-strip{display:flex}
+  .ideabtn{display:none!important}
+  .chat.ideas-open .ideas{display:none!important}
+  .chat-top{flex-wrap:nowrap!important;gap:6px!important;padding:8px 10px!important}
+  .chat-top .who b{font-size:1rem}.chat-top .who span{font-size:.75rem}
+  .chat-top .avatar{width:34px;height:34px;font-size:1rem}
+  .chat-top .hfbtn{flex:none!important;width:36px;height:34px;padding:0!important;justify-content:center}
+  .chat-top .hfbtn span,#restart,#px-ftbtn [data-i18n]{display:none}
+  .chat-top #px-ftbtn{padding:0 10px}
+  body[data-screen="chat"] #chat{padding-block:6px 4px!important}
+  body[data-screen="chat"] .appbar-in{height:52px}
+  .bubble{font-size:1.08rem}
+}
+body.chat-full .appbar,body.chat-full .tabbar{display:none!important}
+body.chat-full{padding:0!important}
+body.chat-full #chat{padding:0!important}
+body.chat-full #chat .wrap{max-width:none;padding:0}
+body.chat-full .chat{border-radius:0!important;border:0}
+body.chat-full .chat-main{height:calc(100dvh - var(--sat) - var(--sab))!important}
+body.chat-full .bubble{font-size:1.15rem}
+</style>`);
+
 /* ---------------- render hooks ---------------- */
-function plusRender(){renderWords();renderGX();renderProgress();renderScenes()}
+function plusRender(){renderWords();renderGX();renderProgress();renderScenes();try{lenaLabels();renderStrip()}catch(e){}}
+/* the app opened directly on Lena's screen: start listening at the first touch (browsers need a tap first) */
+document.addEventListener("pointerdown",()=>{if(state.screen==="chat")autoStart()},{once:true,capture:true});
 const _renderAll=renderAll;renderAll=function(){_renderAll();try{plusRender()}catch(e){console.error(e)}};
 const _setLevel=setLevel;setLevel=function(lv){_setLevel(lv);if(TQ&&!TQ.done&&TQ.L!==lv)TQ=null;try{renderGX();renderProgress()}catch(e){}};
 const _openVideo=openVideo;openVideo=function(id){openLesson(id)};
