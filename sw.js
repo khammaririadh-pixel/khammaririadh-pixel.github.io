@@ -1,7 +1,7 @@
 /* Wortweg service worker: keeps the app working offline. AI and speech calls always go to the network. */
-const CACHE="wortweg-v8";
+const CACHE="wortweg-v9";
 const SHELL=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./icon-maskable-512.png","./apple-touch-icon.png","./favicon.png",
-  "./wortweg-vocab.js?v=3","./wortweg-grammar.js?v=3","./wortweg-scenes.js?v=3","./wortweg-plus.js?v=3"];
+  "./wortweg-audio.js?v=4","./wortweg-vocab.js?v=4","./wortweg-grammar.js?v=4","./wortweg-scenes.js?v=4","./wortweg-plus.js?v=4"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{
