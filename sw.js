@@ -1,7 +1,7 @@
-/* Wortweg service worker: keeps the app working offline. AI and speech calls always go to the network. */
-const CACHE="wortweg-v13";
+/* Lernivo service worker: keeps the app working offline. AI and speech calls always go to the network. */
+const CACHE="wortweg-v15";
 const SHELL=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./icon-maskable-512.png","./apple-touch-icon.png","./favicon.png",
-  "./wortweg-audio.js?v=8","./wortweg-vocab.js?v=8","./wortweg-grammar.js?v=8","./wortweg-scenes.js?v=8","./wortweg-plus.js?v=8"];
+  "./wortweg-audio.js?v=10","./wortweg-vocab.js?v=10","./wortweg-grammar.js?v=10","./wortweg-scenes.js?v=10","./wortweg-plus.js?v=10"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{

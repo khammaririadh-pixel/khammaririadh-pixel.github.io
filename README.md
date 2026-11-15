@@ -1,4 +1,4 @@
-# Wortflug · Deutsch lernen
+# Lernivo · Deutsch lernen
 
 A free German course app (A1–B2): animated lessons and scenes, grammar overview and verb tables, ~1,100 words with English and Arabic, mixed training, and Lena, a voice conversation partner (including free talk on any topic).
 

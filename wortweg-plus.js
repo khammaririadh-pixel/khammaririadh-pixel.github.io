@@ -24,21 +24,21 @@ train_title:"Training",train_lead:"Mixed exercises from every topic of your leve
 tq_gram:"Fill the gap",tq_art:"Which article?",tq_mean:"What does it mean?",tq_rev:"How do you say it in German?",tq_conj:"Choose the right verb form",tq_plural:"What is the plural?",tq_order:"Put the words in the right order",tq_type:"Write it in German",tq_hear:"Listen and choose the word you hear",tq_order_hint:"Tap the words in order. Tap a chosen word to take it back.",tq_type_ph:"Type in German…",tq_article_tip:"Remember the article:",
 sc_title:"Scenes",sc_lead:"Animated everyday scenes: people talk in German, you read along and can show the translation. Pick a scene for your level.",sc_lines:"lines",sc_seen:"watched",
 pl_tr:"Translation",pl_replay:"Replay",pl_orig:"Original video",pl_practice:"Do the exercises",pl_chat:"Practise this with Lena",pl_turn:"Your turn! Say it out loud.",pl_rule:"The rule",pl_forms:"Forms",pl_ex:"Example",pl_end:"Well done!",pl_end_sub:"Now practise what you heard.",pl_nat:"natural voice",pl_dev:"device voice",pl_lesson:"Video lesson",pl_scene:"Scene",pl_close:"Close",pl_rec:"recorded German voice",pl_basic:"basic voice ⚠",pl_basic_tip:"This device has no German voice, so a basic robot voice is used. For correct German pronunciation: open the app in Microsoft Edge or Chrome, or on Windows add a German voice (Settings › Time & language › Speech › Add voices › Deutsch), or add a free Gemini key for Lena's natural voice.",
-pr_title:"Your progress",pr_lead:"Everything you do is saved automatically on this device. Save a backup file to keep it safe or move it to another phone.",pr_ex:"exercises done",pr_words:"words learned",pr_train:"best training score",pr_scenes:"scenes watched",pr_lessons:"lessons watched",pr_save:"Save progress file",pr_load:"Load progress file",pr_saved:"Saved! Keep this file to restore your progress later.",pr_loaded:"Progress loaded.",pr_bad:"This file isn't a Wortflug progress file.",pr_confirm:"Replace the progress on this device with the progress from this file?",pr_auto:"✓ Saved automatically on this device"});
+pr_title:"Your progress",pr_lead:"Everything you do is saved automatically on this device. Save a backup file to keep it safe or move it to another phone.",pr_ex:"exercises done",pr_words:"words learned",pr_train:"best training score",pr_scenes:"scenes watched",pr_lessons:"lessons watched",pr_save:"Save progress file",pr_load:"Load progress file",pr_saved:"Saved! Keep this file to restore your progress later.",pr_loaded:"Progress loaded.",pr_bad:"This file isn't a Lernivo progress file.",pr_confirm:"Replace the progress on this device with the progress from this file?",pr_auto:"✓ Saved automatically on this device"});
 Object.assign(L.fr,{tab_words:"Mots",words_title:"Vocabulaire",words_lead:"Des centaines de mots du quotidien classés par thème, avec l'anglais et l'arabe. Touchez le haut-parleur pour écouter, cochez les mots que vous connaissez ou entraînez-vous avec les cartes.",w_search:"Chercher en allemand, anglais ou arabe…",w_all:"Tous",w_learned:"appris",w_list:"Liste",w_cards:"Cartes",w_flip:"Touchez la carte pour voir le sens",w_know:"Je sais ✓",w_again:"Encore",w_done:"Bravo, vous avez vu toutes les cartes !",w_back:"Tous les thèmes",w_none:"Aucun mot trouvé.",w_mark:"Marquer comme appris",w_restart:"Recommencer",
 g_lessons:"Leçons",g_ref:"Résumé",g_verbs:"Verbes",g_train:"Entraînement",ref_lead:"Toute la grammaire allemande, thème par thème : la règle, les tableaux et des exemples.",verbs_lead:"verbes importants à tous les temps avec ich, du, er/sie/es, wir, ihr, sie/Sie. Touchez un verbe pour voir toutes ses formes.",verbs_search:"Chercher un verbe en allemand, anglais ou arabe…",v_aux:"Parfait avec",v_sep:"séparable",v_refl:"pronominal",v_hear:"Écouter",
 train_title:"Entraînement",train_lead:"Des exercices variés sur tous les thèmes de votre niveau : grammaire, articles, conjugaison, pluriels, ordre des mots, vocabulaire, écoute et orthographe. Chaque série est nouvelle.",train_start:"Commencer une série",train_best:"Meilleur",train_q:"Question",train_check:"Vérifier",train_next:"Suivant",train_done:"Série terminée !",train_again:"Nouvelle série",train_review:"À revoir",train_of:"sur",train_correct:"justes",
 tq_gram:"Complétez",tq_art:"Quel article ?",tq_mean:"Que veut dire ce mot ?",tq_rev:"Comment dit-on en allemand ?",tq_conj:"Choisissez la bonne forme du verbe",tq_plural:"Quel est le pluriel ?",tq_order:"Mettez les mots dans le bon ordre",tq_type:"Écrivez en allemand",tq_hear:"Écoutez et choisissez le mot entendu",tq_order_hint:"Touchez les mots dans l'ordre. Touchez un mot choisi pour le retirer.",tq_type_ph:"Écrivez en allemand…",tq_article_tip:"N'oubliez pas l'article :",
 sc_title:"Scènes",sc_lead:"Des scènes animées du quotidien : des personnes parlent allemand, vous lisez en même temps et pouvez afficher la traduction. Choisissez une scène de votre niveau.",sc_lines:"répliques",sc_seen:"vue",
 pl_tr:"Traduction",pl_replay:"Revoir",pl_orig:"Vidéo d'origine",pl_practice:"Faire les exercices",pl_chat:"S'entraîner avec Lena",pl_turn:"À vous ! Dites-le à voix haute.",pl_rule:"La règle",pl_forms:"Les formes",pl_ex:"Exemple",pl_end:"Bravo !",pl_end_sub:"Entraînez-vous maintenant sur ce que vous avez entendu.",pl_nat:"voix naturelle",pl_dev:"voix de l'appareil",pl_lesson:"Leçon vidéo",pl_scene:"Scène",pl_close:"Fermer",pl_rec:"voix allemande enregistrée",pl_basic:"voix basique ⚠",pl_basic_tip:"Cet appareil n'a pas de voix allemande : une voix robotique de base est utilisée. Pour une prononciation correcte : ouvrez l'app dans Microsoft Edge ou Chrome, ou sous Windows ajoutez une voix allemande (Paramètres › Heure et langue › Voix › Ajouter des voix › Deutsch), ou ajoutez une clé Gemini gratuite pour la voix naturelle.",
-pr_title:"Votre progression",pr_lead:"Tout ce que vous faites est enregistré automatiquement sur cet appareil. Enregistrez un fichier de sauvegarde pour le garder ou le transférer sur un autre téléphone.",pr_ex:"exercices faits",pr_words:"mots appris",pr_train:"meilleur entraînement",pr_scenes:"scènes vues",pr_lessons:"leçons vues",pr_save:"Enregistrer ma progression",pr_load:"Charger une progression",pr_saved:"Enregistré ! Gardez ce fichier pour retrouver votre progression plus tard.",pr_loaded:"Progression chargée.",pr_bad:"Ce fichier n'est pas une sauvegarde Wortflug.",pr_confirm:"Remplacer la progression de cet appareil par celle du fichier ?",pr_auto:"✓ Enregistré automatiquement sur cet appareil"});
+pr_title:"Votre progression",pr_lead:"Tout ce que vous faites est enregistré automatiquement sur cet appareil. Enregistrez un fichier de sauvegarde pour le garder ou le transférer sur un autre téléphone.",pr_ex:"exercices faits",pr_words:"mots appris",pr_train:"meilleur entraînement",pr_scenes:"scènes vues",pr_lessons:"leçons vues",pr_save:"Enregistrer ma progression",pr_load:"Charger une progression",pr_saved:"Enregistré ! Gardez ce fichier pour retrouver votre progression plus tard.",pr_loaded:"Progression chargée.",pr_bad:"Ce fichier n'est pas une sauvegarde Lernivo.",pr_confirm:"Remplacer la progression de cet appareil par celle du fichier ?",pr_auto:"✓ Enregistré automatiquement sur cet appareil"});
 Object.assign(L.ar,{tab_words:"الكلمات",words_title:"المفردات",words_lead:"مئات الكلمات اليومية مرتبة حسب الموضوع، مع الإنجليزية والعربية. المس السماعة لسماع الكلمة، وضع علامة على الكلمات التي تعرفها، أو تدرّب بالبطاقات.",w_search:"ابحث بالألمانية أو الإنجليزية أو العربية…",w_all:"الكل",w_learned:"تم تعلمها",w_list:"القائمة",w_cards:"البطاقات",w_flip:"المس البطاقة لرؤية المعنى",w_know:"أعرفها ✓",w_again:"مرة أخرى",w_done:"رائع، أنهيت كل البطاقات!",w_back:"كل المواضيع",w_none:"لم يتم العثور على كلمات.",w_mark:"تعليم كمحفوظة",w_restart:"ابدأ من جديد",
 g_lessons:"الدروس",g_ref:"ملخص القواعد",g_verbs:"الأفعال",g_train:"التدريب",ref_lead:"قواعد اللغة الألمانية كاملة، موضوعاً بموضوع: القاعدة والجداول والأمثلة.",verbs_lead:"فعلاً مهماً بكل الأزمنة مع ich و du و er/sie/es و wir و ihr و sie/Sie. المس فعلاً لرؤية كل صيغه.",verbs_search:"ابحث عن فعل بالألمانية أو الإنجليزية أو العربية…",v_aux:"الماضي التام مع",v_sep:"منفصل",v_refl:"انعكاسي",v_hear:"استمع",
 train_title:"التدريب",train_lead:"تمارين متنوعة من كل مواضيع مستواك: القواعد والأدوات وتصريف الأفعال والجمع وترتيب الكلمات والمفردات والاستماع والإملاء. كل جولة جديدة.",train_start:"ابدأ جولة",train_best:"الأفضل",train_q:"السؤال",train_check:"تحقق",train_next:"التالي",train_done:"انتهت الجولة!",train_again:"جولة جديدة",train_review:"للمراجعة",train_of:"من",train_correct:"صحيحة",
 tq_gram:"أكمل الفراغ",tq_art:"ما الأداة الصحيحة؟",tq_mean:"ما معنى هذه الكلمة؟",tq_rev:"كيف تقولها بالألمانية؟",tq_conj:"اختر صيغة الفعل الصحيحة",tq_plural:"ما صيغة الجمع؟",tq_order:"رتّب الكلمات ترتيباً صحيحاً",tq_type:"اكتبها بالألمانية",tq_hear:"استمع واختر الكلمة التي سمعتها",tq_order_hint:"المس الكلمات بالترتيب. المس كلمة مختارة لإرجاعها.",tq_type_ph:"اكتب بالألمانية…",tq_article_tip:"لا تنسَ الأداة:",
 sc_title:"مشاهد",sc_lead:"مشاهد متحركة من الحياة اليومية: أشخاص يتحدثون بالألمانية، تقرأ معهم ويمكنك إظهار الترجمة. اختر مشهداً يناسب مستواك.",sc_lines:"جمل",sc_seen:"تمت المشاهدة",
 pl_tr:"الترجمة",pl_replay:"إعادة",pl_orig:"الفيديو الأصلي",pl_practice:"حلّ التمارين",pl_chat:"تدرّب على هذا مع لينا",pl_turn:"دورك! قلها بصوت عالٍ.",pl_rule:"القاعدة",pl_forms:"الصيغ",pl_ex:"مثال",pl_end:"أحسنت!",pl_end_sub:"تدرّب الآن على ما سمعته.",pl_nat:"صوت طبيعي",pl_dev:"صوت الجهاز",pl_lesson:"درس فيديو",pl_scene:"مشهد",pl_close:"إغلاق",pl_rec:"صوت ألماني مسجّل",pl_basic:"صوت بسيط ⚠",pl_basic_tip:"لا يوجد صوت ألماني على هذا الجهاز، لذا يُستخدم صوت آلي بسيط. للحصول على نطق ألماني صحيح: افتح التطبيق في Microsoft Edge أو Chrome، أو أضف صوتاً ألمانياً في Windows (الإعدادات › الوقت واللغة › الكلام › إضافة أصوات › Deutsch)، أو أضف مفتاح Gemini مجانياً للصوت الطبيعي.",
-pr_title:"تقدّمك",pr_lead:"كل ما تنجزه يُحفظ تلقائياً على هذا الجهاز. احفظ ملفاً احتياطياً للحفاظ عليه أو لنقله إلى هاتف آخر.",pr_ex:"تمارين أُنجزت",pr_words:"كلمات تم تعلمها",pr_train:"أفضل نتيجة تدريب",pr_scenes:"مشاهد تمت مشاهدتها",pr_lessons:"دروس تمت مشاهدتها",pr_save:"حفظ ملف التقدم",pr_load:"تحميل ملف التقدم",pr_saved:"تم الحفظ! احتفظ بهذا الملف لاستعادة تقدمك لاحقاً.",pr_loaded:"تم تحميل التقدم.",pr_bad:"هذا الملف ليس ملف تقدم من Wortflug.",pr_confirm:"هل تريد استبدال التقدم على هذا الجهاز بالتقدم الموجود في الملف؟",pr_auto:"✓ يُحفظ تلقائياً على هذا الجهاز"});
+pr_title:"تقدّمك",pr_lead:"كل ما تنجزه يُحفظ تلقائياً على هذا الجهاز. احفظ ملفاً احتياطياً للحفاظ عليه أو لنقله إلى هاتف آخر.",pr_ex:"تمارين أُنجزت",pr_words:"كلمات تم تعلمها",pr_train:"أفضل نتيجة تدريب",pr_scenes:"مشاهد تمت مشاهدتها",pr_lessons:"دروس تمت مشاهدتها",pr_save:"حفظ ملف التقدم",pr_load:"تحميل ملف التقدم",pr_saved:"تم الحفظ! احتفظ بهذا الملف لاستعادة تقدمك لاحقاً.",pr_loaded:"تم تحميل التقدم.",pr_bad:"هذا الملف ليس ملف تقدم من Lernivo.",pr_confirm:"هل تريد استبدال التقدم على هذا الجهاز بالتقدم الموجود في الملف؟",pr_auto:"✓ يُحفظ تلقائياً على هذا الجهاز"});
 
 /* ---------------- styles ---------------- */
 const css=`
@@ -672,14 +672,15 @@ function openScene(id){
   const vo={},cnt={f:0,m:0};["a","b"].forEach(k=>{const c=s.cast[k];vo[k]=VOICES[c.g][cnt[c.g]++%2]});
   const build=()=>{view().innerHTML=`${bgSVG(s.bg)}<div class="sc-char a" id="px-ca">${charSVG(s.cast.a)}</div><div class="sc-char b" id="px-cb">${charSVG(s.cast.b)}</div><span class="sc-name a">${esc(s.cast.a.name)}</span><span class="sc-name b">${esc(s.cast.b.name)}</span><div id="px-bub"></div>`};
   const talk=k=>{["a","b"].forEach(x=>{const el=document.getElementById("px-c"+x);if(el){el.classList.toggle("talk",x===k);el.classList.toggle("quiet",!!k&&x!==k)}})};
-  const steps=[{show:()=>{build();view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div><div class="k">${t("pl_scene")} · ${s.lv}</div><h2 lang="de">${esc(s.t.de)}</h2><p>${esc(tr(s.t))}</p></div></div>`);setSub("","")},hold:2200}];
+  const kick=s.ep?`📺 ${esc(s.ep.series)} · Folge ${s.ep.n}`:`${t("pl_scene")} · ${s.lv}`;
+  const steps=[{show:()=>{build();view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div><div class="k">${kick}${s.ep?` · ${s.lv}`:""}</div><h2 lang="de">${esc(s.t.de)}</h2><p>${esc(tr(s.t))}</p></div></div>`);setSub("","")},hold:2200}];
   s.lines.forEach((ln,i)=>{const [who,de,en,fr,ar]=ln;const trs={en,fr,ar}[state.lang]||en;
     steps.push({show:()=>{if(!document.getElementById("px-ca"))build();const tt=view().querySelector(".sc-title");if(tt)tt.remove();
       document.getElementById("px-bub").innerHTML=`<div class="sc-bub ${who}"><small>${esc(s.cast[who].name)}</small><span class="kara" lang="de" dir="ltr">${kwHTML(de)}</span></div>`;talk(null);setSub(de,trs)},
       speak:[{text:de,opt:vo[who],before:()=>talk(who),after:()=>talk(null)}],hold:450});
   });
-  steps.push({end:true,show:()=>{talk(null);view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div class="end" style="display:grid;gap:12px;justify-items:center"><div style="font-size:2.4rem">🎉</div><h2>${esc(t("pl_end"))}</h2><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn primary" data-pl="chat">${esc(t("pl_chat"))}</button><button class="btn" data-pl="replay" style="color:#fff;border-color:rgba(255,255,255,.4)">↺ ${esc(t("pl_replay"))}</button></div></div></div>`);setSub("","")}});
-  openStage(`${t("pl_scene")} · ${s.lv}`,s.t.de,steps,"scene",s);
+  steps.push({end:true,show:()=>{talk(null);view().insertAdjacentHTML("beforeend",`<div class="sc-title"><div class="end" style="display:grid;gap:12px;justify-items:center"><div style="font-size:2.4rem">🎉</div><h2>${esc(t("pl_end"))}</h2><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">${s.q?`<button class="btn primary" data-pl="quiz">❓ ${esc(t("ep_quiz"))} (${s.q.length})</button>`:""}<button class="btn ${s.q?"":"primary"}" data-pl="chat" ${s.q?'style="color:#fff;border-color:rgba(255,255,255,.4)"':""}>${esc(t("pl_chat"))}</button><button class="btn" data-pl="replay" style="color:#fff;border-color:rgba(255,255,255,.4)">↺ ${esc(t("pl_replay"))}</button></div></div></div>`);setSub("","")}});
+  openStage(s.ep?`📺 Folge ${s.ep.n} · ${s.lv}`:`${t("pl_scene")} · ${s.lv}`,s.t.de,steps,"scene",s);
 }
 
 /* ---------------- Free talk with Lena: any topic, spontaneous ---------------- */
@@ -1232,6 +1233,380 @@ button.rb-tag.on{background:#1d2340;color:#fbd7ae;border-color:#fbd7ae}
 .rb-tr.ar{font-size:1.2rem;line-height:2;font-style:italic;font-family:var(--f-ar,inherit)}
 .rb-foot{display:flex;justify-content:space-between;padding:12px clamp(16px,4vw,32px) 16px;color:var(--muted);font-size:.88rem}
 @media (max-width:640px){.rb-list{grid-template-columns:1fr}.rb-de{font-size:1.06rem}}
+</style>`);
+
+/* ---------------- free key guide: get a Gemini key in about a minute ---------------- */
+Object.assign(L.en,{kg_btn:"How to get a free key (1 minute)",kg_title:"Your free key for Lena",kg_lead:"Lena needs a key from Google to think and answer. It's free, no credit card. Follow these 4 steps:",
+ kg_s1:"Open Google AI Studio",kg_t1:"Tap the button below. Sign in with your Google (Gmail) account. The first time, accept the terms.",kg_open:"Open Google AI Studio ↗",
+ kg_s2:"Create the key",kg_t2:"Tap the blue “Create API key” button. If it asks for a project, choose “Create API key in new project”.",
+ kg_s3:"Copy the key",kg_t3:"Your key appears: a long code that starts with “AIza”. Tap the copy icon next to it.",
+ kg_s4:"Paste it here",kg_t4:"Come back to Lernivo, tap “Paste”, then “Save and test”.",
+ kg_paste:"Paste",kg_save:"Save and test",kg_ph:"AIza…",kg_safe:"🔒 The key is saved only on this device and sent only to Google. Don't share it with anyone.",
+ kg_testing:"Testing your key…",kg_ok:"✓ It works! Lena is ready. You can start talking.",kg_bad:"✗ This key doesn't work. Copy it again from AI Studio (all of it) and paste it here.",kg_short:"That doesn't look like a Gemini key: it should start with “AIza”.",kg_net:"Saved. The key couldn't be tested right now (no internet?), Lena will try it when you talk.",kg_nopaste:"Paste didn't work here: long-press the box and choose “Paste”.",kg_close:"Close",kg_later:"Later"});
+Object.assign(L.fr,{kg_btn:"Obtenir une clé gratuite (1 minute)",kg_title:"Votre clé gratuite pour Lena",kg_lead:"Lena a besoin d'une clé Google pour réfléchir et répondre. C'est gratuit, sans carte bancaire. Suivez ces 4 étapes :",
+ kg_s1:"Ouvrir Google AI Studio",kg_t1:"Touchez le bouton ci-dessous. Connectez-vous avec votre compte Google (Gmail). La première fois, acceptez les conditions.",kg_open:"Ouvrir Google AI Studio ↗",
+ kg_s2:"Créer la clé",kg_t2:"Touchez le bouton bleu « Create API key ». Si un projet est demandé, choisissez « Create API key in new project ».",
+ kg_s3:"Copier la clé",kg_t3:"Votre clé apparaît : un long code qui commence par « AIza ». Touchez l'icône de copie à côté.",
+ kg_s4:"La coller ici",kg_t4:"Revenez sur Lernivo, touchez « Coller », puis « Enregistrer et tester ».",
+ kg_paste:"Coller",kg_save:"Enregistrer et tester",kg_ph:"AIza…",kg_safe:"🔒 La clé est enregistrée uniquement sur cet appareil et envoyée uniquement à Google. Ne la partagez avec personne.",
+ kg_testing:"Test de votre clé…",kg_ok:"✓ Ça marche ! Lena est prête. Vous pouvez commencer à parler.",kg_bad:"✗ Cette clé ne fonctionne pas. Recopiez-la entièrement depuis AI Studio et collez-la ici.",kg_short:"Ce n'est pas une clé Gemini : elle doit commencer par « AIza ».",kg_net:"Enregistrée. La clé n'a pas pu être testée maintenant (pas d'internet ?), Lena l'essaiera quand vous parlerez.",kg_nopaste:"Le collage automatique ne marche pas ici : appuyez longuement sur la case et choisissez « Coller ».",kg_close:"Fermer",kg_later:"Plus tard"});
+Object.assign(L.ar,{kg_btn:"احصل على مفتاح مجاني (دقيقة واحدة)",kg_title:"مفتاحك المجاني لِلينا",kg_lead:"تحتاج لينا إلى مفتاح من Google لكي تفكر وتجيب. إنه مجاني ولا يحتاج إلى بطاقة بنكية. اتبع هذه الخطوات الأربع:",
+ kg_s1:"افتح Google AI Studio",kg_t1:"المس الزر أدناه. سجّل الدخول بحساب Google (Gmail). في المرة الأولى وافق على الشروط.",kg_open:"افتح Google AI Studio ↗",
+ kg_s2:"أنشئ المفتاح",kg_t2:"المس الزر الأزرق «Create API key». إذا طُلب منك مشروع، اختر «Create API key in new project».",
+ kg_s3:"انسخ المفتاح",kg_t3:"يظهر مفتاحك: رمز طويل يبدأ بـ «AIza». المس أيقونة النسخ بجانبه.",
+ kg_s4:"الصقه هنا",kg_t4:"ارجع إلى Lernivo، المس «لصق» ثم «حفظ واختبار».",
+ kg_paste:"لصق",kg_save:"حفظ واختبار",kg_ph:"AIza…",kg_safe:"🔒 يُحفظ المفتاح على هذا الجهاز فقط ولا يُرسل إلا إلى Google. لا تشاركه مع أحد.",
+ kg_testing:"جارٍ اختبار مفتاحك…",kg_ok:"✓ يعمل! لينا جاهزة. يمكنك أن تبدأ الحديث.",kg_bad:"✗ هذا المفتاح لا يعمل. انسخه كاملاً مرة أخرى من AI Studio والصقه هنا.",kg_short:"هذا لا يبدو مفتاح Gemini: يجب أن يبدأ بـ «AIza».",kg_net:"تم الحفظ. لم نستطع اختبار المفتاح الآن (لا يوجد إنترنت؟)، ستجربه لينا عندما تتحدث.",kg_nopaste:"اللصق التلقائي لا يعمل هنا: اضغط مطولاً على الخانة واختر «لصق».",kg_close:"إغلاق",kg_later:"لاحقاً"});
+/* tiny drawings of what the learner will see on Google's page */
+const KG_ART=[
+ `<div class="kg-mock"><div class="kg-bar"><i></i><i></i><i></i><span>aistudio.google.com</span></div><div class="kg-in"><div class="kg-g">G</div><div class="kg-line w60"></div><div class="kg-pill">Sign in</div></div></div>`,
+ `<div class="kg-mock"><div class="kg-bar"><i></i><i></i><i></i><span>API keys</span></div><div class="kg-in"><div class="kg-line w80"></div><div class="kg-blue">🔑 Create API key</div><div class="kg-tap" aria-hidden="true">👆</div></div></div>`,
+ `<div class="kg-mock"><div class="kg-bar"><i></i><i></i><i></i><span>API key generated</span></div><div class="kg-in"><div class="kg-key"><code>AIzaSy••••••••••••••</code><span class="kg-copy">⧉</span></div><div class="kg-tap r" aria-hidden="true">👆</div></div></div>`,
+ `<div class="kg-mock wf"><div class="kg-in"><div class="kg-key"><code>AIzaSy…</code></div><div class="kg-ok">✓</div></div></div>`];
+document.body.insertAdjacentHTML("beforeend",`<div class="kg-wrap" id="px-kg" hidden><div class="kg-sheet" role="dialog" aria-modal="true" aria-labelledby="px-kg-t"></div></div>`);
+const KG={msg:"",cls:""};
+function renderKG(){
+  const box=document.querySelector("#px-kg .kg-sheet");const rtl=state.lang==="ar";
+  box.setAttribute("dir",rtl?"rtl":"ltr");
+  box.innerHTML=`<div class="kg-head"><h3 id="px-kg-t">🔑 ${esc(t("kg_title"))}</h3><button type="button" class="tiny iconic" data-kg="close" aria-label="${esc(t("kg_close"))}">✕</button></div>
+   <p class="kg-lead">${esc(t("kg_lead"))}</p>
+   <ol class="kg-steps">${[1,2,3,4].map(n=>`<li><span class="kg-n">${n}</span><div class="kg-txt"><b>${esc(t("kg_s"+n))}</b><p>${esc(t("kg_t"+n))}</p>
+     ${n===1?`<a class="btn primary kg-go" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">${esc(t("kg_open"))}</a>`:""}
+     ${n===4?`<div class="kg-form"><input id="px-kg-in" type="password" dir="ltr" autocomplete="off" spellcheck="false" placeholder="${esc(t("kg_ph"))}"><button type="button" class="tiny" data-kg="paste">📋 ${esc(t("kg_paste"))}</button></div>
+       <button type="button" class="sendbtn kg-save" data-kg="save">${esc(t("kg_save"))}</button><p class="kg-msg ${KG.cls}" role="status">${esc(KG.msg)}</p>`:""}</div>
+     <div class="kg-art" aria-hidden="true">${KG_ART[n-1]}</div></li>`).join("")}</ol>
+   <p class="kg-safe">${esc(t("kg_safe"))}</p>
+   <button type="button" class="linkbtn kg-later" data-kg="close">${esc(t("kg_later"))}</button>`;
+}
+function openKG(){KG.msg="";KG.cls="";renderKG();document.getElementById("px-kg").hidden=false;document.body.classList.add("sheet-open");store.set("kg_seen",true)}
+function closeKG(){document.getElementById("px-kg").hidden=true;document.body.classList.remove("sheet-open")}
+function kgMsg(k,cls){KG.msg=t(k);KG.cls=cls||"";const m=document.querySelector("#px-kg .kg-msg");if(m){m.textContent=KG.msg;m.className="kg-msg "+KG.cls}}
+async function kgSave(){
+  const inp=document.getElementById("px-kg-in");const v=(inp.value||"").trim().replace(/\s+/g,"");
+  if(!/^AIza[\w-]{20,}$/.test(v)){kgMsg("kg_short","bad");return}
+  kgMsg("kg_testing","");
+  let ok=null;
+  try{const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1",{headers:{"x-goog-api-key":v}});ok=r.ok?true:[400,401,403].includes(r.status)?false:null}catch(e){ok=null}
+  if(ok===false){kgMsg("kg_bad","bad");return}
+  store.set("ai_prov","gemini");renderKey();
+  document.getElementById("keyin").value=v;
+  document.getElementById("keyform").dispatchEvent(new Event("submit",{cancelable:true}));
+  document.querySelector(".chat").classList.remove("cfg-open");document.getElementById("cfgbtn").setAttribute("aria-expanded","false");
+  if(ok){kgMsg("kg_ok","ok");setTimeout(()=>{closeKG();if(state.screen==="chat")lenaOpen()},1400)}else kgMsg("kg_net","");
+}
+document.addEventListener("click",async e=>{
+  if(e.target.closest("[data-keyguide]")){openKG();return}
+  const k=e.target.closest("[data-kg]");if(!k)return;const a=k.dataset.kg;
+  if(a==="close"){closeKG();return}
+  if(a==="save"){kgSave();return}
+  if(a==="paste"){const inp=document.getElementById("px-kg-in");try{const s=await navigator.clipboard.readText();if(s&&s.trim()){inp.value=s.trim();if(/^AIza/.test(inp.value)){KG.msg="";KG.cls="";const m=document.querySelector("#px-kg .kg-msg");if(m)m.textContent=""}else kgMsg("kg_short","bad")}else throw 0}catch(x){kgMsg("kg_nopaste","");inp.focus()}}
+});
+document.getElementById("px-kg").addEventListener("click",e=>{if(e.target.id==="px-kg")closeKG()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!document.getElementById("px-kg").hidden)closeKG()});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="px-kg-in"){e.preventDefault();kgSave()}});
+/* the guide button sits right inside the key box; it is shown for Google Gemini (the free choice) */
+document.querySelector("#aikey .aitext").insertAdjacentHTML("afterend",`<button type="button" class="kg-btn" data-keyguide>🔑 <span data-i18n="kg_btn"></span></button>`);
+const _renderKey=renderKey;renderKey=function(){_renderKey();const b=document.querySelector(".kg-btn");if(b)b.hidden=AI.prov!=="gemini";if(!document.getElementById("px-kg").hidden)renderKG()};
+/* first visit to Lena without a key: show the guide once by itself */
+const _go2=go;go=function(s,fromHash){_go2(s,fromHash);if(state.screen==="chat"&&!AI.key()&&!store.get("kg_seen",false))setTimeout(openKG,400)};
+if(state.screen==="chat"&&!AI.key()&&!store.get("kg_seen",false))setTimeout(openKG,600);
+const _note2=note;note=function(k){_note2(k);if((k==="no_key"||k==="bad_key")&&AI.prov==="gemini"&&document.getElementById("px-kg").hidden)setTimeout(openKG,200)};
+document.head.insertAdjacentHTML("beforeend",`<style>
+.kg-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:auto;max-width:100%;margin:10px 0;box-sizing:border-box;padding:12px 14px;border-radius:14px;border:0;background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 8px 20px -10px rgba(180,75,214,.7)}
+.kg-wrap{position:fixed;inset:0;z-index:300;background:rgba(10,8,25,.6);backdrop-filter:blur(4px);display:grid;place-items:end center;padding:0}
+.kg-wrap[hidden]{display:none}
+.kg-sheet{width:min(640px,100%);max-height:92dvh;overflow-y:auto;background:var(--solid,var(--surface));color:var(--ink);border-radius:24px 24px 0 0;padding:18px 18px calc(18px + var(--sab,0px));box-shadow:0 -20px 50px -20px rgba(0,0,0,.6);animation:fadeUp .3s ease both}
+@media (min-width:700px){.kg-wrap{place-items:center;padding:20px}.kg-sheet{border-radius:24px}}
+.kg-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.kg-head h3{margin:0;font-family:var(--f-display);font-size:1.35rem}
+.kg-lead{color:var(--muted);margin:6px 0 14px}
+.kg-steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.kg-steps li{display:grid;grid-template-columns:auto minmax(0,1fr) 120px;gap:12px;align-items:start;padding:12px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.kg-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6))}
+.kg-txt b{display:block;font-size:1.02rem}.kg-txt p{margin:4px 0 0;color:var(--muted);font-size:.92rem;line-height:1.45}
+.kg-go{display:inline-flex;margin-top:10px;text-decoration:none}
+.kg-form{display:flex;gap:8px;margin-top:10px}.kg-form input{flex:1;min-width:0;font:inherit;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper,var(--surface));color:var(--ink)}
+.kg-form input:focus{outline:none;border-color:var(--brand)}
+.kg-save{margin-top:8px;width:100%;height:auto;padding:11px}
+.kg-msg{margin:8px 0 0;font-weight:700;font-size:.92rem;min-height:1em}.kg-msg.ok{color:var(--ok)}.kg-msg.bad{color:var(--bad)}
+.kg-safe{font-size:.85rem;color:var(--muted);margin:14px 0 4px}
+.kg-later{display:block;margin:6px auto 0}
+.kg-art{align-self:center}
+.kg-mock{direction:ltr;border-radius:12px;overflow:hidden;background:#fff;color:#202124;border:1px solid #dadce0;font-size:.62rem;box-shadow:0 6px 14px -8px rgba(0,0,0,.4)}
+.kg-bar{display:flex;align-items:center;gap:3px;padding:4px 6px;background:#f1f3f4;color:#5f6368}.kg-bar i{width:5px;height:5px;border-radius:50%;background:#c4c7c5}.kg-bar span{margin-inline-start:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kg-in{position:relative;padding:10px 8px;display:grid;gap:6px;justify-items:center;min-height:62px;align-content:center}
+.kg-g{font-weight:800;font-size:1.1rem;background:linear-gradient(90deg,#4285f4,#ea4335,#fbbc05,#34a853);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kg-line{height:5px;border-radius:3px;background:#e8eaed}.kg-line.w60{width:60%}.kg-line.w80{width:80%}
+.kg-pill{border:1px solid #1a73e8;color:#1a73e8;border-radius:10px;padding:2px 8px;font-weight:700}
+.kg-blue{background:#1a73e8;color:#fff;border-radius:10px;padding:4px 8px;font-weight:700;white-space:nowrap}
+.kg-key{display:flex;align-items:center;gap:4px;background:#f1f3f4;border-radius:6px;padding:3px 5px;max-width:100%}.kg-key code{font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kg-copy{font-size:.8rem;color:#1a73e8;font-weight:800}
+.kg-tap{position:absolute;bottom:2px;right:14px;font-size:1rem;animation:kgTap 1.4s ease-in-out infinite}.kg-tap.r{right:4px}
+@keyframes kgTap{50%{transform:translateY(-5px)}}
+.kg-mock.wf{background:var(--paper,#f5f3ff)}.kg-ok{width:22px;height:22px;border-radius:50%;background:#1e9e5a;color:#fff;display:grid;place-items:center;font-weight:800}
+@media (max-width:520px){.kg-steps li{grid-template-columns:auto minmax(0,1fr)}.kg-art{grid-column:2;max-width:200px}}
+</style>`);
+
+/* ---------------- Series "Neu in Leipzig": 12 episodes (3 per level) with questions after each episode ----------------
+   Yara comes from Tunis to Leipzig. Line: [speaker, German, English, French, Arabic]. vo = recorded Piper voice per speaker. */
+const CAST={
+ yara:{name:"Yara",g:"f",skin:"#D9A47A",hair:"#2B1B14",style:"long",top:"#C8423B"},
+ jonas:{name:"Jonas",g:"m",skin:"#F2C7A5",hair:"#C98A3B",style:"short",top:"#2E5BCC",glasses:true},
+ lina:{name:"Lina",g:"f",skin:"#8D5A3B",hair:"#1F1A17",style:"curly",top:"#7A6BF0"},
+ moeller:{name:"Frau Möller",g:"f",skin:"#F5D0B5",hair:"#A7A7B0",style:"bob",top:"#F5A623"},
+ wagner:{name:"Dr. Wagner",g:"m",skin:"#E8B896",hair:"#6B6B6B",style:"short",top:"#F4F4F4",glasses:true,beard:true},
+ krause:{name:"Herr Krause",g:"m",skin:"#F0C4A0",hair:"#3A2A1E",style:"short",top:"#D7263D",cap:true},
+ emre:{name:"Herr Yilmaz",g:"m",skin:"#C68E63",hair:"#1F1A17",style:"short",top:"#3B4A6B",beard:true},
+ becker:{name:"Frau Becker",g:"f",skin:"#F2C7A5",hair:"#B5651D",style:"bun",top:"#16855A"}};
+const VO={yara:"f1",jonas:"m2",lina:"f2",moeller:"f2",wagner:"t",krause:"t",emre:"t",becker:"f2"};
+const EP=(n,lv,bg,a,b,t,lines,q)=>({id:"ep"+n,lv,bg,ep:{n,series:"Neu in Leipzig"},t:{de:t[0],en:t[1],fr:t[2],ar:t[3]},cast:{a:CAST[a],b:CAST[b]},vo:{a:VO[a],b:VO[b]},lines,q:mkQ(q)});
+const EPISODES=[
+EP(1,"A1","station","yara","jonas",["Ankommen","Arriving","L'arrivée","الوصول"],[
+ ["b","Hallo! Bist du Yara?","Hi! Are you Yara?","Salut ! Tu es Yara ?","مرحباً! هل أنتِ يارا؟"],
+ ["a","Ja, ich bin Yara. Und du bist Jonas, oder?","Yes, I'm Yara. And you're Jonas, right?","Oui, je suis Yara. Et toi, tu es Jonas, c'est ça ?","نعم، أنا يارا. وأنت يوناس، صحيح؟"],
+ ["b","Genau! Herzlich willkommen in Leipzig!","Exactly! Welcome to Leipzig!","Exactement ! Bienvenue à Leipzig !","بالضبط! أهلاً وسهلاً بكِ في لايبزيغ!"],
+ ["a","Danke! Die Reise war sehr lang.","Thanks! The journey was very long.","Merci ! Le voyage était très long.","شكراً! كانت الرحلة طويلة جداً."],
+ ["b","Woher kommst du?","Where are you from?","Tu viens d'où ?","من أين أنتِ؟"],
+ ["a","Ich komme aus Tunesien, aus Tunis.","I'm from Tunisia, from Tunis.","Je viens de Tunisie, de Tunis.","أنا من تونس، من مدينة تونس."],
+ ["b","Toll! Ist das dein Koffer?","Great! Is that your suitcase?","Super ! C'est ta valise ?","رائع! هل هذه حقيبتك؟"],
+ ["a","Ja, er ist sehr schwer.","Yes, it's very heavy.","Oui, elle est très lourde.","نعم، إنها ثقيلة جداً."],
+ ["b","Kein Problem, ich helfe dir. Unsere Wohnung ist nicht weit.","No problem, I'll help you. Our flat isn't far.","Pas de problème, je t'aide. Notre appartement n'est pas loin.","لا مشكلة، سأساعدك. شقتنا ليست بعيدة."],
+ ["a","Super, vielen Dank!","Great, thank you so much!","Super, merci beaucoup !","رائع، شكراً جزيلاً!"]],
+ [["Wo sind Yara und Jonas?","Am Bahnhof","Im Café","Im Büro"],["Woher kommt Yara?","Aus Tunesien","Aus Leipzig","Aus Marokko"],["Wie ist der Koffer?","Schwer","Klein","Neu"],["Was macht Jonas?","Er hilft Yara.","Er kauft eine Fahrkarte.","Er trinkt einen Kaffee."]]),
+EP(2,"A1","flat","yara","jonas",["Die WG","The shared flat","La colocation","السكن المشترك"],[
+ ["b","So, das ist unsere Wohnung.","So, this is our flat.","Alors, voici notre appartement.","حسناً، هذه شقتنا."],
+ ["a","Oh, sie ist schön und hell!","Oh, it's nice and bright!","Oh, il est beau et lumineux !","أوه، إنها جميلة ومضيئة!"],
+ ["b","Hier ist die Küche, und da ist das Bad.","Here's the kitchen, and there's the bathroom.","Ici, c'est la cuisine, et là, la salle de bains.","هنا المطبخ، وهناك الحمّام."],
+ ["a","Und wo ist mein Zimmer?","And where's my room?","Et où est ma chambre ?","وأين غرفتي؟"],
+ ["b","Dein Zimmer ist hier links. Es hat einen Balkon.","Your room is here on the left. It has a balcony.","Ta chambre est ici à gauche. Elle a un balcon.","غرفتك هنا على اليسار. فيها شرفة."],
+ ["a","Wunderbar! Wohnen hier noch andere Leute?","Wonderful! Do other people live here too?","Génial ! D'autres personnes habitent ici ?","رائع! هل يسكن هنا أشخاص آخرون؟"],
+ ["b","Ja, Lina wohnt auch hier. Sie arbeitet heute.","Yes, Lina lives here too. She's working today.","Oui, Lina habite aussi ici. Elle travaille aujourd'hui.","نعم، لينا تسكن هنا أيضاً. إنها تعمل اليوم."],
+ ["a","Wann essen wir zusammen?","When do we eat together?","On mange ensemble quand ?","متى نأكل معاً؟"],
+ ["b","Heute Abend um sieben. Ich koche Nudeln!","Tonight at seven. I'm cooking pasta!","Ce soir à sept heures. Je fais des pâtes !","الليلة في الساعة السابعة. سأطبخ المعكرونة!"],
+ ["a","Lecker, ich freue mich!","Yummy, I'm looking forward to it!","Miam, j'ai hâte !","لذيذ، أنا متشوّقة!"]],
+ [["Wie ist die Wohnung?","Schön und hell","Klein und dunkel","Alt und kalt"],["Was hat Yaras Zimmer?","Einen Balkon","Eine Küche","Ein Bad"],["Wer wohnt auch in der Wohnung?","Lina","Herr Yilmaz","Frau Becker"],["Was kocht Jonas heute Abend?","Nudeln","Pizza","Suppe"]]),
+EP(3,"A1","shop","yara","moeller",["Beim Bäcker","At the bakery","À la boulangerie","عند الخبّاز"],[
+ ["b","Guten Morgen! Was möchten Sie?","Good morning! What would you like?","Bonjour ! Qu'est-ce que vous désirez ?","صباح الخير! ماذا تريدين؟"],
+ ["a","Guten Morgen! Ich möchte vier Brötchen, bitte.","Good morning! I'd like four bread rolls, please.","Bonjour ! Je voudrais quatre petits pains, s'il vous plaît.","صباح الخير! أريد أربعة أرغفة صغيرة من فضلك."],
+ ["b","Gern. Sonst noch etwas?","Sure. Anything else?","Avec plaisir. Et avec ceci ?","بكل سرور. هل تريدين شيئاً آخر؟"],
+ ["a","Ja, ein Croissant. Was kostet das?","Yes, a croissant. How much is it?","Oui, un croissant. Il coûte combien ?","نعم، كرواسون. كم ثمنه؟"],
+ ["b","Das Croissant kostet einen Euro zwanzig.","The croissant costs one euro twenty.","Le croissant coûte un euro vingt.","ثمن الكرواسون يورو وعشرون سنتاً."],
+ ["a","Gut, das nehme ich auch.","Good, I'll take that too.","Bien, je le prends aussi.","حسناً، سآخذه أيضاً."],
+ ["b","Das macht zusammen drei Euro sechzig.","That's three euros sixty altogether.","Ça fait trois euros soixante en tout.","المجموع ثلاثة يوروهات وستون سنتاً."],
+ ["a","Hier, bitte. Kann ich mit Karte zahlen?","Here you are. Can I pay by card?","Voilà. Je peux payer par carte ?","تفضّلي. هل يمكنني الدفع بالبطاقة؟"],
+ ["b","Ja, natürlich. Schönen Tag noch!","Yes, of course. Have a nice day!","Oui, bien sûr. Bonne journée !","نعم، بالطبع. أتمنى لكِ يوماً جميلاً!"],
+ ["a","Danke, Ihnen auch. Tschüss!","Thanks, you too. Bye!","Merci, à vous aussi. Au revoir !","شكراً، ولكِ أيضاً. مع السلامة!"]],
+ [["Wie viele Brötchen kauft Yara?","Vier","Zwei","Sechs"],["Was kostet das Croissant?","1,20 Euro","2,40 Euro","3,60 Euro"],["Wie viel zahlt Yara zusammen?","3,60 Euro","1,20 Euro","4,00 Euro"],["Wie bezahlt Yara?","Mit Karte","Bar","Mit dem Handy"]]),
+EP(4,"A2","doctor","yara","wagner",["Beim Arzt","At the doctor's","Chez le médecin","عند الطبيب"],[
+ ["b","Guten Tag, Frau Haddad. Was fehlt Ihnen denn?","Hello, Ms Haddad. What seems to be the problem?","Bonjour, madame Haddad. Qu'est-ce qui ne va pas ?","نهارك سعيد يا سيدة حداد. ممّ تشكين؟"],
+ ["a","Ich habe seit gestern Halsschmerzen und Fieber.","I've had a sore throat and a fever since yesterday.","J'ai mal à la gorge et de la fièvre depuis hier.","أعاني منذ أمس من ألم في الحلق وحمّى."],
+ ["b","Haben Sie auch Husten?","Do you have a cough as well?","Vous toussez aussi ?","هل تسعلين أيضاً؟"],
+ ["a","Ja, ein bisschen. Und ich bin sehr müde.","Yes, a little. And I'm very tired.","Oui, un peu. Et je suis très fatiguée.","نعم، قليلاً. وأنا متعبة جداً."],
+ ["b","Machen Sie bitte mal den Mund auf. Der Hals ist ziemlich rot.","Please open your mouth. Your throat is quite red.","Ouvrez la bouche, s'il vous plaît. La gorge est assez rouge.","افتحي فمكِ من فضلك. الحلق أحمر إلى حدّ ما."],
+ ["a","Ist es schlimm?","Is it bad?","C'est grave ?","هل الأمر خطير؟"],
+ ["b","Nein, das ist eine Erkältung. Sie müssen viel trinken und sich ausruhen.","No, it's a cold. You need to drink a lot and rest.","Non, c'est un rhume. Vous devez beaucoup boire et vous reposer.","لا، إنها نزلة برد. يجب أن تشربي كثيراً وأن ترتاحي."],
+ ["a","Muss ich Tabletten nehmen?","Do I have to take tablets?","Je dois prendre des comprimés ?","هل يجب أن آخذ أقراصاً؟"],
+ ["b","Nehmen Sie diese Tabletten dreimal am Tag nach dem Essen.","Take these tablets three times a day after meals.","Prenez ces comprimés trois fois par jour après les repas.","خذي هذه الأقراص ثلاث مرات في اليوم بعد الأكل."],
+ ["a","Kann ich morgen zum Deutschkurs gehen?","Can I go to my German course tomorrow?","Je peux aller au cours d'allemand demain ?","هل يمكنني الذهاب إلى درس الألمانية غداً؟"],
+ ["b","Lieber nicht. Bleiben Sie zwei Tage zu Hause.","Better not. Stay at home for two days.","Plutôt pas. Restez deux jours à la maison.","الأفضل لا. ابقي في البيت يومين."]],
+ [["Seit wann ist Yara krank?","Seit gestern","Seit einer Woche","Seit heute Morgen"],["Was hat Yara?","Eine Erkältung","Eine Grippe","Bauchschmerzen"],["Wie oft soll sie die Tabletten nehmen?","Dreimal am Tag","Einmal am Tag","Zweimal am Tag"],["Was soll Yara machen?","Zwei Tage zu Hause bleiben","Morgen zum Kurs gehen","Viel Sport machen"]]),
+EP(5,"A2","cafe","yara","lina",["Pläne fürs Wochenende","Plans for the weekend","Projets pour le week-end","خطط لعطلة نهاية الأسبوع"],[
+ ["b","Hast du am Samstag schon etwas vor?","Have you got any plans for Saturday?","Tu as déjà prévu quelque chose samedi ?","هل لديكِ خطط ليوم السبت؟"],
+ ["a","Nein, noch nicht. Warum fragst du?","No, not yet. Why do you ask?","Non, pas encore. Pourquoi tu demandes ?","لا، ليس بعد. لماذا تسألين؟"],
+ ["b","Ich möchte auf den Flohmarkt gehen. Kommst du mit?","I want to go to the flea market. Are you coming?","Je veux aller au marché aux puces. Tu viens ?","أريد الذهاب إلى سوق الأشياء المستعملة. هل تأتين معي؟"],
+ ["a","Gern! Was kann man dort kaufen?","I'd love to! What can you buy there?","Avec plaisir ! Qu'est-ce qu'on peut y acheter ?","بكل سرور! ماذا يمكن أن نشتري هناك؟"],
+ ["b","Alles Mögliche: alte Bücher, Kleidung, Lampen und Möbel.","All kinds of things: old books, clothes, lamps and furniture.","Plein de choses : de vieux livres, des vêtements, des lampes et des meubles.","كل شيء تقريباً: كتب قديمة وملابس ومصابيح وأثاث."],
+ ["a","Ich brauche noch einen Tisch für mein Zimmer.","I still need a table for my room.","J'ai encore besoin d'une table pour ma chambre.","ما زلت أحتاج إلى طاولة لغرفتي."],
+ ["b","Perfekt, da findest du bestimmt einen günstigen Tisch.","Perfect, you'll definitely find a cheap table there.","Parfait, tu trouveras sûrement une table pas chère.","ممتاز، ستجدين هناك بالتأكيد طاولة رخيصة."],
+ ["a","Wann treffen wir uns?","When shall we meet?","On se retrouve à quelle heure ?","متى نلتقي؟"],
+ ["b","Um zehn Uhr vor dem Café am Markt, okay?","At ten o'clock in front of the café on the market square, okay?","À dix heures devant le café sur la place du marché, d'accord ?","في الساعة العاشرة أمام المقهى في ساحة السوق، اتفقنا؟"],
+ ["a","Abgemacht! Danach können wir zusammen frühstücken.","Deal! Afterwards we can have breakfast together.","Marché conclu ! Après, on pourra prendre le petit-déjeuner ensemble.","اتفقنا! بعد ذلك يمكننا أن نفطر معاً."]],
+ [["Wohin möchte Lina am Samstag gehen?","Auf den Flohmarkt","Ins Kino","In den Supermarkt"],["Was braucht Yara?","Einen Tisch","Eine Lampe","Alte Bücher"],["Wann treffen sie sich?","Um zehn Uhr","Um neun Uhr","Um zwölf Uhr"],["Wo treffen sie sich?","Vor dem Café am Markt","Am Bahnhof","In der Wohnung"]]),
+EP(6,"A2","station","yara","krause",["Zug verpasst!","Missed the train!","Train raté !","فاتني القطار!"],[
+ ["b","Guten Tag, kann ich Ihnen helfen?","Hello, can I help you?","Bonjour, je peux vous aider ?","نهارك سعيد، هل أستطيع مساعدتكِ؟"],
+ ["a","Ja, bitte. Ich habe meinen Zug nach Berlin leider verpasst.","Yes, please. Unfortunately I've missed my train to Berlin.","Oui, s'il vous plaît. J'ai malheureusement raté mon train pour Berlin.","نعم من فضلك. للأسف فاتني قطاري إلى برلين."],
+ ["b","Kein Problem. Der nächste Zug fährt in vierzig Minuten.","No problem. The next train leaves in forty minutes.","Pas de problème. Le prochain train part dans quarante minutes.","لا مشكلة. القطار التالي ينطلق بعد أربعين دقيقة."],
+ ["a","Kann ich mit meiner Fahrkarte fahren?","Can I travel with my ticket?","Je peux voyager avec mon billet ?","هل يمكنني السفر بتذكرتي؟"],
+ ["b","Ja, Ihre Fahrkarte gilt auch für den nächsten Zug.","Yes, your ticket is also valid for the next train.","Oui, votre billet est aussi valable pour le prochain train.","نعم، تذكرتكِ صالحة أيضاً للقطار التالي."],
+ ["a","Zum Glück! Von welchem Gleis fährt er ab?","Thank goodness! Which platform does it leave from?","Heureusement ! Il part de quel quai ?","الحمد لله! من أي رصيف ينطلق؟"],
+ ["b","Von Gleis sieben. Aber er hat heute zehn Minuten Verspätung.","From platform seven. But it's ten minutes late today.","Du quai sept. Mais il a dix minutes de retard aujourd'hui.","من الرصيف رقم سبعة. لكنه متأخر اليوم عشر دقائق."],
+ ["a","Ach so. Gibt es hier ein Café?","I see. Is there a café here?","Ah bon. Il y a un café ici ?","آه، فهمت. هل يوجد مقهى هنا؟"],
+ ["b","Ja, gleich neben dem Eingang.","Yes, right next to the entrance.","Oui, juste à côté de l'entrée.","نعم، بجانب المدخل مباشرة."],
+ ["a","Vielen Dank für Ihre Hilfe!","Thank you very much for your help!","Merci beaucoup pour votre aide !","شكراً جزيلاً على مساعدتك!"]],
+ [["Wohin möchte Yara fahren?","Nach Berlin","Nach München","Nach Hamburg"],["Wann fährt der nächste Zug?","In vierzig Minuten","In zehn Minuten","Morgen früh"],["Muss Yara eine neue Fahrkarte kaufen?","Nein, ihre Fahrkarte gilt.","Ja, eine teure Fahrkarte.","Ja, aber sie ist billiger."],["Von welchem Gleis fährt der Zug?","Von Gleis sieben","Von Gleis zehn","Von Gleis vier"]]),
+EP(7,"B1","office","yara","emre",["Das Vorstellungsgespräch","The job interview","L'entretien d'embauche","مقابلة العمل"],[
+ ["b","Frau Haddad, warum möchten Sie gerade bei unserer Reiseagentur arbeiten?","Ms Haddad, why do you want to work at our travel agency in particular?","Madame Haddad, pourquoi voulez-vous travailler justement dans notre agence de voyages ?","سيدة حداد، لماذا تريدين العمل في وكالة السفر الخاصة بنا بالذات؟"],
+ ["a","Ich reise selbst sehr gern, und ich habe in Tunis schon drei Jahre in einem Hotel gearbeitet.","I love travelling myself, and I've already worked in a hotel in Tunis for three years.","J'aime beaucoup voyager moi-même, et j'ai déjà travaillé trois ans dans un hôtel à Tunis.","أنا أحب السفر كثيراً، وقد عملت ثلاث سنوات في فندق في تونس."],
+ ["b","Interessant. Welche Sprachen sprechen Sie?","Interesting. Which languages do you speak?","Intéressant. Quelles langues parlez-vous ?","مثير للاهتمام. ما اللغات التي تتحدثينها؟"],
+ ["a","Arabisch, Französisch und Englisch, und mein Deutsch wird jeden Tag besser.","Arabic, French and English, and my German gets better every day.","L'arabe, le français et l'anglais, et mon allemand s'améliore chaque jour.","العربية والفرنسية والإنجليزية، ولغتي الألمانية تتحسّن كل يوم."],
+ ["b","Das merkt man! Was sind Ihre Stärken?","That shows! What are your strengths?","Ça se voit ! Quels sont vos points forts ?","هذا واضح! ما هي نقاط قوتكِ؟"],
+ ["a","Ich bin geduldig, arbeite gern im Team und bleibe auch bei Stress ruhig.","I'm patient, I like working in a team and I stay calm even under stress.","Je suis patiente, j'aime travailler en équipe et je reste calme même sous pression.","أنا صبورة، وأحب العمل ضمن فريق، وأبقى هادئة حتى تحت الضغط."],
+ ["b","Und gibt es etwas, das Sie noch lernen möchten?","And is there something you would still like to learn?","Et y a-t-il quelque chose que vous aimeriez encore apprendre ?","وهل هناك شيء ما زلتِ تودّين تعلّمه؟"],
+ ["a","Ja, ich möchte meine Deutschkenntnisse verbessern, besonders am Telefon.","Yes, I'd like to improve my German, especially on the phone.","Oui, je voudrais améliorer mon allemand, surtout au téléphone.","نعم، أريد تحسين لغتي الألمانية، خاصة في المكالمات الهاتفية."],
+ ["b","Das ist ehrlich. Könnten Sie sich vorstellen, schon im nächsten Monat anzufangen?","That's honest. Could you imagine starting as early as next month?","C'est honnête. Pourriez-vous envisager de commencer dès le mois prochain ?","هذا صادق. هل يمكنكِ أن تبدئي العمل الشهر القادم؟"],
+ ["a","Ja, sehr gern. Darauf würde ich mich freuen.","Yes, very much. I'd be delighted.","Oui, très volontiers. J'en serais ravie.","نعم، بكل سرور. سيسعدني ذلك."]],
+ [["Wo möchte Yara arbeiten?","In einer Reiseagentur","In einem Hotel","In einer Bank"],["Wo hat Yara schon gearbeitet?","In einem Hotel in Tunis","In einem Café in Leipzig","In einer Schule"],["Was ist eine Stärke von Yara?","Sie bleibt bei Stress ruhig.","Sie spricht Japanisch.","Sie arbeitet lieber allein."],["Was möchte Yara noch verbessern?","Ihr Deutsch am Telefon","Ihr Englisch","Ihre Computerkenntnisse"]]),
+EP(8,"B1","flat","yara","jonas",["Ärger in der WG","Trouble in the flat","Dispute dans la coloc","خلاف في السكن المشترك"],[
+ ["b","Yara, hast du kurz Zeit? Ich muss mit dir über die Küche reden.","Yara, have you got a minute? I need to talk to you about the kitchen.","Yara, tu as une minute ? Je dois te parler de la cuisine.","يارا، هل لديكِ دقيقة؟ يجب أن أتحدث معكِ عن المطبخ."],
+ ["a","Klar. Ist etwas passiert?","Sure. Has something happened?","Bien sûr. Il s'est passé quelque chose ?","طبعاً. هل حدث شيء؟"],
+ ["b","Na ja, das Geschirr steht schon seit drei Tagen in der Spüle.","Well, the dishes have been in the sink for three days.","Eh bien, la vaisselle est dans l'évier depuis trois jours.","حسناً، الصحون موجودة في المغسلة منذ ثلاثة أيام."],
+ ["a","Oh, das tut mir leid. Ich hatte diese Woche so viel Stress bei der Arbeit.","Oh, I'm sorry. I've had so much stress at work this week.","Oh, je suis désolée. J'ai eu tellement de stress au travail cette semaine.","أوه، أنا آسفة. كان لديّ ضغط كبير في العمل هذا الأسبوع."],
+ ["b","Das verstehe ich, aber wir haben doch einen Putzplan gemacht.","I understand, but we did make a cleaning rota.","Je comprends, mais on a fait un planning de ménage.","أفهم ذلك، لكننا وضعنا جدولاً للتنظيف."],
+ ["a","Du hast recht. Wie wäre es, wenn ich heute Abend alles sauber mache?","You're right. How about I clean everything this evening?","Tu as raison. Et si je nettoyais tout ce soir ?","معك حق. ما رأيك أن أنظف كل شيء هذا المساء؟"],
+ ["b","Das wäre super. Vielleicht kaufen wir auch eine Spülmaschine?","That would be great. Maybe we could also buy a dishwasher?","Ce serait super. On pourrait peut-être aussi acheter un lave-vaisselle ?","سيكون ذلك رائعاً. ربما نشتري أيضاً غسالة صحون؟"],
+ ["a","Gute Idee! Wenn wir das Geld teilen, ist sie nicht so teuer.","Good idea! If we split the cost, it won't be so expensive.","Bonne idée ! Si on partage les frais, ce ne sera pas si cher.","فكرة جيدة! إذا تقاسمنا المال فلن تكون غالية جداً."],
+ ["b","Ich frage Lina, ob sie auch mitmacht.","I'll ask Lina if she wants to join in.","Je demande à Lina si elle participe aussi.","سأسأل لينا إن كانت ستشارك أيضاً."],
+ ["a","Danke, dass du so offen mit mir sprichst.","Thanks for being so open with me.","Merci de me parler aussi franchement.","شكراً لأنك تتحدث معي بصراحة."]],
+ [["Worüber möchte Jonas sprechen?","Über die Küche","Über die Miete","Über Linas Freund"],["Warum hat Yara nicht abgewaschen?","Sie hatte viel Stress bei der Arbeit.","Sie war im Urlaub.","Sie war krank."],["Was schlägt Yara vor?","Heute Abend alles sauber zu machen","Eine Putzhilfe zu suchen","Auszuziehen"],["Was möchten sie vielleicht kaufen?","Eine Spülmaschine","Einen Kühlschrank","Einen neuen Tisch"]]),
+EP(9,"B1","flat","yara","becker",["Die Heizung ist kaputt","The heating is broken","Le chauffage est en panne","التدفئة معطّلة"],[
+ ["b","Hausverwaltung Becker, guten Tag. Was kann ich für Sie tun?","Becker property management, good afternoon. What can I do for you?","Gestion immobilière Becker, bonjour. Que puis-je faire pour vous ?","إدارة العقارات بيكر، نهارك سعيد. كيف أستطيع مساعدتك؟"],
+ ["a","Guten Tag, hier ist Yara Haddad aus der Goethestraße 14. Unsere Heizung funktioniert seit Montag nicht mehr.","Hello, this is Yara Haddad from Goethestraße 14. Our heating hasn't worked since Monday.","Bonjour, ici Yara Haddad, du 14 Goethestraße. Notre chauffage ne marche plus depuis lundi.","نهارك سعيد، معك يارا حداد من شارع غوته رقم 14. التدفئة عندنا لا تعمل منذ يوم الاثنين."],
+ ["b","Oh, das ist unangenehm. Ist die ganze Wohnung kalt?","Oh, that's unpleasant. Is the whole flat cold?","Oh, c'est désagréable. Tout l'appartement est froid ?","أوه، هذا مزعج. هل الشقة كلها باردة؟"],
+ ["a","Ja, besonders das Bad. Gestern waren es nur fünfzehn Grad.","Yes, especially the bathroom. Yesterday it was only fifteen degrees.","Oui, surtout la salle de bains. Hier, il faisait seulement quinze degrés.","نعم، خاصة الحمّام. أمس كانت درجة الحرارة خمس عشرة درجة فقط."],
+ ["b","Ich schicke Ihnen so schnell wie möglich einen Techniker.","I'll send you a technician as quickly as possible.","Je vous envoie un technicien le plus vite possible.","سأرسل إليكم فنياً في أسرع وقت ممكن."],
+ ["a","Wann könnte er denn kommen?","When could he come?","Quand pourrait-il venir ?","متى يمكنه أن يأتي؟"],
+ ["b","Morgen zwischen acht und zwölf Uhr. Ist dann jemand zu Hause?","Tomorrow between eight and twelve. Will someone be at home then?","Demain entre huit heures et midi. Il y aura quelqu'un à la maison ?","غداً بين الساعة الثامنة والثانية عشرة. هل سيكون أحد في البيت؟"],
+ ["a","Ja, mein Mitbewohner ist den ganzen Vormittag da.","Yes, my flatmate is there all morning.","Oui, mon colocataire est là toute la matinée.","نعم، زميلي في السكن موجود طوال الصباح."],
+ ["b","Gut, dann trage ich den Termin ein. Entschuldigen Sie bitte die Unannehmlichkeiten.","Good, then I'll book the appointment. I'm sorry for the inconvenience.","Bien, je note le rendez-vous. Veuillez excuser le désagrément.","حسناً، سأسجّل الموعد إذن. نعتذر عن الإزعاج."],
+ ["a","Kein Problem, vielen Dank für die schnelle Hilfe.","No problem, thank you for the quick help.","Pas de problème, merci pour votre aide rapide.","لا مشكلة، شكراً جزيلاً على المساعدة السريعة."]],
+ [["Was ist das Problem?","Die Heizung funktioniert nicht.","Das Fenster ist kaputt.","Die Nachbarn sind laut."],["Seit wann gibt es das Problem?","Seit Montag","Seit gestern","Seit einer Woche"],["Wann kommt der Techniker?","Morgen zwischen acht und zwölf Uhr","Heute Abend","Am Wochenende"],["Wer ist zu Hause, wenn der Techniker kommt?","Yaras Mitbewohner","Yara","Niemand"]]),
+EP(10,"B2","office","yara","emre",["Ein Gespräch mit dem Chef","A talk with the boss","Une discussion avec le chef","حديث مع المدير"],[
+ ["a","Herr Yilmaz, hätten Sie einen Moment Zeit? Ich würde gern etwas mit Ihnen besprechen.","Mr Yilmaz, would you have a moment? I'd like to discuss something with you.","Monsieur Yilmaz, auriez-vous un moment ? J'aimerais discuter de quelque chose avec vous.","سيد يلماز، هل لديك لحظة؟ أودّ أن أناقش معك أمراً ما."],
+ ["b","Natürlich, setzen Sie sich. Worum geht es denn?","Of course, have a seat. What's it about?","Bien sûr, asseyez-vous. De quoi s'agit-il ?","بالطبع، تفضّلي بالجلوس. ما الموضوع؟"],
+ ["a","Seit ich im Team bin, habe ich gemerkt, dass ich zu Hause deutlich konzentrierter arbeite.","Since joining the team, I've noticed that I work much more efficiently at home.","Depuis que je suis dans l'équipe, j'ai remarqué que je suis nettement plus concentrée à la maison.","منذ انضمامي إلى الفريق لاحظت أنني أعمل في البيت بتركيز أكبر بكثير."],
+ ["b","Sie denken also an Homeoffice?","So you're thinking about working from home?","Vous pensez donc au télétravail ?","إذن تفكرين في العمل من المنزل؟"],
+ ["a","Genau. Ich würde gern zwei Tage pro Woche von zu Hause aus arbeiten, vorausgesetzt, das passt für das Team.","Exactly. I'd like to work from home two days a week, provided that works for the team.","Exactement. J'aimerais travailler deux jours par semaine depuis chez moi, à condition que ça convienne à l'équipe.","بالضبط. أودّ أن أعمل يومين في الأسبوع من البيت، بشرط أن يناسب ذلك الفريق."],
+ ["b","Grundsätzlich bin ich offen dafür. Allerdings sind die Kundentermine meistens montags und dienstags.","In principle I'm open to it. However, client meetings are mostly on Mondays and Tuesdays.","En principe, j'y suis ouvert. Cependant, les rendez-vous clients ont lieu surtout le lundi et le mardi.","من حيث المبدأ أنا منفتح على ذلك. لكن مواعيد العملاء تكون غالباً يومي الاثنين والثلاثاء."],
+ ["a","Das verstehe ich. Wie wäre es, wenn ich mittwochs und freitags zu Hause bliebe?","I understand. How would it be if I stayed at home on Wednesdays and Fridays?","Je comprends. Et si je restais à la maison le mercredi et le vendredi ?","أفهم ذلك. ما رأيك لو بقيت في البيت يومي الأربعاء والجمعة؟"],
+ ["b","Das klingt vernünftig. Lassen Sie es uns zunächst drei Monate ausprobieren.","That sounds reasonable. Let's try it out for three months first.","Ça paraît raisonnable. Essayons d'abord pendant trois mois.","يبدو هذا معقولاً. لنجرّب ذلك أولاً لمدة ثلاثة أشهر."],
+ ["a","Das ist ein fairer Vorschlag. Ich werde Ihnen regelmäßig berichten, wie es läuft.","That's a fair suggestion. I'll report to you regularly on how it's going.","C'est une proposition équitable. Je vous tiendrai régulièrement au courant.","هذا اقتراح عادل. سأبلغك بانتظام كيف تسير الأمور."],
+ ["b","Prima. Dann schicke ich Ihnen die Vereinbarung bis Ende der Woche.","Great. Then I'll send you the agreement by the end of the week.","Parfait. Je vous envoie l'accord d'ici la fin de la semaine.","ممتاز. سأرسل إليكِ الاتفاق قبل نهاية الأسبوع."]],
+ [["Was möchte Yara?","Zwei Tage pro Woche im Homeoffice arbeiten","Mehr Gehalt bekommen","Das Team wechseln"],["Warum möchte sie das?","Sie arbeitet zu Hause konzentrierter.","Sie wohnt sehr weit weg.","Sie ist oft krank."],["Warum passen Montag und Dienstag nicht?","Dann sind meistens Kundentermine.","Dann ist das Büro geschlossen.","Dann hat Herr Yilmaz Urlaub."],["Was schlägt Herr Yilmaz vor?","Eine Testphase von drei Monaten","Sofort jeden Tag Homeoffice","Erst im nächsten Jahr"]]),
+EP(11,"B2","cafe","yara","jonas",["Streitgespräch: soziale Medien","Debate: social media","Débat : les réseaux sociaux","نقاش: وسائل التواصل الاجتماعي"],[
+ ["b","Hast du gelesen? In manchen Ländern wird diskutiert, soziale Medien für Kinder unter sechzehn zu verbieten.","Did you read that? Some countries are discussing banning social media for children under sixteen.","Tu as lu ? Dans certains pays, on discute d'interdire les réseaux sociaux aux moins de seize ans.","هل قرأت؟ في بعض الدول يجري النقاش حول منع وسائل التواصل الاجتماعي للأطفال دون السادسة عشرة."],
+ ["a","Ja, und ehrlich gesagt finde ich das gar nicht so falsch.","Yes, and honestly, I don't think that's wrong at all.","Oui, et franchement, je ne trouve pas ça si faux.","نعم، وبصراحة لا أرى ذلك خطأً على الإطلاق."],
+ ["b","Wirklich? Ich halte ein Verbot für übertrieben. Jugendliche sollten lernen, verantwortungsvoll damit umzugehen.","Really? I think a ban is excessive. Young people should learn to use it responsibly.","Vraiment ? Je trouve une interdiction exagérée. Les jeunes devraient apprendre à s'en servir de façon responsable.","حقاً؟ أرى أن المنع مبالغ فيه. يجب أن يتعلّم الشباب استخدامها بمسؤولية."],
+ ["a","Das stimmt schon, aber die Apps sind gerade darauf ausgelegt, dass man nicht aufhören kann.","That's true, but the apps are designed precisely so that you can't stop.","C'est vrai, mais les applis sont justement conçues pour qu'on ne puisse pas s'arrêter.","هذا صحيح، لكن التطبيقات مصمّمة تحديداً بحيث لا يستطيع المرء التوقف."],
+ ["b","Trotzdem: Wenn man etwas verbietet, wird es für Jugendliche erst recht interessant.","Still: if you ban something, it becomes all the more interesting for young people.","Quand même : si on interdit quelque chose, ça devient encore plus intéressant pour les jeunes.","ومع ذلك: عندما تمنع شيئاً يصبح أكثر إثارة للشباب."],
+ ["a","Da ist was dran. Vielleicht wäre es sinnvoller, Medienkompetenz schon in der Schule zu unterrichten.","There's something in that. Maybe it would make more sense to teach media literacy at school.","Il y a du vrai là-dedans. Ce serait peut-être plus utile d'enseigner l'éducation aux médias dès l'école.","في كلامك شيء من الصحة. ربما يكون من الأجدى تعليم الثقافة الإعلامية في المدرسة."],
+ ["b","Genau das meine ich! Und die Eltern müssten mit gutem Beispiel vorangehen.","That's exactly what I mean! And parents would have to set a good example.","C'est exactement ce que je veux dire ! Et les parents devraient montrer l'exemple.","هذا بالضبط ما أقصده! ويجب على الآباء أن يكونوا قدوة حسنة."],
+ ["a","Wobei viele Eltern selbst ständig am Handy hängen.","Although many parents are glued to their phones themselves.","Sauf que beaucoup de parents sont eux-mêmes collés à leur téléphone.","مع أن كثيراً من الآباء أنفسهم لا يتركون هواتفهم."],
+ ["b","Touché. Da sollten wir uns vielleicht alle an die eigene Nase fassen.","Touché. Maybe we should all take a hard look at ourselves.","Touché. On devrait peut-être tous balayer devant notre porte.","معك حق. ربما يجب أن ننظر جميعاً إلى أنفسنا أولاً."],
+ ["a","Also: Handys weg, und wir bestellen noch einen Kaffee?","So: phones away, and shall we order another coffee?","Alors : on range les portables et on commande encore un café ?","إذن: نبعد الهواتف ونطلب قهوة أخرى؟"]],
+ [["Worüber diskutieren Jonas und Yara?","Über ein Verbot sozialer Medien für Kinder","Über neue Handys","Über ihre Arbeit"],["Was hält Jonas von einem Verbot?","Er findet es übertrieben.","Er findet es sehr gut.","Er hat keine Meinung."],["Was schlägt Yara vor?","Medienkompetenz in der Schule zu unterrichten","Handys ganz zu verbieten","Apps teurer zu machen"],["Was bedeutet „sich an die eigene Nase fassen“?","Zuerst das eigene Verhalten kritisch sehen","Eine Erkältung haben","Jemanden beleidigen"]]),
+EP(12,"B2","street","yara","lina",["Ein Jahr in Leipzig","A year in Leipzig","Un an à Leipzig","عام في لايبزيغ"],[
+ ["b","Kaum zu glauben, dass du schon ein Jahr in Leipzig bist!","Hard to believe you've already been in Leipzig for a year!","Difficile de croire que tu es déjà à Leipzig depuis un an !","يصعب تصديق أنكِ في لايبزيغ منذ عام كامل!"],
+ ["a","Ja, die Zeit ist wie im Flug vergangen. Weißt du noch, wie nervös ich am Anfang war?","Yes, time has flown. Do you remember how nervous I was at the beginning?","Oui, le temps a filé. Tu te souviens comme j'étais nerveuse au début ?","نعم، مرّ الوقت بسرعة البرق. هل تتذكرين كم كنت متوترة في البداية؟"],
+ ["b","Und ob! Du hast dich nicht einmal getraut, beim Bäcker zu bestellen.","And how! You didn't even dare to order at the bakery.","Et comment ! Tu n'osais même pas commander à la boulangerie.","وكيف لا! لم تجرئي حتى على الطلب عند الخبّاز."],
+ ["a","Stimmt, heute kann ich mir das kaum noch vorstellen.","True, today I can hardly imagine that.","C'est vrai, aujourd'hui j'ai du mal à l'imaginer.","صحيح، اليوم بالكاد أستطيع تصوّر ذلك."],
+ ["b","Was war für dich eigentlich die größte Herausforderung?","What was actually the biggest challenge for you?","Au fond, quel a été le plus grand défi pour toi ?","ما الذي كان في الحقيقة أكبر تحدٍّ بالنسبة لكِ؟"],
+ ["a","Ehrlich gesagt nicht die Grammatik, sondern der Mut, Fehler zu machen und trotzdem weiterzusprechen.","Honestly, not the grammar, but the courage to make mistakes and keep talking anyway.","Honnêtement, pas la grammaire, mais le courage de faire des erreurs et de continuer à parler quand même.","بصراحة ليست القواعد، بل الشجاعة على ارتكاب الأخطاء ومواصلة الكلام رغم ذلك."],
+ ["b","Das hast du hervorragend gemeistert. Würdest du es wieder genauso machen?","You mastered that brilliantly. Would you do it all the same way again?","Tu as brillamment relevé ce défi. Tu referais tout pareil ?","لقد نجحتِ في ذلك ببراعة. هل كنتِ ستفعلين الشيء نفسه مرة أخرى؟"],
+ ["a","Auf jeden Fall, obwohl ich meine Familie natürlich oft vermisse.","Definitely, although of course I often miss my family.","Absolument, même si ma famille me manque souvent, bien sûr.","بالتأكيد، رغم أنني أشتاق إلى عائلتي كثيراً بالطبع."],
+ ["b","Und was hast du dir für das nächste Jahr vorgenommen?","And what have you set yourself for next year?","Et qu'est-ce que tu t'es fixé pour l'année prochaine ?","وما الذي تنوين فعله في العام القادم؟"],
+ ["a","Ich möchte die C1-Prüfung bestehen und endlich ein bisschen Sächsisch verstehen!","I want to pass the C1 exam and finally understand a bit of the Saxon dialect!","Je veux réussir l'examen C1 et enfin comprendre un peu le saxon !","أريد أن أنجح في امتحان C1 وأن أفهم أخيراً قليلاً من اللهجة الساكسونية!"],
+ ["b","Na dann, viel Erfolg! Darauf stoßen wir an.","Well then, good luck! Let's drink to that.","Alors, bonne chance ! Trinquons à ça.","إذن، بالتوفيق! لنشرب نخب ذلك."]],
+ [["Wie lange ist Yara schon in Leipzig?","Ein Jahr","Ein halbes Jahr","Zwei Jahre"],["Was war am Anfang schwierig für Yara?","Beim Bäcker zu bestellen","Eine Wohnung zu finden","Den Zug zu nehmen"],["Was war ihre größte Herausforderung?","Den Mut zu haben, Fehler zu machen","Die Grammatik","Das Wetter"],["Was möchte Yara im nächsten Jahr schaffen?","Die C1-Prüfung bestehen","Nach Tunis zurückgehen","Eine neue Wohnung finden"]])
+];
+SCENES.unshift(...EPISODES);P.epBest=store.get("epBest",{});
+Object.assign(L.en,{ep_series:"Series",ep_quiz:"Questions about the episode",ep_q:"Question",ep_next:"Next question",ep_res:"Result",ep_again:"Try again",ep_right:"Correct!",ep_wrong:"Not quite. The answer is:",ep_listen:"Listen to the question",ep_more:"More scenes",ep_lead:"An original story in episodes: Yara moves from Tunis to Leipzig. Watch, read along, then answer the questions."});
+Object.assign(L.fr,{ep_series:"Série",ep_quiz:"Questions sur l'épisode",ep_q:"Question",ep_next:"Question suivante",ep_res:"Résultat",ep_again:"Recommencer",ep_right:"Correct !",ep_wrong:"Pas tout à fait. La réponse est :",ep_listen:"Écouter la question",ep_more:"Autres scènes",ep_lead:"Une histoire originale en épisodes : Yara quitte Tunis pour Leipzig. Regardez, lisez, puis répondez aux questions."});
+Object.assign(L.ar,{ep_series:"مسلسل",ep_quiz:"أسئلة عن الحلقة",ep_q:"السؤال",ep_next:"السؤال التالي",ep_res:"النتيجة",ep_again:"أعد المحاولة",ep_right:"صحيح!",ep_wrong:"ليس تماماً. الجواب هو:",ep_listen:"استمع إلى السؤال",ep_more:"مشاهد أخرى",ep_lead:"قصة أصلية في حلقات: يارا تنتقل من تونس إلى لايبزيغ. شاهد واقرأ ثم أجب عن الأسئلة."});
+/* the quiz runs inside the player, one question at a time */
+const QZ={s:null,i:0,score:0,picked:null};
+function quizShow(){
+  const s=QZ.s,view=document.getElementById("px-st-view");const n=s.q.length;
+  if(QZ.i>=n){
+    const best=P.epBest&&P.epBest[s.id]||0;P.epBest=P.epBest||{};P.epBest[s.id]=Math.max(best,QZ.score);save("epBest");
+    view.innerHTML=`${bgSVG(s.bg)}<div class="sc-title"><div class="end ep-res"><div style="font-size:2.6rem">${QZ.score===n?"🏆":QZ.score>=n/2?"🎉":"💪"}</div><h2>${esc(t("ep_res"))}: ${QZ.score} / ${n}</h2>
+      <div class="btns"><button class="btn primary" data-pl="quiz">↺ ${esc(t("ep_again"))}</button><button class="btn" data-pl="replay" style="color:#fff;border-color:rgba(255,255,255,.4)">▶ ${esc(t("pl_replay"))}</button></div></div></div>`;
+    document.getElementById("px-st-prog").style.width="100%";setSub("","");return}
+  const q=s.q[QZ.i],done=QZ.picked!==null;
+  view.innerHTML=`${bgSVG(s.bg)}<div class="ep-quiz"><div class="ep-card">
+    <div class="ep-k">❓ ${esc(t("ep_q"))} ${QZ.i+1} / ${n}</div>
+    <p class="ep-qt" lang="de" dir="ltr"><button type="button" class="say sm" data-say="${esc(q.p)}" aria-label="${esc(t("ep_listen"))}">${SPK}</button>${esc(q.p)}</p>
+    <div class="ep-opts" lang="de" dir="ltr">${q.o.map((o,i)=>`<button type="button" class="ep-opt${done&&i===q.a?" right":""}${done&&i===QZ.picked&&i!==q.a?" wrong":""}" data-qz="${i}" ${done?"disabled":""}>${esc(o)}</button>`).join("")}</div>
+    ${done?`<p class="ep-fb ${QZ.picked===q.a?"ok":"no"}">${QZ.picked===q.a?"✓ "+esc(t("ep_right")):esc(t("ep_wrong"))+` <b lang="de">${esc(q.o[q.a])}</b>`}</p><button type="button" class="btn primary ep-next" data-pl="qnext">${esc(QZ.i+1<n?t("ep_next"):t("ep_res"))} →</button>`:""}
+  </div></div>`;
+  document.getElementById("px-st-prog").style.width=Math.round(100*(QZ.i+(done?1:0))/n)+"%";setSub("","");
+  if(!done)TTS.speak(q.p);
+}
+document.addEventListener("click",e=>{
+  const pl=e.target.closest('[data-pl="quiz"],[data-pl="qnext"]');
+  if(pl&&PL.ctx&&PL.ctx.q){e.stopPropagation();if(pl.dataset.pl==="quiz"){PL.run++;TTS.stop();QZ.s=PL.ctx;QZ.i=0;QZ.score=0;QZ.picked=null}else{QZ.i++;QZ.picked=null}quizShow();return}
+  const o=e.target.closest("[data-qz]");if(o&&QZ.s&&QZ.picked===null){QZ.picked=+o.dataset.qz;if(QZ.picked===QZ.s.q[QZ.i].a)QZ.score++;TTS.stop();quizShow()}
+},true);
+/* the series sits on top of the scenes list, filtered by the same level chips */
+const _renderScenes=renderScenes;renderScenes=function(){
+  _renderScenes();const list=document.getElementById("px-sclist");if(!list)return;const cur=SCLV||"all";
+  const eps=EPISODES.filter(s=>cur==="all"||s.lv===cur);
+  list.querySelectorAll('[data-scene^="ep"]').forEach(b=>b.remove());
+  if(!eps.length)return;
+  list.insertAdjacentHTML("beforebegin",`<div class="ep-head" id="px-ephead"><b>📺 ${esc(t("ep_series"))}: <span lang="de">Neu in Leipzig</span></b><small>${esc(t("ep_lead"))}</small></div><div class="px-scenes ep-list" id="px-eplist">${eps.map(s=>{const best=P.epBest&&P.epBest[s.id];return `<button class="px-scene ep-scene" data-scene="${s.id}"><span class="th">${bgSVG(s.bg)}${miniCast(s)}<span class="lvt">${s.lv}</span><span class="ep-n">Folge ${s.ep.n}</span>${P.scenesSeen[s.id]?`<span class="seen">✓ ${best!=null?best+"/"+s.q.length:esc(t("sc_seen"))}</span>`:""}</span><span class="meta"><b lang="de">${esc(s.t.de)}</b><small>${esc(tr(s.t))} · ${s.lines.length} ${esc(t("sc_lines"))} · ${s.q.length} ❓</small></span></button>`}).join("")}</div><h4 class="ep-more">${esc(t("ep_more"))}</h4>`);
+};
+{const clean=()=>{["px-ephead","px-eplist"].forEach(id=>{const x=document.getElementById(id);if(x)x.remove()});document.querySelectorAll(".ep-more").forEach(x=>x.remove())};const r2=renderScenes;renderScenes=function(){clean();r2()}}
+document.head.insertAdjacentHTML("beforeend",`<style>
+.ep-head{display:grid;gap:4px;margin:6px 0 12px;padding:14px 16px;border-radius:18px;background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff}
+.ep-head b{font-size:1.15rem}.ep-head small{opacity:.92;line-height:1.45}
+.ep-list{margin-bottom:8px}
+.ep-more{margin:18px 0 10px}
+.ep-n{position:absolute;top:10px;inset-inline-end:10px;background:#1d2340;color:#fbd7ae;font-weight:800;font-size:.75rem;border-radius:8px;padding:3px 8px}
+.ep-quiz{position:absolute;inset:0;display:grid;place-items:center;padding:14px;background:rgba(15,12,30,.45)}
+.ep-card{width:min(520px,100%);background:var(--solid,#fff);color:var(--ink);border-radius:20px;padding:18px;display:grid;gap:12px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);animation:fadeUp .3s ease both;max-height:100%;overflow:auto}
+.ep-k{font-weight:800;font-size:.85rem;color:var(--brand)}
+.ep-qt{display:flex;gap:10px;align-items:center;margin:0;font-size:1.2rem;font-weight:800;line-height:1.35}
+.ep-opts{display:grid;gap:8px}
+.ep-opt{font:inherit;font-weight:700;text-align:start;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.ep-opt:hover:not(:disabled){border-color:var(--brand)}
+.ep-opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--surface))}
+.ep-opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--surface))}
+.ep-fb{margin:0;font-weight:700}.ep-fb.ok{color:var(--ok)}.ep-fb.no{color:var(--bad)}
+.ep-next{justify-self:end}
+.ep-res h2{color:#fff}
+#px-st-sub .de{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:700;letter-spacing:.01em}
+</style>`);
+
+/* ---------------- video lesson cards: thumbnails drawn by the app (always the current name, sharp on every screen) ---------------- */
+renderVideos=function(){
+  $("v-levels").innerHTML=lvlChips();
+  $("vids").innerHTML=G.filter(g=>g.level===state.level).map(g=>`<button class="vcard" data-vid="${g.id}"><span class="vthumb lv-thumb"><span class="lt-top"><span class="lt-brand"><img src="favicon.png" alt="" width="18" height="18">Lernivo</span><span class="lt-lv">${g.level}</span></span><span class="lt-k">Video-Lektion</span><span class="lt-t" lang="de" dir="ltr">${esc(g.de)}</span><span class="lt-bar" aria-hidden="true"><i></i><i></i><i></i></span><span class="vplay">${PLAY}</span></span><span class="vmeta"><b lang="de" dir="ltr">${esc(g.de)}</b><small>${esc(g.t[state.lang])}</small></span></button>`).join("");
+};
+document.head.insertAdjacentHTML("beforeend",`<style>
+.lv-thumb{display:flex!important;flex-direction:column;justify-content:flex-start;gap:6px;padding:12px 14px;background:linear-gradient(160deg,#FFF8F2,#FBE7DA)!important;color:#1d2340;text-align:start;position:relative;overflow:hidden}
+.lv-thumb::after{content:"";position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(242,97,63,.18),transparent 70%)}
+.lt-top{display:flex;justify-content:space-between;align-items:center}
+.lt-brand{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.85rem}.lv-thumb .lt-brand img{width:18px!important;height:18px!important;position:static!important;inset:auto!important;object-fit:contain;border-radius:5px;flex:none}
+.lt-lv{background:#2E5BCC;color:#fff;font-weight:800;font-size:.7rem;border-radius:999px;padding:2px 9px}
+.lt-k{margin-top:auto;font-family:var(--f-mono,monospace);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#2E5BCC;font-weight:700}
+.lt-t{font-family:Georgia,"Times New Roman",serif;font-size:1.15rem;line-height:1.2;color:#1d2340;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lt-bar{display:flex;width:44px;height:4px;margin-bottom:4px}.lt-bar i{flex:1}.lt-bar i:nth-child(1){background:#1d2340}.lt-bar i:nth-child(2){background:#D7263D}.lt-bar i:nth-child(3){background:#F2C14E}
+.vthumb.lv-thumb{aspect-ratio:16/10}
+.lv-thumb .vplay{position:absolute;inset:auto 12px 12px auto!important;transform:none!important;z-index:1;width:42px;height:42px}
+.lv-thumb .lt-t{padding-inline-end:52px}
+@media (max-width:640px){.vthumb.lv-thumb{aspect-ratio:16/8}.lt-t{font-size:1.3rem}}
+</style>`);
+
+/* ---------------- Listening: solid, clearly separated boxes (no see-through glass over the background colours) ---------------- */
+document.head.insertAdjacentHTML("beforeend",`<style>
+#l-panel{background:var(--solid,var(--surface))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;gap:16px}
+#l-panel .lplayer{background:color-mix(in srgb,var(--brand) 10%,var(--solid,var(--surface)))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1.5px solid color-mix(in srgb,var(--brand) 35%,var(--line))!important;padding:16px;gap:16px}
+#l-panel .lplayer b{font-size:1.15rem;color:var(--ink)}
+#l-panel .lplayer small{color:var(--ink);opacity:.72;font-size:.88rem;line-height:1.4}
+#l-panel .bigplay,#l-panel .lp-ic{width:64px;height:64px;background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6))!important;color:#fff!important;box-shadow:0 10px 24px -10px color-mix(in srgb,var(--brand) 80%,transparent);font-size:1.7rem}
+#l-panel .bigplay svg{width:30px;height:30px}
+#l-panel .bigplay.speaking{animation:lxPulse 1s ease-in-out infinite}
+#l-panel .tools .tiny{font-weight:700}
+#l-panel .ltrans{background:var(--paper,var(--surface));border:1px solid var(--line)}
+#l-panel .rqs{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:0!important;box-shadow:none!important;padding:0!important;gap:12px}
+#l-panel .quiz-h{margin:4px 0 0;padding:10px 14px;border-radius:14px;background:var(--paper,var(--surface));border:1px solid var(--line)}
+#l-panel .quiz-h h4{margin:0;color:var(--ink);font-size:.8rem}
+#l-panel .q{background:var(--paper,var(--surface))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid var(--line)!important;border-radius:16px!important;padding:14px!important;box-shadow:none!important}
+#l-panel .q.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))!important}
+#l-panel .q-p{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:700;margin:0}
+#l-panel .qn{background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff;font-weight:800;font-size:.8rem;min-width:28px;height:28px;transform:none}
+#l-panel .opts{display:grid;gap:8px}
+#l-panel .opt{text-align:start}
+#l-panel .hq{color:var(--ink);opacity:.75}
 </style>`);
 
 /* ---------------- render hooks ---------------- */
