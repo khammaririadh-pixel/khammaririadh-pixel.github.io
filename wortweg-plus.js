@@ -1602,11 +1602,40 @@ document.head.insertAdjacentHTML("beforeend",`<style>
 #l-panel .quiz-h h4{margin:0;color:var(--ink);font-size:.8rem}
 #l-panel .q{background:var(--paper,var(--surface))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid var(--line)!important;border-radius:16px!important;padding:14px!important;box-shadow:none!important}
 #l-panel .q.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))!important}
-#l-panel .q-p{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:700;margin:0}
+#l-panel .q-p{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;font-size:1.05rem;font-weight:700;margin:0}
 #l-panel .qn{background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff;font-weight:800;font-size:.8rem;min-width:28px;height:28px;transform:none}
 #l-panel .opts{display:grid;gap:8px}
 #l-panel .opt{text-align:start}
 #l-panel .hq{color:var(--ink);opacity:.75}
+</style>`);
+
+/* ---------------- Reading questions: one solid card, clear questions and numbers ---------------- */
+document.head.insertAdjacentHTML("beforeend",`<style>
+#r-panel .rqs{background:var(--solid,var(--surface))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid var(--line)!important;border-radius:22px!important;padding:16px!important;gap:12px!important;margin-top:16px}
+#r-panel .quiz-h{margin:0;padding:10px 14px;border-radius:14px;background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff}
+#r-panel .quiz-h h4{margin:0;color:#fff;font-size:.8rem}
+#r-panel .quiz-h .score{background:rgba(255,255,255,.22);color:#fff}
+#r-panel .quiz-h .linkbtn{color:#fff}
+#r-panel .q{background:var(--paper,var(--surface))!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid var(--line)!important;border-radius:16px!important;padding:14px!important;box-shadow:none!important;gap:10px}
+#r-panel .q.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))!important}
+#r-panel .q-p{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:10px;font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);line-height:1.4}
+#r-panel .qn{background:var(--grad,linear-gradient(135deg,#f97362,#b44bd6));color:#fff;font-weight:800;font-size:.8rem;min-width:28px;height:28px;transform:none;flex:none}
+#r-panel .opts{display:grid;gap:8px}
+#r-panel .opt{text-align:start}
+#r-panel .q-fb{margin:0;font-weight:700}
+</style>`);
+
+/* ---------------- AI ears: switch, labels and live sound meter ---------------- */
+Object.assign(L.en,{ears_opt:"🎧 AI ears: Lena hears your real voice (most accurate, checks your pronunciation; Gemini key)",ears_hearing:"Lena is listening to your voice…",ears_heard:"Lena heard"});
+Object.assign(L.fr,{ears_opt:"🎧 Oreilles IA : Lena entend votre vraie voix (plus précis, vérifie la prononciation ; clé Gemini)",ears_hearing:"Lena écoute votre voix…",ears_heard:"Lena a entendu"});
+Object.assign(L.ar,{ears_opt:"🎧 آذان الذكاء الاصطناعي: لينا تسمع صوتك الحقيقي (أدق، وتصحح نطقك؛ مفتاح Gemini)",ears_hearing:"لينا تستمع إلى صوتك…",ears_heard:"ما سمعته لينا"});
+document.querySelector(".chat-side").insertAdjacentHTML("beforeend",`<label class="vcheck"><input type="checkbox" id="px-ears"><span data-i18n="ears_opt"></span></label>`);
+const earsBox=document.getElementById("px-ears");earsBox.checked=state.ears!==false;
+earsBox.addEventListener("change",e=>{state.ears=e.target.checked;store.set("ears",state.ears);if(state.hf){endHF(null);setTimeout(()=>{try{startHF()}catch(x){}},200)}});
+document.head.insertAdjacentHTML("beforeend",`<style>
+.lx-status[data-k="listen"] .dot{animation:none;transform:scale(calc(1 + var(--ears-level,0) * 1.6));transition:transform .08s linear;box-shadow:0 0 0 calc(var(--ears-level,0) * 8px) color-mix(in srgb,var(--ok) 25%,transparent)}
+.bubble.listening{display:flex;align-items:center;gap:8px;opacity:.85;font-style:italic}
+.bubble.listening .typing{display:inline-flex;gap:3px}
 </style>`);
 
 /* ---------------- render hooks ---------------- */
